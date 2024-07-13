@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import Head from 'next/head'
 import Navbar from '@/components/navbar'
@@ -6,13 +6,13 @@ import Footer from '@/components/footer'
 
 import { APP_DESCRIPTION, APP_NAME } from '@/contants'
 
-const Layout = ({
+const Layout: FC<LayoutProps> = ({
     children,
     pageTitle = `${APP_NAME}`,
     pageDescription = `${APP_DESCRIPTION}`,
     navbar = true,
     footer = true
-}: LayoutProps) => (
+}) => (
     <>
         <Head>
             <title>{pageTitle}</title>
