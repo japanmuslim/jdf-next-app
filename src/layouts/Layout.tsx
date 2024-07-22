@@ -4,10 +4,20 @@ import Head from 'next/head'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 
+import { Poppins } from 'next/font/google'
+
 import { APP_DESCRIPTION, APP_NAME } from '@/contants'
+import { cn } from '@/lib/utils'
+
+const poppins = Poppins({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+});
 
 const Layout: FC<LayoutProps> = ({
+    id,
     children,
+    className,
     pageTitle = `${APP_NAME}`,
     pageDescription = `${APP_DESCRIPTION}`,
     navbar = true,
@@ -18,6 +28,7 @@ const Layout: FC<LayoutProps> = ({
             <title>{pageTitle}</title>
             <meta name="description" content={pageDescription} />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="icon" href="/favicon.ico" />
 
             <meta property="og:title" content={pageTitle} key="ogtitle" />
             <meta property="og:description" content={pageDescription} key="ogdesc" />
@@ -27,9 +38,11 @@ const Layout: FC<LayoutProps> = ({
             <meta name="twitter:image" content="/favicon.ico" key="twimage" />
             <meta name="twitter:creator" content="@username" key="twhandle" />
         </Head>
-        {navbar && <Navbar />}
-        <main>{children}</main>
-        {footer && <Footer />}
+        <main id={id} className={cn(className, poppins.className)}>
+            {navbar && <Navbar />}
+            {children}
+            {footer && <Footer />}
+        </main>
     </>
 )
 

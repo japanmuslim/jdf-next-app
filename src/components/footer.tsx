@@ -2,13 +2,14 @@ import React, { memo } from 'react'
 import Image from 'next/image'
 import { Button } from './ui/button'
 import { FaFacebookF, FaInstagram, FaXTwitter } from 'react-icons/fa6'
+import Icon from './icon'
 
 const Footer = () => {
     return (
         <footer>
             <div className="container py-10 grid lg:grid-cols-3 grid-cols-1 lg:gap-0 gap-8">
-                <div className="flex items-center justify-center">
-                    <Image src="/" alt="logo" width={50} height={50} />
+                <div className="flex items-center justify-center gap-3">
+                    <Icon />
                     <div>
                         <h4 className="text-white text-xl font-bold leading-none">Japan Dahwa</h4>
                         <h4 className="text-white text-2xl font-bold leading-none">Foundation</h4>
