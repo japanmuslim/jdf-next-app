@@ -1,6 +1,8 @@
 declare global {
     interface LayoutProps {
+        id?: string
         children: React.ReactNode
+        className?: string
         pageTitle?: string
         pageDescription?: string
         navbar?: boolean

@@ -12,6 +12,8 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
+import Icon from './icon'
 
 const navItems: NavItemsProps[] = [
     { links: "Home", href: "/" },
@@ -30,7 +32,7 @@ const Navbar = () => {
     const [scroll, setScroll] = useState<boolean>(false);
 
     const handleScroll = () => {
-        if (window.scrollY > 20) {
+        if (window.scrollY > 100) {
             setScroll(true);
         } else {
             setScroll(false);
@@ -45,10 +47,15 @@ const Navbar = () => {
     }, [])
 
     return (
-        <nav className={`${scroll ? 'bg-primary shadow-lg' : ''} dark:bg-background fixed top-0 left-0 w-full`}>
+        <nav
+            className={cn(
+                'dark:bg-background fixed z-[999] top-0 left-0 w-full',
+                scroll ? 'bg-[#343434] shadow-lg' : ''
+            )}
+        >
             <div className="container flex justify-between items-center py-6">
-                <div className="flex items-center">
-                    <Image src="/" alt="logo" width={50} height={50} />
+                <div className="flex items-center gap-3">
+                    <Icon />
                     <div>
                         <h4 className="text-white lg:text-xl text-lg font-bold lg:leading-none leading-none">Japan Dahwa</h4>
                         <h4 className="text-white lg:text-2xl text-base font-bold lg:leading-none leading-none">Foundation</h4>
@@ -76,10 +83,10 @@ const Navbar = () => {
                         <SheetTrigger>
                             <FaBars className="text-xl text-background" />
                         </SheetTrigger>
-                        <SheetContent className="bg-primary border-none text-background">
+                        <SheetContent className="bg-primary border-none text-background z-[999]">
                             <SheetHeader>
-                                <SheetTitle className="flex items-center text-start text-background mb-2">
-                                    <Image src="/" alt="logo" width={50} height={50} />
+                                <SheetTitle className="flex items-center text-start text-background mb-6 gap-2">
+                                    <Icon />
                                     <div>
                                         <h4 className="text-lg font-bold leading-none">Japan Dahwa</h4>
                                         <h4 className="text-base font-bold leading-none">Foundation</h4>
