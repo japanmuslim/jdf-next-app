@@ -22,7 +22,7 @@ const SearchDrawer: FC<SearchDrawerProps> = ({ children }) => {
             <button
                 type="button"
                 className={cn(
-                    'fixed top-28 rounded-full rounded-l-none p-4 bg-primary flex items-center gap-1 cursor-pointer transition-all duration-200 delay-100 ease-in-out hover:-translate-x-1 z-[998] shadow shadow-black',
+                    'fixed top-28 rounded-full rounded-l-none p-4 bg-primary flex items-center gap-1 cursor-pointer transition-all duration-200 delay-100 ease-in-out hover:-translate-x-1 z-[998] shadow',
                     openSheet ? 'left-[314px]' : '-left-2'
                 )}
                 onClick={handleOpenSheet}
