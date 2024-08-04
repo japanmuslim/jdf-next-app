@@ -66,7 +66,7 @@ const TafseerView: FC<TafseerViewProps> = ({
         >
             <h2 className="font-bold text-2xl">Latest Tafseer</h2>
             <Swiper>
-                {data.map((item, index) => (
+                {data?.map((item, index) => (
                     <div
                         key={index}
                         id="cardSurah"
