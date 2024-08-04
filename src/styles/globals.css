@@ -142,6 +142,13 @@
 	}
 
 	#dua section#hero {
+		position: relative;
+		background: url("/assets/images/dua/bg-hero.webp") no-repeat center
+			center/cover;
+		z-index: 1;
+	}
+
+	/* #dua section#hero {
 		--s: 50px;
 		--c1: #363636;
 		--c2: #313131;
@@ -157,7 +164,7 @@
 			radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2)
 				var(--c1);
 		background-size: var(--s) var(--s);
-	}
+	} */
 
 	#dua section#hero::before {
 		content: "";
@@ -239,6 +246,24 @@
 			center/cover;
 		opacity: 0.8;
 		z-index: -2;
+	}
+
+	#quiz section#hero {
+		position: relative;
+		background: url("/assets/images/quiz/bg-hero.webp") no-repeat center
+			center/cover;
+		z-index: 1;
+	}
+
+	#quiz section#hero::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.8);
+		z-index: 1;
 	}
 }
 

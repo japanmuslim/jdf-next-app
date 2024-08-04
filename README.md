@@ -35,11 +35,11 @@ Create a `.env.local` file in the root of the project and add the necessary envi
 ### Development
 
 ```env
-NEXT_PUBLIC_APP_NAME="Japan Muslim Dahwa"
-NEXT_PUBLIC_APP_DESCRIPTION="Japan Muslim Dahwa is a platform for Muslims in Japan to share information about Islam and Islamic events in Japan."
+NEXT_PUBLIC_APP_NAME="Japan Dahwa Foundation"
+NEXT_PUBLIC_APP_DESCRIPTION="Japan Dahwa Foundation is a non-profit organization that aims to promote the teachings of the Islam in Japan."
 NEXT_PUBLIC_APP_VERSION="1.0.0"
 NEXT_PUBLIC_BASE_URL="http://localhost:3000/"
-NEXT_PUBLIC_API_URL="http://localhost:1337/"
+NEXT_PUBLIC_API_URL="https://admin.xn--eckzbvg9a.jp/api/v1/"
 NEXT_PUBLIC_APP_AUTHOR="Megan"
 NODE_ENV="development"
 ```
