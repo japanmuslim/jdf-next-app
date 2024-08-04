@@ -21,8 +21,8 @@ const navItems: NavItemsProps[] = [
     { links: "Dua", href: "/dua" },
     { links: "Islamic Books", href: "/islamic-books" },
     { links: "Article", href: "/article" },
-    { links: "Q&A", href: "/q&a" },
-    { links: "Contact", href: "/contact" },
+    // { links: "Q&A", href: "/q&a" },
+    // { links: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
@@ -54,13 +54,13 @@ const Navbar = () => {
             )}
         >
             <div className="container flex justify-between items-center py-6">
-                <div className="flex items-center gap-3">
+                <Link href="/" className="flex items-center gap-3 hover:scale-105 duration-300 transition-all">
                     <Icon />
                     <div>
                         <h4 className="text-white lg:text-xl text-lg font-bold lg:leading-none leading-none">Japan Dahwa</h4>
                         <h4 className="text-white lg:text-2xl text-base font-bold lg:leading-none leading-none">Foundation</h4>
                     </div>
-                </div>
+                </Link>
                 <ul className="lg:flex items-center space-x-6 hidden">
                     {navItems.map((item) => (
                         <li key={item.links}>
