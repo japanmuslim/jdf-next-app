@@ -1,6 +1,6 @@
 import { createApi} from '@reduxjs/toolkit/query/react'
 import { TafseerService } from '../constant'
-import baseQuery from './https'
+import baseQuery from '@/init/baseQuery'
 
 export const TafseerApi = createApi({
   reducerPath: TafseerService,

@@ -1,5 +1,6 @@
 import DuaView from "@/features/Dua";
 import { DuaProps } from "@/features/Dua/Dua.type";
+import useDua from "@/features/Dua/hooks/useDua";
 import store from "@/init/store/store";
 import Layout from "@/layouts/Layout";
 import { DuaApi } from "@/services/api/duaService";
@@ -17,29 +18,28 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 export default function Dua({ data }: DuaProps) {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isCurrent, setIsCurrent] = useState<number>(0);
-    const duaRef = useRef<HTMLDivElement>(null);
 
-    if (!data) setIsLoading(true);
-
-    const handleCurrent = useCallback((current: number) => {
-        setIsCurrent(current);
-        duaRef?.current?.scrollIntoView({ behavior: 'smooth' });
-    }, []);
+    const {
+        duaRef,
+        filteredData,
+        isCurrent,
+        handleCurrent,
+        handleSearch,
+    } = useDua({ data })
 
     return (
         <Layout
             id="dua"
-            pageTitle="Dua"
-            pageDescription="Dua page"
+            pageTitle="Dua | Japan Dahwa Foundation"
+            pageDescription="Dua"
         >
             <DuaView
                 data={data}
                 duaRef={duaRef}
-                isLoading={isLoading}
+                filteredData={filteredData}
                 isCurrent={isCurrent}
-                handleCurrent={handleCurrent}
+                onCurrent={handleCurrent}
+                onSearch={handleSearch}
             />
         </Layout>
     );

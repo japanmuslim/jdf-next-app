@@ -1,10 +1,10 @@
 import TafseerView from "@/features/Tafseer";
-import { TafseerProps } from "@/features/Tafseer/Tafseer.type";
+import { useTafseer } from "@/features/Tafseer/hooks/useTafseer";
+import { TafseerProps, TafseerState } from "@/features/Tafseer/Tafseer.type";
 import store from "@/init/store/store";
 import Layout from "@/layouts/Layout";
 import { TafseerApi } from "@/services/api/tafseerService";
 import { GetStaticProps } from "next";
-import { useCallback, useRef, useState } from "react";
 
 export const getStaticProps: GetStaticProps = async () => {
     const data = await store.dispatch(TafseerApi.endpoints.getTafseerLatest.initiate({}));
@@ -17,16 +17,14 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 export default function Tafseer({ data }: TafseerProps) {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isCurrent, setIsCurrent] = useState<number>(0);
-    const tafseerRef = useRef<HTMLDivElement>(null);
 
-    if (!data) setIsLoading(true);
-
-    const handleCurrent = useCallback((current: number) => {
-        setIsCurrent(current);
-        tafseerRef?.current?.scrollIntoView({ behavior: 'smooth' });
-    }, []);
+    const {
+        filteredData,
+        isCurrent,
+        tafseerRef,
+        handleCurrent,
+        handleSearch,
+    } = useTafseer({ data });
 
     return (
         <Layout
@@ -37,10 +35,11 @@ export default function Tafseer({ data }: TafseerProps) {
         >
             <TafseerView
                 data={data}
-                tafseerRef={tafseerRef}
-                isLoading={isLoading}
+                filteredData={filteredData}
                 isCurrent={isCurrent}
-                handleCurrent={handleCurrent}
+                tafseerRef={tafseerRef}
+                onSearch={handleSearch}
+                onCurrent={handleCurrent}
             />
         </Layout>
     );

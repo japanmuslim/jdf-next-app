@@ -1,15 +1,7 @@
-import { API_URL } from "@/contants";
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 
-const baseQuery = fetchBaseQuery({
-    baseUrl: API_URL,
-    // prepareHeaders: (headers, { getState }) => {
-    //     const token = getState().auth.token;
-    //     if (token) {
-    //         headers.set("authorization", `Bearer ${token}`);
-    //     }
-    //     return headers;
-    // },
-});
+const baseQuery = fetchBaseQuery({ 
+    baseUrl: process.env.NEXT_PUBLIC_API_URL ?? 'https://admin.xn--eckzbvg9a.jp/api/v1/',
+}); 
 
-export { baseQuery };
+export default baseQuery;

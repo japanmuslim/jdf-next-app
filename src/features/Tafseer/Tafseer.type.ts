@@ -1,18 +1,19 @@
 export interface TafseerProps {
-    data: Tafseer[];
+    data: TafseerState[];
     message?: string;
     success?: boolean;
 }
 
 export interface TafseerViewProps {
-    data: Tafseer[];
-    tafseerRef?: React.RefObject<HTMLDivElement>;
-    isLoading?: boolean;
+    data: TafseerState[];
+    filteredData?: TafseerState[];
     isCurrent?: number;
-    handleCurrent?: (current: number) => void;
+    tafseerRef?: React.RefObject<HTMLDivElement>;
+    onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onCurrent?: (current: number) => void;
 }
 
-export interface Tafseer {
+export interface TafseerState {
     id: number;
     juz_id: number;
     surah_id: number;

@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 export interface DuaProps {
     data: DuaState[];
     message?: string;
@@ -7,9 +9,10 @@ export interface DuaProps {
 export interface DuaViewProps {
     data: DuaState[];
     duaRef?: React.RefObject<HTMLDivElement>;
-    isLoading?: boolean;
+    filteredData?: DuaState[];
     isCurrent?: number;
-    handleCurrent?: (current: number) => void;
+    onCurrent?: (current: number) => void;
+    onSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface DuaState {

@@ -11,8 +11,8 @@ const Footer = () => {
                 <div className="flex items-center justify-center gap-3">
                     <Icon />
                     <div>
-                        <h4 className="text-white text-xl font-bold leading-none">Japan Dahwa</h4>
-                        <h4 className="text-white text-2xl font-bold leading-none">Foundation</h4>
+                        <h4 className="text-white lg:text-xl md:text-xl text-lg font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-normal">Japan Dahwa</h4>
+                        <h4 className="text-white lg:text-2xl md:text-2xl text-xl font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-wider">Foundation</h4>
                     </div>
                 </div>
                 <div className="flex flex-col">
