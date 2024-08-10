@@ -6,9 +6,10 @@ import { FaSearch } from 'react-icons/fa'
 
 interface SearchDrawerProps {
     children?: React.ReactNode
+    className?: string
 }
 
-const SearchDrawer: FC<SearchDrawerProps> = ({ children }) => {
+const SearchDrawer: FC<SearchDrawerProps> = ({ children, className }) => {
 
     const [openSheet, setOpenSheet] = useState(false)
 
@@ -22,8 +23,8 @@ const SearchDrawer: FC<SearchDrawerProps> = ({ children }) => {
             <button
                 type="button"
                 className={cn(
-                    'fixed top-28 rounded-full rounded-l-none p-4 bg-primary flex items-center gap-1 cursor-pointer transition-all duration-200 delay-100 ease-in-out hover:-translate-x-1 z-[998] shadow',
-                    openSheet ? 'left-[314px]' : '-left-2'
+                    'fixed top-28 rounded-full rounded-l-none bg-primary p-4 flex items-center gap-1 cursor-pointer transition-all duration-200 delay-100 ease-in-out hover:-translate-x-1 z-[999]',
+                    openSheet ? 'lg:left-[379px] md:left-[379px] left-[315px]' : '-left-2',
                 )}
                 onClick={handleOpenSheet}
             >
@@ -47,11 +48,11 @@ const SearchDrawer: FC<SearchDrawerProps> = ({ children }) => {
             )}
             <div
                 className={cn(
-                    'fixed inset-0 w-80 h-full bg-primary shadow-md shadow-black transition-all duration-200 delay-100 ease-in-out transform z-[999]',
+                    'fixed inset-0 lg:w-96 md:w-96 w-80 h-full bg-primary shadow-md shadow-black transition-all duration-200 delay-100 ease-in-out transform z-[999]',
                     openSheet ? 'translate-x-0' : '-translate-x-full'
                 )}
             >
-                <div className="py-8 px-4">
+                <div className={cn(className ? className : "py-8 px-4")}>
                     {children}
                 </div>
             </div>

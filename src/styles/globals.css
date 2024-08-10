@@ -79,7 +79,7 @@
 		background-size: var(--s) var(--s);
 	}
 
-	#tafseer section#hero {
+	/* #tafseer section#hero {
 		position: relative;
 		background: url("/assets/images/tafseer/bg-hero.webp") no-repeat center
 			center/cover;
@@ -93,7 +93,7 @@
 		right: 0;
 		bottom: 0;
 		background: rgba(0, 0, 0, 0.7);
-	}
+	} */
 
 	#cardSurah::before {
 		content: "";
@@ -141,12 +141,11 @@
 		background: rgba(0, 0, 0, 0.4);
 	}
 
-	#dua section#hero {
+	/* #dua section#hero {
 		position: relative;
 		background: url("/assets/images/dua/bg-hero.webp") no-repeat center
 			center/cover;
-		z-index: 1;
-	}
+	} */
 
 	/* #dua section#hero {
 		--s: 50px;
@@ -166,7 +165,7 @@
 		background-size: var(--s) var(--s);
 	} */
 
-	#dua section#hero::before {
+	/* #dua section#hero::before {
 		content: "";
 		position: absolute;
 		top: 0;
@@ -189,7 +188,7 @@
 	#dua #searchDua::-webkit-scrollbar-thumb {
 		background: #4a4a4a;
 		border-radius: 10px;
-	}
+	} */
 
 	#islamic-books section#hero {
 		position: relative;
@@ -265,6 +264,24 @@
 		background: rgba(0, 0, 0, 0.8);
 		z-index: 1;
 	}
+
+	#quiz-start section#hero {
+		position: relative;
+		background: url("/assets/images/quiz/bg-hero.webp") no-repeat center
+			center/cover;
+		z-index: 1;
+	}
+
+	#quiz-start section#hero::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.8);
+		z-index: 1;
+	}
 }
 
 .slick-slide > div {
@@ -293,4 +310,13 @@
 .slick-dots > li > button::before {
 	color: #fff !important;
 	font-size: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+	width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	@apply bg-gray-500;
+	border-radius: 10px;
 }

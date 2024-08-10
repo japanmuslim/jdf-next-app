@@ -28,14 +28,14 @@ const Layout: FC<LayoutProps> = ({
             <title>{pageTitle}</title>
             <meta name="description" content={pageDescription} />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/assets/logo.png" />
 
             <meta property="og:title" content={pageTitle} key="ogtitle" />
             <meta property="og:description" content={pageDescription} key="ogdesc" />
-            <meta property="og:image" content="/favicon.ico" key="ogimage" />
+            <meta property="og:image" content="/assets/logo.png" key="ogimage" />
             <meta property="og:url" content="/" key="ogurl" />
             <meta name="twitter:card" content="summary" key="twcard" />
-            <meta name="twitter:image" content="/favicon.ico" key="twimage" />
+            <meta name="twitter:image" content="/assets/logo.png" key="twimage" />
             <meta name="twitter:creator" content="@username" key="twhandle" />
         </Head>
         <main id={id} className={cn(className, poppins.className)}>

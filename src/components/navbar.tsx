@@ -1,5 +1,4 @@
 import React, { memo, useEffect, useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { FaBars } from 'react-icons/fa6'
@@ -49,16 +48,16 @@ const Navbar = () => {
     return (
         <nav
             className={cn(
-                'dark:bg-background fixed z-[999] top-0 left-0 w-full',
-                scroll ? 'bg-[#343434] shadow-lg' : ''
+                'dark:bg-background fixed z-[99] top-0 left-0 w-full',
+                scroll ? 'bg-[#343434] shadow-lg' : pathname === '/tafseer' || pathname === '/dua' ? 'bg-gradient-to-b from-black to-transparent' : ''
             )}
         >
             <div className="container flex justify-between items-center py-6">
                 <Link href="/" className="flex items-center gap-3 hover:scale-105 duration-300 transition-all">
                     <Icon />
                     <div>
-                        <h4 className="text-white lg:text-xl text-lg font-bold lg:leading-none leading-none">Japan Dahwa</h4>
-                        <h4 className="text-white lg:text-2xl text-base font-bold lg:leading-none leading-none">Foundation</h4>
+                        <h4 className="text-white lg:text-xl md:text-xl text-lg font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-normal">Japan Dahwa</h4>
+                        <h4 className="text-white lg:text-2xl md:text-2xl text-xl font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-wider">Foundation</h4>
                     </div>
                 </Link>
                 <ul className="lg:flex items-center space-x-6 hidden">
@@ -88,8 +87,8 @@ const Navbar = () => {
                                 <SheetTitle className="flex items-center text-start text-background mb-6 gap-2">
                                     <Icon />
                                     <div>
-                                        <h4 className="text-lg font-bold leading-none">Japan Dahwa</h4>
-                                        <h4 className="text-base font-bold leading-none">Foundation</h4>
+                                        <h4 className="text-white lg:text-xl md:text-xl text-lg font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-wide">Japan Dahwa</h4>
+                                        <h4 className="text-white lg:text-2xl md:text-2xl text-xl font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-wider">Foundation</h4>
                                     </div>
                                 </SheetTitle>
                                 <SheetDescription>
