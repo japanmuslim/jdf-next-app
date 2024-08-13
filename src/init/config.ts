@@ -1,4 +1,3 @@
-
 export const getEnv = (text: string): string => {
-    return process.env[text] || "";
+  return process.env[text] || '';
 };

@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 interface MiddlewareContext {
-    res: NextResponse;
+  res: NextResponse;
 }
 
 export const Middleware = (res: MiddlewareContext) => {
-    // Logics here
-}
+  // Logics here
+};
 
 export default Middleware;

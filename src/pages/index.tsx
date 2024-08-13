@@ -1,5 +1,5 @@
-import HomeView from "@/features/Home";
-import Layout from "@/layouts/Layout";
+import HomeView from '@/features/Home';
+import Layout from '@/layouts/Layout';
 
 export default function Home() {
   return (
@@ -12,5 +12,3 @@ export default function Home() {
     </Layout>
   );
 }
-
-

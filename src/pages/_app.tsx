@@ -1,14 +1,14 @@
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app';
 import { PagesProgressBar as ProgressBar } from 'next-nprogress-bar';
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
 
-import store from "@/init/store/store";
+import store from '@/init/store/store';
 
-import "@/styles/globals.css";
+import '@/styles/globals.css';
 
 const settings = {
-  height: "2px",
-  color: "#FFF",
+  height: '2px',
+  color: '#FFF',
   options: {
     showSpinner: false,
   },

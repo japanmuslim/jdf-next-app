@@ -1,3 +1,3 @@
-import TafseerView from "./Tafseer.view";
+import TafseerView from './Tafseer.view';
 
 export default TafseerView;

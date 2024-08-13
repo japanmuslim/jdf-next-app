@@ -1,29 +1,29 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent } from 'react';
 
 export interface DuaProps {
-    data: DuaState[];
-    message?: string;
-    success?: boolean;
+  data: DuaState[];
+  message?: string;
+  success?: boolean;
 }
 
 export interface DuaViewProps {
-    data: DuaState[];
-    duaRef?: React.RefObject<HTMLDivElement>;
-    filteredData?: DuaState[];
-    isCurrent?: number;
-    onCurrent?: (current: number) => void;
-    onSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
+  data: DuaState[];
+  duaRef?: React.RefObject<HTMLDivElement>;
+  filteredData?: DuaState[];
+  isCurrent?: number;
+  onCurrent?: (current: number) => void;
+  onSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface DuaState {
-    id: number;
-    name_dua:string;
-    description_dua:string;
-    link: string;
-    thumbnail_url: string;
-    views: null;
-    is_active: number;
-    deleted_at: null;
-    created_at: string;
-    updated_at: string;
+  id: number;
+  name_dua: string;
+  description_dua: string;
+  link: string;
+  thumbnail_url: string;
+  views: null;
+  is_active: number;
+  deleted_at: null;
+  created_at: string;
+  updated_at: string;
 }
