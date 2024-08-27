@@ -21,6 +21,8 @@ const DuaView: FC<DuaViewProps> = ({
   isCurrent,
   onCurrent,
   onSearch,
+  onPlay,
+  onPause,
 }) => (
   <>
     <section
@@ -80,6 +82,8 @@ const DuaView: FC<DuaViewProps> = ({
           playing
           controls
           light={data[isCurrent || 0]?.thumbnail_url}
+          onPlay={onPlay}
+          onPause={onPause}
           config={{
             youtube: {
               playerVars: {

@@ -13,6 +13,8 @@ export interface DuaViewProps {
   isCurrent?: number;
   onCurrent?: (current: number) => void;
   onSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onPlay?: () => void;
+  onPause?: () => void;
 }
 
 export interface DuaState {

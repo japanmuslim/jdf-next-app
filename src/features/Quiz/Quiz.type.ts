@@ -19,6 +19,11 @@ interface Answer {
 
 export interface QuizViewProps {
   quiz: QuizState | null;
+  stepQuiz: number;
+  quizLength: number;
+  isFinish: boolean;
+  score: number;
   onStartQuiz: () => void;
   onAttemptQuiz: (id: number) => void;
+  onFinishedQuiz: () => void;
 }

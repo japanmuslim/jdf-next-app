@@ -19,8 +19,16 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Tafseer({ data }: TafseerProps) {
-  const { filteredData, isCurrent, tafseerRef, handleCurrent, handleSearch } =
-    useTafseer({ data });
+  const {
+    filteredData,
+    isCurrent,
+    tafseerRef,
+    handleCurrent,
+    handleSearch,
+    isNavVisible,
+    handlePlay,
+    handlePause,
+  } = useTafseer({ data });
 
   return (
     <Layout
@@ -28,6 +36,7 @@ export default function Tafseer({ data }: TafseerProps) {
       className="relative"
       pageTitle="Tafseer | Japan Dahwa Foundation"
       pageDescription="Tafseer page description"
+      navbar={!isNavVisible}
     >
       <TafseerView
         data={data}
@@ -36,6 +45,8 @@ export default function Tafseer({ data }: TafseerProps) {
         tafseerRef={tafseerRef}
         onSearch={handleSearch}
         onCurrent={handleCurrent}
+        onPlay={handlePlay}
+        onPause={handlePause}
       />
     </Layout>
   );

@@ -11,6 +11,8 @@ export interface TafseerViewProps {
   tafseerRef?: React.RefObject<HTMLDivElement>;
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onCurrent?: (current: number) => void;
+  onPlay?: () => void;
+  onPause?: () => void;
 }
 
 export interface TafseerState {

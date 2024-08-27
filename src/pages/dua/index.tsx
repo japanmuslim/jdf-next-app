@@ -18,14 +18,23 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Dua({ data }: DuaProps) {
-  const { duaRef, filteredData, isCurrent, handleCurrent, handleSearch } =
-    useDua({ data });
+  const {
+    duaRef,
+    filteredData,
+    isCurrent,
+    isNavVisible,
+    handleCurrent,
+    handleSearch,
+    handlePlay,
+    handlePause,
+  } = useDua({ data });
 
   return (
     <Layout
       id="dua"
       pageTitle="Dua | Japan Dahwa Foundation"
       pageDescription="Dua"
+      navbar={!isNavVisible}
     >
       <DuaView
         data={data}
@@ -34,6 +43,8 @@ export default function Dua({ data }: DuaProps) {
         isCurrent={isCurrent}
         onCurrent={handleCurrent}
         onSearch={handleSearch}
+        onPlay={handlePlay}
+        onPause={handlePause}
       />
     </Layout>
   );

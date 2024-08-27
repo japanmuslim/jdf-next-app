@@ -23,10 +23,7 @@ const NextArrow = (props: any) => {
       className="rounded-full bg-primary p-2 shadow absolute translate-y-1/2 md:top-20 top-12 -right-2 z-50"
       onClick={onClick}
       style={{
-        display:
-          currentSlide === slideCount - 2 || currentSlide === slideCount - 3
-            ? 'none'
-            : 'block',
+        display: currentSlide === slideCount - 1 ? 'none' : 'block',
       }}
     >
       <ChevronRight size={28} />
@@ -40,7 +37,9 @@ const PrevArrow = (props: any) => {
     <button
       className="rounded-full bg-primary p-2 shadow absolute translate-y-1/2 md:top-20 top-12 -left-5 z-50"
       onClick={onClick}
-      style={{ display: currentSlide === 0 ? 'none' : 'block' }}
+      style={{
+        display: currentSlide === 0 ? 'none' : 'block',
+      }}
     >
       <ChevronRight size={28} className="rotate-180" />
     </button>
@@ -78,7 +77,7 @@ const Swiper: FC<SwiperProps> = ({
           {
             breakpoint: 480,
             settings: {
-              slidesToShow: 2,
+              slidesToShow: 1,
               slidesToScroll: 1,
               dots: false,
             },

@@ -22,6 +22,8 @@ const TafseerView: FC<TafseerViewProps> = ({
   tafseerRef,
   onSearch,
   onCurrent,
+  onPlay,
+  onPause,
 }) => (
   <>
     <section
@@ -84,8 +86,9 @@ const TafseerView: FC<TafseerViewProps> = ({
           height="100%"
           loop
           playing
-          controls
           light={data[isCurrent || 0]?.thumbnail_url}
+          onPlay={onPlay}
+          onPause={onPause}
           config={{
             youtube: {
               playerVars: {

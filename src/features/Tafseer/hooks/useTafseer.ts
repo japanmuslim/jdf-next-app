@@ -4,6 +4,7 @@ import { TafseerState } from '../Tafseer.type';
 const useTafseer = ({ data }: { data: TafseerState[] }) => {
   const [isCurrent, setIsCurrent] = useState<number>(0);
   const [filteredData, setFilteredData] = useState<TafseerState[]>(data ?? []);
+  const [isNavVisible, setIsNavVisible] = useState<boolean>(false);
 
   const tafseerRef = useRef<HTMLDivElement>(null);
 
@@ -26,12 +27,23 @@ const useTafseer = ({ data }: { data: TafseerState[] }) => {
     [data],
   );
 
+  const handlePlay = useCallback(() => {
+    setIsNavVisible(true);
+  }, []);
+
+  const handlePause = useCallback(() => {
+    setIsNavVisible(false);
+  }, []);
+
   return {
     filteredData,
     isCurrent,
     tafseerRef,
+    isNavVisible,
     handleSearch,
     handleCurrent,
+    handlePlay,
+    handlePause,
   };
 };
 

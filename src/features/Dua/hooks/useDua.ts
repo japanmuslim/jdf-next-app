@@ -4,6 +4,7 @@ import { DuaState } from '../Dua.type';
 const useDua = ({ data }: { data: DuaState[] }) => {
   const [isCurrent, setIsCurrent] = useState<number>(0);
   const [filteredData, setFilteredData] = useState<DuaState[]>(data ?? []);
+  const [isNavVisible, setIsNavVisible] = useState<boolean>(false);
 
   const duaRef = useRef<HTMLDivElement>(null);
 
@@ -26,12 +27,23 @@ const useDua = ({ data }: { data: DuaState[] }) => {
     [data],
   );
 
+  const handlePlay = useCallback(() => {
+    setIsNavVisible(true);
+  }, []);
+
+  const handlePause = useCallback(() => {
+    setIsNavVisible(false);
+  }, []);
+
   return {
     filteredData,
     isCurrent,
     duaRef,
+    isNavVisible,
     handleSearch,
     handleCurrent,
+    handlePlay,
+    handlePause,
   };
 };
 
