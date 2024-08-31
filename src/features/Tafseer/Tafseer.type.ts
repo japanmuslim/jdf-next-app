@@ -1,30 +1,65 @@
 export interface TafseerProps {
-    data: TafseerState[];
-    message?: string;
-    success?: boolean;
+  data: Surah[];
+  juz: JuzState[];
+  latest: TafseerState[];
+  message?: string;
+  success?: boolean;
 }
 
 export interface TafseerViewProps {
-    data: TafseerState[];
-    filteredData?: TafseerState[];
-    isCurrent?: number;
-    tafseerRef?: React.RefObject<HTMLDivElement>;
-    onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onCurrent?: (current: number) => void;
+  data: Surah[];
+  filteredData?: Surah[];
+  isCurrentSurah?: number;
+  isCurrentTafseer?: number;
+  latest?: TafseerState[];
+  tafseerRef?: React.RefObject<HTMLDivElement>;
+  isTab?: string;
+  isJuz?: JuzState[];
+  isCurrentJuz?: number;
+  onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onCurrentSurah?: (current: number) => void;
+  onCurrentTafseer?: (current: number) => void;
+  onPlay?: () => void;
+  onPause?: () => void;
+  onTab?: (tab: string) => void;
+  onCurrentJuz?: (current: number) => void;
+  onInitThumbnail?: () => void;
+  onInitUrlVideo?: () => void;
+  onCurrentLatest?: (idSurah: number, idTafseer: number) => void;
+}
+
+export interface Surah {
+  id: number;
+  juz_id: number;
+  surah_name: string;
+  total_ayah: string;
+  is_active: number;
+  created_at: Date;
+  updated_at: Date;
+  tafsirs: TafseerState[];
 }
 
 export interface TafseerState {
-    id: number;
-    juz_id: number;
-    surah_id: number;
-    name_tafseer: string;
-    thumbnail_url: string;
-    start_surah: string;
-    end_surah: string;
-    link_youtube: string;
-    views: number | null;
-    is_active: number;
-    deleted_at: string | null;
-    created_at: string;
-    updated_at: string;
+  id: number;
+  juz_id: number;
+  surah_id: number;
+  name_tafseer: string;
+  thumbnail_url: string;
+  start_surah: string;
+  end_surah: string;
+  link_youtube: string;
+  views: number | null;
+  is_active: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface JuzState {
+  id: number;
+  juz_number?: string;
+  total_surah?: number;
+  is_active?: number;
+  created_at?: Date;
+  updated_at?: Date;
+  tafsirs?: TafseerState[];
 }

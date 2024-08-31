@@ -14,19 +14,21 @@ This documentation provides an overview of the Japan Dahwa Foundation applicatio
 ## Project Setup
 
 1. **Clone the Repository:**
-    ```bash
-    git clone https://github.com/japanmuslim/jdf-next-app.git
-    ```
+
+   ```bash
+   git clone https://github.com/japanmuslim/jdf-next-app.git
+   ```
 
 2. **Install Dependencies:**
-    ```bash
-    npm install
-    ```
+
+   ```bash
+   npm install
+   ```
 
 3. **Start the Development Server:**
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
 ## Environment Variables
 
@@ -47,13 +49,13 @@ NODE_ENV="development"
 ## Develop Project
 
 1. Build Project
+
 ```
 npm run build
 ```
+
 2. Develop Project
+
 ```
 npm run dev
 ```
-
-
-

@@ -3,83 +3,84 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
-		--background: 0 0% 100%;
-		--foreground: 20 14.3% 4.1%;
-		--card: 0 0% 100%;
-		--card-foreground: 20 14.3% 4.1%;
-		--popover: 0 0% 100%;
-		--popover-foreground: 20 14.3% 4.1%;
-		--primary: 0 0% 20%;
-		--primary-foreground: 60 9.1% 97.8%;
-		--secondary: 60 4.8% 95.9%;
-		--secondary-foreground: 0 0% 20%;
-		--muted: 60 4.8% 95.9%;
-		--muted-foreground: 25 5.3% 44.7%;
-		--accent: 60 4.8% 95.9%;
-		--accent-foreground: 0 0% 20%;
-		--destructive: 0 84.2% 60.2%;
-		--destructive-foreground: 60 9.1% 97.8%;
-		--border: 20 5.9% 90%;
-		--input: 20 5.9% 90%;
-		--ring: 20 14.3% 4.1%;
-		--radius: 0.5rem;
-	}
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 0 0% 20%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 0 0% 20%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 0 0% 20%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
+    --radius: 0.5rem;
+  }
 
-	.dark {
-		--background: 20 14.3% 4.1%;
-		--foreground: 60 9.1% 97.8%;
-		--card: 20 14.3% 4.1%;
-		--card-foreground: 60 9.1% 97.8%;
-		--popover: 20 14.3% 4.1%;
-		--popover-foreground: 60 9.1% 97.8%;
-		--primary: 60 9.1% 97.8%;
-		--primary-foreground: 0 0% 20%;
-		--secondary: 12 6.5% 15.1%;
-		--secondary-foreground: 60 9.1% 97.8%;
-		--muted: 12 6.5% 15.1%;
-		--muted-foreground: 24 5.4% 63.9%;
-		--accent: 12 6.5% 15.1%;
-		--accent-foreground: 60 9.1% 97.8%;
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 60 9.1% 97.8%;
-		--border: 12 6.5% 15.1%;
-		--input: 12 6.5% 15.1%;
-		--ring: 24 5.7% 82.9%;
-	}
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 0 0% 20%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 24 5.7% 82.9%;
+  }
 }
 
 @layer base {
-	* {
-		@apply border-border;
-	}
+  * {
+    @apply border-border;
+  }
 
-	body {
-		@apply bg-background text-foreground lg:text-sm text-xs;
-	}
+  body {
+    @apply bg-background text-foreground lg:text-sm text-xs;
+  }
 
-	main {
-		@apply bg-foreground dark:bg-foreground text-background min-h-screen;
-	}
+  main {
+    @apply bg-foreground dark:bg-foreground text-background min-h-screen;
+  }
 
-	footer {
-		--s: 50px;
-		--c1: #343434;
-		--c2: #313131;
+  footer {
+    --s: 50px;
+    --c1: #343434;
+    --c2: #313131;
 
-		--_g: var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%,
-			var(--c2) 26% 35%, var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%,
-			var(--c2) 66% 75%, var(--c1) 76% 85%, var(--c2) 86% 95%, #0000 96%;
+    --_g: var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%,
+      var(--c2) 26% 35%, var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%,
+      var(--c2) 66% 75%, var(--c1) 76% 85%, var(--c2) 86% 95%, #0000 96%;
 
-		background: radial-gradient(50% 50% at 100% 0, var(--_g)),
-			radial-gradient(50% 50% at 0 100%, var(--_g)),
-			radial-gradient(50% 50%, var(--_g)),
-			radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2)
-				var(--c1);
-		background-size: var(--s) var(--s);
-	}
+    background:
+      radial-gradient(50% 50% at 100% 0, var(--_g)),
+      radial-gradient(50% 50% at 0 100%, var(--_g)),
+      radial-gradient(50% 50%, var(--_g)),
+      radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2)
+        var(--c1);
+    background-size: var(--s) var(--s);
+  }
 
-	/* #tafseer section#hero {
+  /* #tafseer section#hero {
 		position: relative;
 		background: url("/assets/images/tafseer/bg-hero.webp") no-repeat center
 			center/cover;
@@ -95,59 +96,59 @@
 		background: rgba(0, 0, 0, 0.7);
 	} */
 
-	#cardSurah::before {
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 1;
-		background: linear-gradient(
-			to bottom,
-			rgba(0, 0, 0, 0) 20%,
-			rgba(0, 0, 0, 0.8) 100%
-		);
-	}
+  #cardSurah::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+  }
 
-	#cardSurah:hover::before {
-		background: linear-gradient(
-			to bottom,
-			rgba(0, 0, 0, 0) 0%,
-			rgba(0, 0, 0, 0.9) 100%
-		);
-	}
+  #cardSurah:hover::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
 
-	#cardSurah:hover img {
-		transition: transform 0.4s;
-		transform: scale(1.1);
-	}
+  #cardSurah:hover img {
+    transition: transform 0.4s;
+    transform: scale(1.1);
+  }
 
-	#home section#hero {
-		position: relative;
-		background: url("/assets/images/home/bg-hero.png") no-repeat center
-			center/cover;
-		z-index: 1;
-	}
+  #home section#hero {
+    position: relative;
+    background: url('/assets/images/home/bg-hero.png') no-repeat center
+      center/cover;
+    z-index: 1;
+  }
 
-	#home section#hero::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: -1;
-		background: rgba(0, 0, 0, 0.4);
-	}
+  #home section#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.4);
+  }
 
-	/* #dua section#hero {
+  /* #dua section#hero {
 		position: relative;
 		background: url("/assets/images/dua/bg-hero.webp") no-repeat center
 			center/cover;
 	} */
 
-	/* #dua section#hero {
+  /* #dua section#hero {
 		--s: 50px;
 		--c1: #363636;
 		--c2: #313131;
@@ -165,7 +166,7 @@
 		background-size: var(--s) var(--s);
 	} */
 
-	/* #dua section#hero::before {
+  /* #dua section#hero::before {
 		content: "";
 		position: absolute;
 		top: 0;
@@ -190,133 +191,213 @@
 		border-radius: 10px;
 	} */
 
-	#islamic-books section#hero {
-		position: relative;
-		background: url("/assets/images/islamic-books/bg-hero.webp") no-repeat
-			center top/cover;
-	}
+  #islamic-books section#hero {
+    position: relative;
+    background: url('/assets/images/islamic-books/bg-hero.webp') no-repeat
+      center top/cover;
+  }
 
-	@media (min-width: 768px) {
-		#islamic-books section#hero {
-			position: relative;
-			background: url("/assets/images/islamic-books/bg-hero.webp") no-repeat
-				center top;
-			background-size: 100% 100%;
-		}
-	}
+  @media (min-width: 768px) {
+    #islamic-books section#hero {
+      position: relative;
+      background: url('/assets/images/islamic-books/bg-hero.webp') no-repeat
+        center top;
+      background-size: 100% 100%;
+    }
+  }
 
-	#islamic-books section#hero::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0, 0, 0, 0.4);
-		z-index: 2;
-	}
+  #islamic-books section#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+  }
 
-	#article section#hero {
-		position: relative;
-		background: url("/assets/images/article/bg-hero.webp") no-repeat center
-			center/cover;
-		z-index: 1;
-	}
+  #article section#hero {
+    position: relative;
+    /* background: url('/assets/images/article/bg-hero.webp') no-repeat center
+      center/cover; */
+    z-index: 1;
+  }
 
-	#article section#hero::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0, 0, 0, 0.4);
-		z-index: -1;
-	}
+  /* #article section#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+  }
 
-	#article section#hero::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: url("/assets/images/home/bg-hero.png") no-repeat center
-			center/cover;
-		opacity: 0.8;
-		z-index: -2;
-	}
+  #article section#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/home/bg-hero.png') no-repeat center
+      center/cover;
+    opacity: 0.8;
+    z-index: -2;
+  } */
 
-	#quiz section#hero {
-		position: relative;
-		background: url("/assets/images/quiz/bg-hero.webp") no-repeat center
-			center/cover;
-		z-index: 1;
-	}
+  #quiz section#hero {
+    position: relative;
+    background: url('/assets/images/article/bg-hero.webp') no-repeat center
+      center/cover;
+    z-index: 1;
+  }
 
-	#quiz section#hero::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0, 0, 0, 0.8);
-		z-index: 1;
-	}
+  #quiz section#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
 
-	#quiz-start section#hero {
-		position: relative;
-		background: url("/assets/images/quiz/bg-hero.webp") no-repeat center
-			center/cover;
-		z-index: 1;
-	}
+  /* #quiz section#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/home/bg-hero.png') no-repeat center
+      center/cover;
+    opacity: 0.8;
+    z-index: 1;
+  } */
 
-	#quiz-start section#hero::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0, 0, 0, 0.8);
-		z-index: 1;
-	}
+  /* #quiz-start section#hero {
+    position: relative;
+    background: url('/assets/images/article/bg-hero.webp') no-repeat center
+      center/cover;
+    z-index: 1;
+  }
+
+  #quiz-start section#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  } */
 }
 
 .slick-slide > div {
-	transition: transform 0.3s;
-	margin: 0 1rem 0 0;
+  transition: transform 0.3s;
+  margin: 0 1rem 0 0;
 }
 
 .slick-dots {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	justify-content: center;
-	padding: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  padding: 0;
 }
 
 .slick-dots > li {
-	margin: 0 !important;
+  margin: 0 !important;
 }
 
 .slick-dots > li.slick-active > button::before {
-	color: #fff !important;
-	font-size: 8px;
+  color: #fff !important;
+  font-size: 8px;
 }
 
 .slick-dots > li > button::before {
-	color: #fff !important;
-	font-size: 6px;
+  color: #fff !important;
+  font-size: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-	width: 6px;
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-	@apply bg-gray-500;
-	border-radius: 10px;
+  @apply bg-gray-500;
+  border-radius: 10px;
+}
+
+#article-card #article-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 20%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+#article-card:hover #article-container::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+#article-card:hover img {
+  transition: transform 0.4s;
+  transform: scale(1.1);
+}
+
+#article-card:hover h3 {
+  transition: all 0.4s;
+  opacity: 0.7;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-scale {
+  animation: scale 1s infinite;
+}
+
+#carousel .slick-dots {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+#carousel .slick-dots .slick-active button::before {
+  font-size: 10px;
+}
+
+#sticky-nav {
+  box-shadow: 5px 6px 0 #777a7b;
 }

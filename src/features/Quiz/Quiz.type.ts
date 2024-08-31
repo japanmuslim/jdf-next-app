@@ -1,3 +1,30 @@
+export interface QuizState {
+  id: number;
+  title: string;
+  description: string;
+  is_active: number;
+  created_at: string;
+  updated_at: string;
+  answers: Answer[];
+}
+
+export interface Answer {
+  id: number;
+  quiz_id: number;
+  answer_text: string;
+  is_correct: number;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface QuizViewProps {
-    handleStart: () => void;
+  quiz: QuizState | null;
+  stepQuiz: number;
+  quizLength: number;
+  isFinish: boolean;
+  score: number;
+  anwser?: Answer[];
+  onStartQuiz: () => void;
+  onAttemptQuiz: (id: number) => void;
+  onFinishedQuiz: () => void;
 }
