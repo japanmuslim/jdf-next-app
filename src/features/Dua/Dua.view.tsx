@@ -41,7 +41,7 @@ const DuaView: FC<DuaViewProps> = ({
           />
         </div>
         <h3 className="font-semibold text-lg mt-4 px-4">Dua List</h3>
-        <div className="flex flex-col gap-2 mt-2 overflow-y-auto max-h-[78vh] custom-scrollbar pr-1">
+        <div className="flex flex-col gap-0 mt-2 overflow-y-auto max-h-[78vh] custom-scrollbar pr-1">
           {(filteredData?.length ?? 0) > 0 &&
             filteredData?.map((item, index) => (
               <div

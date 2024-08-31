@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from '@/init/store/store';
 
 import '@/styles/globals.css';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const settings = {
   height: '2px',
@@ -18,7 +19,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <ProgressBar {...settings} />
-      <Component {...pageProps} />
+      <TooltipProvider>
+        <Component {...pageProps} />
+      </TooltipProvider>
     </Provider>
   );
 }

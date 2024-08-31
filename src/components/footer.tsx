@@ -49,25 +49,25 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="flex gap-14 lg:mt-8 mt-10 lg:justify-start justify-around">
+          <div className="flex gap-14 lg:mt-8 mt-10 lg:justify-start justify-evenly">
             <Button
               variant={`destructive`}
               size={`icon`}
-              className="rounded-full shadow-xl w-12 h-12"
+              className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
             >
               <FaFacebookF className="text-2xl" />
             </Button>
             <Button
               variant={`destructive`}
               size={`icon`}
-              className="rounded-full shadow-xl w-12 h-12"
+              className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
             >
               <FaXTwitter className="text-2xl" />
             </Button>
             <Button
               variant={`destructive`}
               size={`icon`}
-              className="rounded-full shadow-xl w-12 h-12"
+              className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
             >
               <FaInstagram className="text-2xl" />
             </Button>

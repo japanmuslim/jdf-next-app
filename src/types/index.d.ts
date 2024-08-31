@@ -7,6 +7,8 @@ declare global {
     pageDescription?: string;
     navbar?: boolean;
     footer?: boolean;
+    keywords?: string;
+    metaDesc?: string;
   }
 
   interface NavItemsProps {

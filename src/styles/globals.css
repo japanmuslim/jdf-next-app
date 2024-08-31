@@ -219,12 +219,12 @@
 
   #article section#hero {
     position: relative;
-    background: url('/assets/images/article/bg-hero.webp') no-repeat center
-      center/cover;
+    /* background: url('/assets/images/article/bg-hero.webp') no-repeat center
+      center/cover; */
     z-index: 1;
   }
 
-  #article section#hero::before {
+  /* #article section#hero::before {
     content: '';
     position: absolute;
     top: 0;
@@ -246,11 +246,11 @@
       center/cover;
     opacity: 0.8;
     z-index: -2;
-  }
+  } */
 
   #quiz section#hero {
     position: relative;
-    background: url('/assets/images/quiz/bg-hero.webp') no-repeat center
+    background: url('/assets/images/article/bg-hero.webp') no-repeat center
       center/cover;
     z-index: 1;
   }
@@ -262,13 +262,26 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 1;
   }
 
-  #quiz-start section#hero {
+  /* #quiz section#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/home/bg-hero.png') no-repeat center
+      center/cover;
+    opacity: 0.8;
+    z-index: 1;
+  } */
+
+  /* #quiz-start section#hero {
     position: relative;
-    background: url('/assets/images/quiz/bg-hero.webp') no-repeat center
+    background: url('/assets/images/article/bg-hero.webp') no-repeat center
       center/cover;
     z-index: 1;
   }
@@ -280,9 +293,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 1;
-  }
+  } */
 }
 
 .slick-slide > div {
@@ -322,7 +335,7 @@
   border-radius: 10px;
 }
 
-#article-card::before {
+#article-card #article-container::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -337,7 +350,7 @@
   );
 }
 
-#article-card:hover::before {
+#article-card:hover #article-container::before {
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
@@ -348,6 +361,11 @@
 #article-card:hover img {
   transition: transform 0.4s;
   transform: scale(1.1);
+}
+
+#article-card:hover h3 {
+  transition: all 0.4s;
+  opacity: 0.7;
 }
 
 @keyframes scale {
@@ -364,4 +382,22 @@
 
 .animate-scale {
   animation: scale 1s infinite;
+}
+
+#carousel .slick-dots {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+#carousel .slick-dots .slick-active button::before {
+  font-size: 10px;
+}
+
+#sticky-nav {
+  box-shadow: 5px 6px 0 #777a7b;
 }

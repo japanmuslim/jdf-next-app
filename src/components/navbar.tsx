@@ -10,9 +10,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import Icon from './icon';
+import { useRouter } from 'next/router';
 
 const navItems: NavItemsProps[] = [
   { links: 'Home', href: '/' },
@@ -25,7 +25,7 @@ const navItems: NavItemsProps[] = [
 ];
 
 const Navbar = () => {
-  const pathname = usePathname();
+  const { pathname } = useRouter();
 
   const [scroll, setScroll] = useState<boolean>(false);
 
@@ -44,15 +44,33 @@ const Navbar = () => {
     };
   }, []);
 
+  // console.log(pathname.startsWith('/article'));
+
+  const handleActive = (href: string) => {
+    if (pathname === href) {
+      return 'border-b-2 border-white pb-2';
+    }
+
+    if (href === '/article' && pathname.startsWith('/article')) {
+      return 'border-b-2 border-white pb-2';
+    }
+
+    return '';
+  };
+
   return (
     <nav
       className={cn(
         'dark:bg-background fixed z-[99] top-0 left-0 w-full',
-        scroll
+        scroll && '!bg-[#343434] shadow-lg',
+        !scroll &&
+          (pathname === '/tafseer' ||
+            pathname === '/dua' ||
+            pathname.startsWith('/article')) &&
+          'md:bg-gradient-to-b from-black to-transparent bg-primary',
+        pathname.startsWith('/article') && scroll
           ? 'bg-[#343434] shadow-lg'
-          : pathname === '/tafseer' || pathname === '/dua'
-            ? 'bg-gradient-to-b from-black to-transparent'
-            : '',
+          : 'md:bg-transparent bg-[#343434] !block',
       )}
     >
       <div className="container flex justify-between items-center py-6">
@@ -60,7 +78,7 @@ const Navbar = () => {
           href="/"
           className="flex items-center gap-3 hover:scale-105 duration-300 transition-all"
         >
-          <Icon />
+          <Icon className="md:h-14 md:w-14 h-10 w-10" />
           <div>
             <h4 className="text-white lg:text-xl md:text-xl text-lg font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-normal">
               Japan Dahwa
@@ -75,7 +93,7 @@ const Navbar = () => {
             <li key={item.links}>
               <Link
                 href={item.href}
-                className={`text-white hover:text-gray-300 ${pathname === item.href ? 'border-b-2 border-white pb-2' : ''}`}
+                className={`hover:text-gray-300 ${handleActive(item.href)}`}
               >
                 {item.links}
               </Link>
@@ -84,7 +102,7 @@ const Navbar = () => {
           <li>
             <Button
               variant="outline"
-              className="bg-transparent text-white rounded-full"
+              className={`bg-transparent text-white rounded-full ${pathname === '/quiz' ? 'bg-white text-primary' : ''}`}
               asChild
             >
               <Link href="/quiz">Take a Quiz</Link>
@@ -93,15 +111,15 @@ const Navbar = () => {
         </ul>
         <div className="lg:hidden">
           <Sheet>
-            <SheetTrigger>
-              <FaBars className="text-xl text-background" />
+            <SheetTrigger className="mt-2">
+              <FaBars className="text-background text-lg" />
             </SheetTrigger>
             <SheetContent className="bg-primary border-none text-background z-[999]">
               <SheetHeader>
                 <SheetTitle className="flex items-center text-start text-background mb-6 gap-2">
-                  <Icon />
+                  <Icon className="md:h-14 md:w-14 h-10 w-10" />
                   <div>
-                    <h4 className="text-white lg:text-xl md:text-xl text-lg font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-wide">
+                    <h4 className="text-white lg:text-xl md:text-xl text-lg font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-normal">
                       Japan Dahwa
                     </h4>
                     <h4 className="text-white lg:text-2xl md:text-2xl text-xl font-bold !leading-none lg:tracking-wide md:tracking-wide tracking-wider">
@@ -110,12 +128,12 @@ const Navbar = () => {
                   </div>
                 </SheetTitle>
                 <SheetDescription>
-                  <ul className="flex flex-col space-y-6 text-start text-background">
+                  <ul className="flex flex-col space-y-4 text-start text-background">
                     {navItems.map((item) => (
                       <li key={item.links}>
                         <Link
                           href={item.href}
-                          className={`hover:text-gray-300 ${pathname === item.href ? 'border-b-2 border-background pb-2' : ''}`}
+                          className={`hover:text-gray-300 ${handleActive(item.href)}`}
                         >
                           {item.links}
                         </Link>
@@ -124,7 +142,7 @@ const Navbar = () => {
                     <li>
                       <Button
                         variant="outline"
-                        className="bg-transparent rounded-full w-full"
+                        className="bg-transparent rounded-full w-full mt-4"
                         asChild
                       >
                         <Link href="/quiz">Take a Quiz</Link>

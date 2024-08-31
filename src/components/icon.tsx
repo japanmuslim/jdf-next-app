@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 
-const Icon = () => (
-  <div className="h-14 w-14 relative">
+const Icon = ({ className }: { className?: string }) => (
+  <div className={className ? className : 'h-14 w-14 relative'}>
     <Image
       src="/assets/logo.png"
       alt="logo"

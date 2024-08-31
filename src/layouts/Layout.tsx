@@ -22,6 +22,8 @@ const Layout: FC<LayoutProps> = ({
   pageDescription = `${APP_DESCRIPTION}`,
   navbar = true,
   footer = true,
+  keywords = 'Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation, Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation, Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation',
+  metaDesc = 'Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation, Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation, Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation',
 }) => (
   <>
     <Head>
@@ -37,6 +39,9 @@ const Layout: FC<LayoutProps> = ({
       <meta name="twitter:card" content="summary" key="twcard" />
       <meta name="twitter:image" content="/assets/logo.png" key="twimage" />
       <meta name="twitter:creator" content="@username" key="twhandle" />
+
+      <meta name="keywords" content={keywords} />
+      <meta name="description" content={metaDesc} />
     </Head>
     <main id={id} className={cn(className, poppins.className)}>
       {navbar && <Navbar />}

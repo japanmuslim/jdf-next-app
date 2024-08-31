@@ -8,7 +8,7 @@ export interface QuizState {
   answers: Answer[];
 }
 
-interface Answer {
+export interface Answer {
   id: number;
   quiz_id: number;
   answer_text: string;
@@ -23,6 +23,7 @@ export interface QuizViewProps {
   quizLength: number;
   isFinish: boolean;
   score: number;
+  anwser?: Answer[];
   onStartQuiz: () => void;
   onAttemptQuiz: (id: number) => void;
   onFinishedQuiz: () => void;

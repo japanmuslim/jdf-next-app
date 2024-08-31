@@ -1,6 +1,6 @@
 import { useGetQuizQuery } from '@/services/api/quizService';
-import { useState } from 'react';
-import { QuizState } from '../Quiz.type';
+import { useEffect, useState } from 'react';
+import { Answer, QuizState } from '../Quiz.type';
 import Swal from 'sweetalert2';
 
 const useQuiz = () => {
@@ -9,25 +9,50 @@ const useQuiz = () => {
   const [currentQuiz, setCurrentQuiz] = useState<QuizState | null>(null);
   const [isFinish, setIsFinish] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
+  const [answer, setAnswer] = useState<Answer[]>();
+  const [shuffledQuizzes, setShuffledQuizzes] = useState<QuizState[]>([]);
+
+  const shuffleArray = (array: any[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
 
   const handleStart = () => {
-    if (data?.data?.length) {
-      setCurrentQuiz(data.data[stepQuiz]);
+    if (data?.data?.length > 0) {
+      // Mengacak urutan quiz pertama kali
+      const quizzes = shuffleArray([...data.data]); // Mengacak array quiz
+      setShuffledQuizzes(quizzes); // Simpan quiz yang sudah diacak
+
+      // Atur quiz pertama dan acak jawabannya
+      setCurrentQuiz(quizzes[stepQuiz]); // Atur quiz saat ini berdasarkan langkah
+      const shuffledAnswers = shuffleArray([
+        ...(quizzes[stepQuiz]?.answers || []),
+      ]);
+      setAnswer(shuffledAnswers); // Atur jawaban yang sudah diacak
     }
   };
 
   const handleNext = () => {
-    if (!data?.data) return;
+    if (!shuffledQuizzes || !shuffledQuizzes.length) return; // Pastikan quiz sudah diacak
 
-    if (stepQuiz + 1 < data.data.length) {
-      setStepQuiz((prevStep) => prevStep + 1);
-      setCurrentQuiz(data.data[stepQuiz + 1]);
+    if (stepQuiz + 1 < shuffledQuizzes.length) {
+      setStepQuiz((prevStep) => prevStep + 1); // Tingkatkan stepQuiz
+      setCurrentQuiz(shuffledQuizzes[stepQuiz + 1]); // Atur quiz berikutnya dari quiz yang sudah diacak
+
+      // Acak jawaban untuk quiz berikutnya
+      const shuffledAnswers = shuffleArray([
+        ...(shuffledQuizzes[stepQuiz + 1]?.answers || []),
+      ]);
+      setAnswer(shuffledAnswers);
     } else {
       Swal.fire({
-        title: 'Congratulations!',
-        text: 'You have completed the quiz!',
+        title: 'Quiz Completed',
+        text: 'You have completed the quiz',
         icon: 'success',
-        confirmButtonText: 'Finish',
+        confirmButtonText: 'Selesai',
         confirmButtonColor: '#4caf50',
       }).then((result) => {
         if (result.isConfirmed) {
@@ -94,6 +119,7 @@ const useQuiz = () => {
     quizLength: data?.data.length,
     isFinish,
     score: finalScore,
+    answer,
     isLoading,
     isError,
     handleStart,

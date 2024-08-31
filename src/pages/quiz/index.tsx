@@ -9,6 +9,7 @@ export default function Quiz() {
   const {
     quiz,
     score,
+    answer,
     stepQuiz,
     quizLength,
     isFinish,
@@ -38,6 +39,7 @@ export default function Quiz() {
       <QuizView
         quiz={quiz}
         score={score}
+        anwser={answer}
         stepQuiz={stepQuiz}
         isFinish={isFinish}
         quizLength={quizLength}
