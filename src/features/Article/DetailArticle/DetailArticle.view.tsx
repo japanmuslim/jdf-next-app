@@ -160,10 +160,7 @@ const DetailArticleView: FC<DetailArticleViewProps> = ({
                 <NavigationMenu>
                   <NavigationMenuList>
                     <NavigationMenuItem>
-                      <NavigationMenuTrigger
-                        className="bg-transparent !py-2 !px-3"
-                        isArrow={false}
-                      >
+                      <NavigationMenuTrigger className="bg-transparent !py-2 !px-3">
                         <FaEllipsis className="rotate-90" />
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="p-2">

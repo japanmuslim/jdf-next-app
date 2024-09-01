@@ -250,7 +250,7 @@
 
   #quiz section#hero {
     position: relative;
-    background: url('/assets/images/article/bg-hero.webp') no-repeat center
+    background: url('/assets/images/quiz/bg-hero.jpg') no-repeat center
       center/cover;
     z-index: 1;
   }
