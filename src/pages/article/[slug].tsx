@@ -8,6 +8,7 @@ import React from 'react';
 import useDetailArticle from '@/features/Article/DetailArticle/hooks/useDetailArticle';
 import dynamic from 'next/dynamic';
 import Loading from '@/components/page/loading';
+import DetailArticleView from '@/features/Article/DetailArticle';
 
 export async function getStaticPaths() {
   try {
@@ -71,11 +72,6 @@ export async function getStaticProps({ params }: { params: { slug: number } }) {
     },
   };
 }
-
-const DetailArticleView = dynamic(
-  () => import('@/features/Article/DetailArticle'),
-  { ssr: false, loading: () => <Loading /> },
-);
 
 const DetailArticle = ({ data, relatedPost }: DetailArticleProps) => {
   const {

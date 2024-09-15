@@ -24,7 +24,7 @@ const navItems: NavItemsProps[] = [
   // { links: "Contact", href: "/contact" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ isOpen }: { isOpen: boolean }) => {
   const { pathname } = useRouter();
 
   const [scroll, setScroll] = useState<boolean>(false);
@@ -61,7 +61,7 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        'dark:bg-background fixed z-[99] top-0 left-0 w-full',
+        'dark:bg-background fixed z-[99] top-0 left-0 w-full transition-all duration-500',
         scroll && '!bg-[#343434] shadow-lg',
         !scroll &&
           (pathname === '/tafseer' ||
@@ -71,6 +71,7 @@ const Navbar = () => {
         pathname.startsWith('/article') && scroll
           ? 'bg-[#343434] shadow-lg'
           : 'md:bg-transparent bg-[#343434] !block',
+        isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0',
       )}
     >
       <div className="container flex justify-between items-center py-6">

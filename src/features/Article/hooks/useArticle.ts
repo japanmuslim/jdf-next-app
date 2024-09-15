@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArticleProps, ArticleState } from '../Article.type';
 import { useGetArticleQuery } from '@/services/api/articleService';
 import { useRouter } from 'next/router';
@@ -8,6 +8,7 @@ const useArticle = ({ data, currentPages }: ArticleProps) => {
   const [articles, setArticles] = useState<ArticleState[]>(data || []);
   const [page, setPage] = useState<number>(currentPages || 1);
   const [currentCategory, setCurrentCategory] = useState(0);
+  const categoryRef = useRef<HTMLDivElement>(null);
 
   const { data: articlePaginate, isLoading } = useGetArticleQuery({ page });
 
@@ -47,14 +48,37 @@ const useArticle = ({ data, currentPages }: ArticleProps) => {
     }
   };
 
+  const handleSlideCategory = (index: number) => {
+    if (categoryRef.current) {
+      const categoryItems = categoryRef.current.querySelectorAll('button');
+      const selectedCategory = categoryItems[index];
+
+      if (selectedCategory) {
+        const scrollAmount =
+          selectedCategory.offsetLeft -
+          window.innerWidth / 2 +
+          selectedCategory.offsetWidth / 2;
+
+        categoryRef.current.scrollTo({
+          left: scrollAmount,
+          behavior: 'smooth',
+        });
+      }
+
+      handleCategory(index);
+    }
+  };
+
   return {
     articles,
     isLoading,
     page,
+    categoryRef,
     currentCategory,
     handleCategory,
     handlePaginate,
     handleRedirect,
+    handleSlideCategory,
   };
 };
 

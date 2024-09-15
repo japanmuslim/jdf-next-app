@@ -6,6 +6,7 @@ import useArticle from '@/features/Article/hooks/useArticle';
 // import { ArticleView } from '@/features/Article';
 import dynamic from 'next/dynamic';
 import Loading from '@/components/page/loading';
+import ArticleView from '@/features/Article';
 
 export async function getStaticProps() {
   const data = await store.dispatch(
@@ -26,11 +27,6 @@ export async function getStaticProps() {
   };
 }
 
-const ArticleView = dynamic(() => import('@/features/Article'), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-
 export default function Article({
   data,
   currentPages,
@@ -41,10 +37,12 @@ export default function Article({
     articles,
     isLoading,
     page,
+    categoryRef,
     currentCategory,
     handlePaginate,
     handleRedirect,
     handleCategory,
+    handleSlideCategory,
   } = useArticle({ data, currentPages });
 
   return (
@@ -60,9 +58,11 @@ export default function Article({
         carousel={carousel}
         isLoading={isLoading}
         page={page}
+        categoryRef={categoryRef}
         onPaginate={handlePaginate}
         onRedirect={handleRedirect}
         onCategory={handleCategory}
+        onSlideCategory={handleSlideCategory}
       />
     </Layout>
   );

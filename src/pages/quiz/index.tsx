@@ -1,8 +1,8 @@
+import Loading from '@/components/page/loading';
 import QuizView from '@/features/Quiz';
 import useQuiz from '@/features/Quiz/hooks/useQuiz';
 import Layout from '@/layouts/Layout';
 import { useRouter } from 'next/router';
-import { FaSpinner } from 'react-icons/fa6';
 
 export default function Quiz() {
   const router = useRouter();
@@ -12,22 +12,21 @@ export default function Quiz() {
     answer,
     stepQuiz,
     quizLength,
+    isCorrectId,
+    isWrongId,
+    isAnswered,
     isFinish,
     isLoading,
     isError,
     handleStart,
     handleAttempt,
     handleFinishedQuiz,
+    handleNextQuiz,
+    handlePreviousQuiz,
   } = useQuiz();
 
   if (isLoading) {
-    return (
-      <Layout id="quiz" pageTitle="Quiz" pageDescription="Quiz page">
-        <div className="flex items-center justify-center h-screen">
-          <FaSpinner className="w-16 h-16 text-primary animate-spin" />
-        </div>
-      </Layout>
-    );
+    return <Loading />;
   }
 
   if (isError) {
@@ -42,10 +41,15 @@ export default function Quiz() {
         anwser={answer}
         stepQuiz={stepQuiz}
         isFinish={isFinish}
+        isCorrectId={isCorrectId}
+        isWrongId={isWrongId}
+        isAnswered={isAnswered}
         quizLength={quizLength}
         onStartQuiz={handleStart}
         onAttemptQuiz={handleAttempt}
         onFinishedQuiz={handleFinishedQuiz}
+        onNextQuiz={handleNextQuiz}
+        onPreviousQuiz={handlePreviousQuiz}
       />
     </Layout>
   );

@@ -22,9 +22,14 @@ export interface QuizViewProps {
   stepQuiz: number;
   quizLength: number;
   isFinish: boolean;
-  score: number;
+  isWrongId: number;
+  isCorrectId: number;
+  score: number | string;
   anwser?: Answer[];
+  isAnswered?: number;
   onStartQuiz: () => void;
   onAttemptQuiz: (id: number) => void;
   onFinishedQuiz: () => void;
+  onNextQuiz: () => void;
+  onPreviousQuiz?: () => void;
 }

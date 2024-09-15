@@ -24,9 +24,11 @@ export interface ArticleViewProps {
   isLoading?: boolean;
   currentCategory: number;
   page?: number;
+  categoryRef?: React.RefObject<HTMLDivElement>;
   onPaginate: (page: number) => void;
   onRedirect: (slug: string) => void;
   onCategory: (id: number) => void;
+  onSlideCategory: (index: number) => void;
 }
 
 export interface ArticleState {

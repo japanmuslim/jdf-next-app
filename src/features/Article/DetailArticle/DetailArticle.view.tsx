@@ -12,6 +12,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import {
+  FaCheck,
   FaEllipsis,
   FaEye,
   FaFacebook,
@@ -36,9 +37,17 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { ChevronDownCircle } from 'lucide-react';
+import { ChevronDownCircle, ChevronRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import Swiper from '@/components/ui/swiper';
+import { IoMdStopwatch } from 'react-icons/io';
 
-const DetailArticleView: FC<DetailArticleViewProps> = ({
+const ConvertText = dynamic(() => import('@/components/convert-text'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
+
+const DetailArticleView = ({
   data,
   relatedPost,
   isCopied,
@@ -49,35 +58,71 @@ const DetailArticleView: FC<DetailArticleViewProps> = ({
   onShareInstagram,
   onScrollSmooth,
   onRedirect,
-}) => {
+}: DetailArticleViewProps) => {
   return (
     <>
-      <section className="md:min-h-screen min-h-[30vh] md:mt-0 mt-[87px] relative w-full">
-        <div className="absolute inset-0 bg-black opacity-40 z-10" />
-        <div className="absolute inset-0">
-          <Image
-            src={data?.thumbnail_url ? data?.thumbnail_url : data?.cover || ''}
-            width={0}
-            height={0}
-            sizes="100vw"
-            alt={data?.title || 'Article Cover'}
-            className="w-full md:h-full h-[30vh] object-cover"
-            priority
-          />
-        </div>
-        <div className="absolute inset-x-0 bottom-[10%] flex items-center justify-center z-20">
-          <div className="text-white text-center space-y-8 md:max-w-md max-w-xs">
-            <h1 className="md:text-3xl text-lg font-semibold">{data?.title}</h1>
-            <Button
-              size="sm"
-              variant="outline"
+      <section
+        className="md:min-h-[100vh] min-h-[78vh] md:mt-0 mt-[87px] relative w-full"
+        style={{
+          background: `url(${data?.thumbnail_url ? data?.thumbnail_url : data?.cover || ''}) no-repeat center center / cover`,
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10 opacity-70" />
+        <div className="absolute inset-0 flex items-center justify-start z-20 bg-black bg-opacity-50 pt-10 pb-20">
+          <div className="text-white text-start lg:pl-20 md:pl-14 pl-6 w-full">
+            <div className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
+                <Icon className="md:!h-8 md:!w-8 h-6 w-6" />
+                <h4 className="font-semibold md:text-lg text-md mb-0">
+                  JDF Article
+                </h4>
+              </Link>
+              <FaCheckCircle className="text-green-500 md:text-lg" />
+            </div>
+            <h1
+              data-aos="fade-up"
+              className="lg:text-[48px] md:text-[42px] text-[22px] text-lg font-semibold !leading-normal my-4 w-3/4"
+            >
+              {data?.title}
+            </h1>
+            <div className="flex items-center md:gap-4 gap-2">
+              <h2 className="capitalize md:text-lg text-sm">
+                {data?.category?.name || 'Category'}
+              </h2>
+              <span>•</span>
+              <div className="flex items-center md:gap-4 gap-2">
+                <button
+                  type="button"
+                  className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
+                  onClick={() => onScrollSmooth('#section-detail-article')}
+                >
+                  <FaInstagram className="md:text-2xl text-xl" />
+                </button>
+                <button
+                  type="button"
+                  className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
+                  onClick={() => onScrollSmooth('#section-detail-article')}
+                >
+                  <FaFacebook className="md:text-lg" />
+                </button>
+                <button
+                  type="button"
+                  className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
+                  onClick={() => onScrollSmooth('#section-detail-article')}
+                >
+                  <FaXTwitter className="md:text-lg" />
+                </button>
+              </div>
+            </div>
+            <button
               type="button"
-              className="rounded-full text-primary px-10 lg:flex hidden mx-auto relative z-50"
+              className="rounded-md text-primary md:px-10 md:py-[10px] px-6 py-2 bg-transparent border text-white flex items-center md:mt-12 mt-8 hover:-translate-y-2 shadow-xl transition-all duration-300 ease-in-out hover:bg-[#191919] hover:text-white md:!text-base !text-xs"
               onClick={() => onScrollSmooth('#section-detail-article')}
             >
-              <ChevronDownCircle className="mr-2 h-4 w-4" />
-              <span>Scroll Down</span>
-            </Button>
+              Read More
+              <ChevronDownCircle className="ml-2 h-4 w-4" />
+            </button>
           </div>
         </div>
       </section>
@@ -85,7 +130,7 @@ const DetailArticleView: FC<DetailArticleViewProps> = ({
         id="section-detail-article"
         className="min-h-screen bg-[#191919] md:py-14 py-8"
       >
-        <div className="md:max-w-[800px] max-w-xs mx-auto md:space-y-8 space-y-4">
+        <div className="lg:max-w-[800px] md:max-w-[650px] max-w-xs mx-auto lg:space-y-8 space-y-4">
           <Breadcrumb>
             <BreadcrumbList className="text-md">
               <BreadcrumbItem>
@@ -149,7 +194,11 @@ const DetailArticleView: FC<DetailArticleViewProps> = ({
                 <Tooltip open={isCopied}>
                   <TooltipTrigger asChild>
                     <Button size="icon" variant="ghost" onClick={onCopyLink}>
-                      <FaLink className="md:text-xl text-lg" />
+                      {!isCopied ? (
+                        <FaLink className="md:text-xl text-lg" />
+                      ) : (
+                        <FaCheck className="md:text-xl text-lg" />
+                      )}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -196,7 +245,7 @@ const DetailArticleView: FC<DetailArticleViewProps> = ({
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl md:h-[500px] md:-mx-32 -mx-4">
+          <div className="relative overflow-hidden rounded-2xl md:h-[500px] lg:-mx-32 md:-mx-8 -mx-4">
             <Image
               src={
                 data?.thumbnail_url ? data?.thumbnail_url : data?.cover || ''
@@ -210,10 +259,12 @@ const DetailArticleView: FC<DetailArticleViewProps> = ({
             />
           </div>
 
-          <div
-            dangerouslySetInnerHTML={{ __html: data?.desc || '' }}
-            className="leading-normal md:text-lg text-sm !font-thin"
-          />
+          {data?.desc && (
+            <ConvertText
+              text={data?.desc || ''}
+              className="leading-normal md:text-lg text-sm !font-thin"
+            />
+          )}
 
           <div className="relative overflow-hidden rounded-2xl md:h-80">
             <Image
@@ -249,15 +300,47 @@ const DetailArticleView: FC<DetailArticleViewProps> = ({
             Related Post
           </h1>
 
-          <div className="flex gap-2 overflow-scroll md:max-w-[800px] pt-2 pb-4 !mt-4">
-            {relatedPost?.map((article: ArticleState, index) => (
+          <Swiper
+            className="slider-container-related-post !mt-4"
+            autoplay={true}
+            slidesToScroll={5}
+            slidesToShow={5}
+            infinite={true}
+            speed={5000}
+            buttonNextClassName="lg:!-right-5 !-right-3 !p-1 !top-[25%]"
+            buttonPrevClassName="!p-1 !top-[25%]"
+            responsive={[
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 5,
+                  slidesToScroll: 5,
+                  dots: true,
+                },
+              },
+              {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 5,
+                  slidesToScroll: 5,
+                  dots: true,
+                },
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                  dots: true,
+                },
+              },
+            ]}
+          >
+            {relatedPost?.map((article: ArticleState, index: number) => (
               <div
                 key={index}
                 className={cn(
-                  'flex flex-col gap-3 cursor-pointer custom-scrollbar hover:-translate-y-2 duration-300 transition-all',
-                  relatedPost?.length <= 5
-                    ? 'md:max-w-[153.5px] max-w-[120px]'
-                    : 'md:min-w-[153.5px] min-w-[120px]',
+                  'flex space-y-4 cursor-pointer custom-scrollbar hover:-translate-y-2 duration-300 transition-all pt-2',
                 )}
                 onClick={() => onRedirect(article?.slug || '')}
               >
@@ -281,11 +364,11 @@ const DetailArticleView: FC<DetailArticleViewProps> = ({
                 </h4>
               </div>
             ))}
-          </div>
+          </Swiper>
         </div>
       </section>
     </>
   );
 };
 
-export default memo(DetailArticleView);
+export default DetailArticleView;

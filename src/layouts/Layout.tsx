@@ -1,5 +1,3 @@
-import React, { FC } from 'react';
-
 import Head from 'next/head';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
@@ -8,13 +6,18 @@ import { Poppins } from 'next/font/google';
 
 import { APP_DESCRIPTION, APP_NAME } from '@/contants';
 import { cn } from '@/lib/utils';
+import dynamic from 'next/dynamic';
 
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
 });
 
-const Layout: FC<LayoutProps> = ({
+const AosInit = dynamic(() => import('@/components/aos'), {
+  ssr: false,
+});
+
+const Layout = ({
   id,
   children,
   className,
@@ -24,7 +27,7 @@ const Layout: FC<LayoutProps> = ({
   footer = true,
   keywords = 'Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation, Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation, Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation',
   metaDesc = 'Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation, Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation, Japan Dahwa Foundation, JDF, Japan, Dahwa, Foundation',
-}) => (
+}: LayoutProps) => (
   <>
     <Head>
       <title>{pageTitle}</title>
@@ -44,7 +47,8 @@ const Layout: FC<LayoutProps> = ({
       <meta name="description" content={metaDesc} />
     </Head>
     <main id={id} className={cn(className, poppins.className)}>
-      {navbar && <Navbar />}
+      <AosInit />
+      <Navbar isOpen={navbar} />
       {children}
       {footer && <Footer />}
     </main>

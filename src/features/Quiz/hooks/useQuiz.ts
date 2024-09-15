@@ -1,5 +1,5 @@
 import { useGetQuizQuery } from '@/services/api/quizService';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Answer, QuizState } from '../Quiz.type';
 import Swal from 'sweetalert2';
 
@@ -11,6 +11,9 @@ const useQuiz = () => {
   const [score, setScore] = useState<number>(0);
   const [answer, setAnswer] = useState<Answer[]>();
   const [shuffledQuizzes, setShuffledQuizzes] = useState<QuizState[]>([]);
+  const [isCorrectId, setIsCorrectId] = useState<number>(0);
+  const [isWrongId, setIsWrongId] = useState<number>(0);
+  const [isAnswered, setIsAnswered] = useState<number>(0);
 
   const shuffleArray = (array: any[]) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -24,7 +27,7 @@ const useQuiz = () => {
     if (data?.data?.length > 0) {
       // Mengacak urutan quiz pertama kali
       const quizzes = shuffleArray([...data.data]); // Mengacak array quiz
-      setShuffledQuizzes(quizzes); // Simpan quiz yang sudah diacak
+      setShuffledQuizzes(quizzes?.slice(0, 3)); // Simpan quiz yang sudah diacak
 
       // Atur quiz pertama dan acak jawabannya
       setCurrentQuiz(quizzes[stepQuiz]); // Atur quiz saat ini berdasarkan langkah
@@ -38,7 +41,14 @@ const useQuiz = () => {
   const handleNext = () => {
     if (!shuffledQuizzes || !shuffledQuizzes.length) return; // Pastikan quiz sudah diacak
 
-    if (stepQuiz + 1 < shuffledQuizzes.length) {
+    if (isAnswered === 0) {
+      return Swal.fire({
+        title: 'Warning',
+        text: 'Please answer the question first',
+        icon: 'warning',
+        showConfirmButton: false,
+      });
+    } else if (stepQuiz + 1 < shuffledQuizzes.length) {
       setStepQuiz((prevStep) => prevStep + 1); // Tingkatkan stepQuiz
       setCurrentQuiz(shuffledQuizzes[stepQuiz + 1]); // Atur quiz berikutnya dari quiz yang sudah diacak
 
@@ -47,19 +57,26 @@ const useQuiz = () => {
         ...(shuffledQuizzes[stepQuiz + 1]?.answers || []),
       ]);
       setAnswer(shuffledAnswers);
+
+      setIsCorrectId(0);
+      setIsWrongId(0);
+      setIsAnswered(0);
     } else {
-      Swal.fire({
-        title: 'Quiz Completed',
-        text: 'You have completed the quiz',
-        icon: 'success',
-        confirmButtonText: 'Selesai',
-        confirmButtonColor: '#4caf50',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setIsFinish(true);
-        }
-      });
+      setIsFinish(true);
     }
+    // else {
+    //   Swal.fire({
+    //     title: 'Quiz Completed',
+    //     text: 'You have completed the quiz',
+    //     icon: 'success',
+    //     confirmButtonText: 'Selesai',
+    //     confirmButtonColor: '#4caf50',
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       setIsFinish(true);
+    //     }
+    //   });
+    // }
   };
 
   const handleAttempt = (id: number) => {
@@ -67,24 +84,65 @@ const useQuiz = () => {
 
     const answer = currentQuiz.answers.find((answer) => answer.id === id);
 
-    if (answer?.is_correct) {
+    if (!answer) return;
+
+    if (answer?.is_correct === 1) {
       setScore((prevScore) => prevScore + 1);
+      setIsCorrectId(id);
+      setIsAnswered(id);
+    } else {
+      setIsWrongId(
+        currentQuiz.answers.find((answer) => answer.is_correct === 0)?.id || 0,
+      );
+      setIsCorrectId(
+        currentQuiz.answers.find((answer) => answer.is_correct === 1)?.id || 0,
+      );
+      setIsAnswered(id);
     }
 
-    Swal.fire({
-      title: 'Next Question',
-      text: 'Do you want to continue to the next question?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
-      confirmButtonColor: '#4caf50',
-      cancelButtonColor: '#f44336',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        handleNext();
-      }
-    });
+    // if (
+    //   currentQuiz.answers.some(
+    //     (answer) => answer.id === isCorrectId || answer.id === isWrongId,
+    //   )
+    // ) {
+    //   Swal.fire({
+    //     title: 'Warning',
+    //     text: 'You have answered the question, please click next button',
+    //     icon: 'warning',
+    //     showConfirmButton: false,
+    //   });
+
+    //   return;
+    // }
+
+    // Swal.fire({
+    //   title: 'Are you sure?',
+    //   text: 'Are you sure with your answer?',
+    //   icon: 'question',
+    //   showCancelButton: true,
+    //   confirmButtonText: 'Yes',
+    //   cancelButtonText: 'No',
+    //   confirmButtonColor: '#4caf50',
+    //   cancelButtonColor: '#f44336',
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     if (answer?.is_correct === 1) {
+    //       setScore((prevScore) => prevScore + 1);
+    //       setIsCorrectId(id);
+    //       setIsAnswered(id);
+    //     } else {
+    //       setIsWrongId(
+    //         currentQuiz.answers.find((answer) => answer.is_correct === 0)?.id ||
+    //           0,
+    //       );
+    //       setIsCorrectId(
+    //         currentQuiz.answers.find((answer) => answer.is_correct === 1)?.id ||
+    //           0,
+    //       );
+    //       setIsAnswered(id);
+    //     }
+    //   }
+    // });
   };
 
   const handleFinishedQuiz = () => {
@@ -104,27 +162,53 @@ const useQuiz = () => {
         setStepQuiz(0);
         setScore(0);
         setCurrentQuiz(null);
+        setAnswer([]);
+        setIsCorrectId(0);
+        setIsWrongId(0);
+        setIsAnswered(0);
 
         // Start quiz
-        handleStart();
+        // handleStart();
       }
     });
   };
 
-  const finalScore = (score / data?.data.length) * 100;
+  const handleNextQuiz = () => {
+    handleNext();
+  };
+
+  const handlePreviousQuiz = () => {
+    if (stepQuiz - 1 >= 0) {
+      setStepQuiz((prevStep) => prevStep - 1); // Kurangi stepQuiz
+      setCurrentQuiz(shuffledQuizzes[stepQuiz - 1]); // Atur quiz sebelumnya dari quiz yang sudah diacak
+
+      // Acak jawaban untuk quiz sebelumnya
+      const shuffledAnswers = shuffleArray([
+        ...(shuffledQuizzes[stepQuiz - 1]?.answers || []),
+      ]);
+      setAnswer(shuffledAnswers);
+    }
+  };
+
+  const finalScore = ((score / 3) * 100).toFixed(2).toString();
 
   return {
     quiz: currentQuiz,
     stepQuiz,
-    quizLength: data?.data.length,
+    quizLength: 3,
     isFinish,
     score: finalScore,
     answer,
+    isCorrectId,
+    isWrongId,
+    isAnswered,
     isLoading,
     isError,
     handleStart,
     handleAttempt,
     handleFinishedQuiz,
+    handleNextQuiz,
+    handlePreviousQuiz,
   };
 };
 

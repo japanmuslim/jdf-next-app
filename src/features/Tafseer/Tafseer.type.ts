@@ -16,6 +16,7 @@ export interface TafseerViewProps {
   isTab?: string;
   isJuz?: JuzState[];
   isCurrentJuz?: number;
+  isCloseDrawer?: boolean;
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onCurrentSurah?: (current: number) => void;
   onCurrentTafseer?: (current: number) => void;

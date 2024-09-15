@@ -5,19 +5,30 @@ import ReactPlayer from 'react-player';
 import { cn } from '@/lib/utils';
 
 import { DM_Serif_Display } from 'next/font/google';
-import Swiper from '@/components/ui/swiper';
-import { FC, memo } from 'react';
 import { TafseerViewProps } from './Tafseer.type';
 import { FaSearch } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
+import dynamic from 'next/dynamic';
+import Loading from '@/components/page/loading';
+import { Skeleton } from '@/components/ui/skeleton';
+import VideoListLoading from '@/components/video-list-loading';
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
   weight: '400',
 });
 
-const TafseerView: FC<TafseerViewProps> = ({
-  data,
+const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+
+const Swiper = dynamic(() => import('@/components/ui/swiper'), {
+  ssr: false,
+  loading: () => <VideoListLoading />,
+});
+
+const TafseerView = ({
   latest,
   filteredData,
   isCurrentTafseer,
@@ -26,22 +37,23 @@ const TafseerView: FC<TafseerViewProps> = ({
   isTab,
   isJuz,
   isCurrentJuz,
+  isCloseDrawer,
   onSearch,
   onCurrentSurah,
   onCurrentTafseer,
-  onPlay,
-  onPause,
   onTab,
   onCurrentJuz,
   onCurrentLatest,
-}) => (
+  onPlay,
+  onPause,
+}: TafseerViewProps) => (
   <>
     <section
       id="hero"
       ref={tafseerRef}
       className="min-h-screen flex items-center justify-center"
     >
-      <SearchDrawer className="py-8" isExtend>
+      <SearchDrawer className="py-8" isExtend isOpen={isCloseDrawer}>
         <div className="mx-4 relative border border-gray-500 focus-within:border-white rounded-lg h-10">
           <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white" />
           <input
@@ -212,84 +224,71 @@ const TafseerView: FC<TafseerViewProps> = ({
           </div>
         )}
       </SearchDrawer>
-      <div className="relative lg:min-h-screen md:min-h-screen min-h-[30vh] w-full overflow-hidden">
-        <ReactPlayer
-          url={
-            isTab === 'surah'
-              ? filteredData?.[isCurrentSurah || 0]?.tafsirs?.[
-                  isCurrentTafseer || 0
-                ]?.link_youtube
-              : isJuz?.[isCurrentJuz || 0]?.tafsirs?.[isCurrentTafseer || 0]
-                  ?.link_youtube
-          }
-          style={{ position: 'absolute', top: 0, left: 0 }}
-          width="100%"
-          height="100%"
-          loop
-          playing
-          light={
-            isTab === 'surah'
-              ? filteredData?.[isCurrentSurah || 0]?.tafsirs?.[
-                  isCurrentTafseer || 0
-                ]?.thumbnail_url
-              : isJuz?.[isCurrentJuz || 0]?.tafsirs?.[isCurrentTafseer || 0]
-                  ?.thumbnail_url
-          }
-          onPlay={onPlay}
-          onPause={onPause}
-          controls
-          config={{
-            youtube: {
-              playerVars: {
-                autoplay: 1, // Enable auto-play
-                modestbranding: 0,
-                fs: 0, // Hide full-screen button
-                rel: 0, // Avoid related videos
-                showinfo: 0, // Hide video info (deprecated)
-              },
-            },
-          }}
-        />
-      </div>
+      <VideoEmbed
+        src={
+          isTab === 'surah'
+            ? (filteredData?.[isCurrentSurah || 0]?.tafsirs?.[
+                isCurrentTafseer || 0
+              ]?.link_youtube ?? '')
+            : (isJuz?.[isCurrentJuz || 0]?.tafsirs?.[isCurrentTafseer || 0]
+                ?.link_youtube ?? '')
+        }
+        // light={
+        //   isTab === 'surah'
+        //     ? (filteredData?.[isCurrentSurah || 0]?.tafsirs?.[
+        //         isCurrentTafseer || 0
+        //       ]?.thumbnail_url ?? '')
+        //     : (isJuz?.[isCurrentJuz || 0]?.tafsirs?.[isCurrentTafseer || 0]
+        //         ?.thumbnail_url ?? '')
+        // }
+        onPlay={onPlay}
+        onPause={onPause}
+      />
     </section>
     <section
       id="latest-tafseer"
       className="bg-[#191919] py-12 space-y-8 lg:px-8 px-6 overflow-hidden"
     >
       <h2 className="font-bold text-2xl">Latest Tafseer</h2>
-      <Swiper>
-        {latest?.map((item, index) => (
-          <div
-            key={index}
-            id="cardSurah"
-            className="relative overflow-hidden rounded-lg p-6 lg:h-64 md:h-64 h-48 cursor-pointer"
-            onClick={() =>
-              onCurrentLatest && onCurrentLatest(item?.surah_id, item?.id)
-            }
-          >
-            <Image
-              src={item.thumbnail_url}
-              alt={item.name_tafseer}
-              layout="fill"
-              objectFit="cover"
-              className="w-full h-full absolute inset-0 z-0"
-            />
+      {(latest?.length || 0) > 0 ? (
+        <Swiper>
+          {latest?.map((item, index) => (
             <div
-              className={cn(
-                'text-center absolute -translate-x-1/2 -translate-y-1/2 bottom-0 left-1/2 z-10 w-full max-w-sm',
-                dmSerifDisplay.className,
-              )}
+              key={index}
+              id="cardSurah"
+              className="relative overflow-hidden rounded-lg p-6 lg:h-64 md:h-64 h-48 cursor-pointer"
+              onClick={() =>
+                onCurrentLatest && onCurrentLatest(item?.surah_id, item?.id)
+              }
             >
-              <h3 className="md:text-xl text-base">{item.name_tafseer}</h3>
-              <p className="md:text-sm text-xs">
-                Verse {item.start_surah} - {item.end_surah}
-              </p>
+              <Image
+                src={item.thumbnail_url}
+                alt={item.name_tafseer}
+                layout="fill"
+                objectFit="cover"
+                className="w-full h-full absolute inset-0 z-0"
+              />
+              <div
+                className={cn(
+                  'text-center absolute -translate-x-1/2 -translate-y-1/2 bottom-0 left-1/2 z-10 w-full max-w-sm',
+                  dmSerifDisplay.className,
+                )}
+              >
+                <h3 className="md:text-xl text-base">{item.name_tafseer}</h3>
+                <p className="md:text-sm text-xs">
+                  Verse {item.start_surah} - {item.end_surah}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
-      </Swiper>
+          ))}
+        </Swiper>
+      ) : (
+        <div className="flex justify-center items-center h-20 text-white">
+          No Tafseer found...
+        </div>
+      )}
     </section>
   </>
 );
 
-export default memo(TafseerView);
+export default TafseerView;

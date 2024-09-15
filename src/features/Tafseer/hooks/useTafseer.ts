@@ -1,5 +1,5 @@
-import { ChangeEvent, useCallback, useRef, useState } from 'react';
-import { JuzState, Surah, TafseerState } from '../Tafseer.type';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { JuzState, Surah } from '../Tafseer.type';
 
 const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
   const [isCurrentSurah, setIsCurrentSurah] = useState<number>(0);
@@ -9,8 +9,31 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
   const [isJuz, setIsJuz] = useState<JuzState[]>(juz ?? []);
   const [isNavVisible, setIsNavVisible] = useState<boolean>(false);
   const [isTab, setIsTab] = useState<string>('surah');
+  const [isCloseDrawer, setIsCloseDrawer] = useState<boolean>(false);
 
   const tafseerRef = useRef<HTMLDivElement>(null);
+
+  const handlePlayVideo = useCallback(() => {
+    let timer: any;
+
+    const handleMouseMove = () => {
+      setIsNavVisible(false);
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        setIsNavVisible(true);
+      }, 3000);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  const handlePauseVideo = useCallback(() => {
+    setIsNavVisible(false);
+  }, []);
 
   const handleCurrentSurah = useCallback((current: number) => {
     setIsCurrentSurah(current);
@@ -20,6 +43,12 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
   const handleCurrentTafseer = useCallback((current: number) => {
     setIsCurrentTafseer(current);
     tafseerRef?.current?.scrollIntoView({ behavior: 'smooth' });
+
+    setIsCloseDrawer(true);
+
+    setTimeout(() => {
+      setIsCloseDrawer(false);
+    }, 0);
   }, []);
 
   const handleCurrentJuz = useCallback((current: number) => {
@@ -31,20 +60,20 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
     (idSurah: number, idTafseer: number) => {
       const surahIndex = data.findIndex((item) => item.id === idSurah);
       if (surahIndex !== -1) {
-        setIsCurrentSurah(surahIndex); // Mengatur indeks surah
+        setIsCurrentSurah(surahIndex);
 
         const tafseerIndex = data[surahIndex].tafsirs.findIndex(
           (item) => item.id === idTafseer,
         );
 
         if (tafseerIndex !== -1) {
-          setIsCurrentTafseer(tafseerIndex); // Mengatur indeks tafseer
+          setIsCurrentTafseer(tafseerIndex);
         }
       }
 
       tafseerRef?.current?.scrollIntoView({ behavior: 'smooth' });
     },
-    [],
+    [data],
   );
 
   const handleSearch = useCallback(
@@ -73,23 +102,18 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
     [data, isTab, juz],
   );
 
-  const handleTab = useCallback((tab: string) => {
-    setIsTab(tab);
+  const handleTab = useCallback(
+    (tab: string) => {
+      setIsTab(tab);
 
-    if (tab === 'surah') {
-      setFilteredData(data);
-    } else {
-      setIsJuz(juz);
-    }
-  }, []);
-
-  const handlePlay = useCallback(() => {
-    setIsNavVisible(true);
-  }, []);
-
-  const handlePause = useCallback(() => {
-    setIsNavVisible(false);
-  }, []);
+      if (tab === 'surah') {
+        setFilteredData(data);
+      } else {
+        setIsJuz(juz);
+      }
+    },
+    [data, juz],
+  );
 
   return {
     filteredData,
@@ -97,6 +121,7 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
     isCurrentJuz,
     isCurrentSurah,
     isCurrentTafseer,
+    isCloseDrawer,
     handleCurrentJuz,
     tafseerRef,
     isNavVisible,
@@ -104,10 +129,10 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
     handleSearch,
     handleCurrentSurah,
     handleCurrentTafseer,
-    handlePlay,
-    handlePause,
     handleTab,
     handleCurrentLatest,
+    handlePlayVideo,
+    handlePauseVideo,
   };
 };
 
