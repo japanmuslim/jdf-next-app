@@ -64,7 +64,7 @@ const QuizView: FC<QuizViewProps> = ({
           </p>
         </div>
         <h1 className="md:text-3xl text-2xl font-bold text-center md:mt-12 mt-8 md:mb-14 mb-8">
-          {quiz.title}
+          {quiz.title + quiz.id}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {(anwser?.length || 0) > 0 &&

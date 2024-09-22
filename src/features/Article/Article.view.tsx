@@ -39,7 +39,7 @@ const ArticleView = ({
       <Carousel id="carousel" data={carousel} />
       <div
         ref={categoryRef}
-        className="lg:hidden sticky top-20 inset-x-0 overflow-auto !z-[99] bg-[#191919] py-4 pl-10"
+        className="lg:hidden sticky top-24 inset-x-0 overflow-auto !z-[99] bg-[#191919] lg:py-4 py-6 pl-10"
       >
         <div className="flex flex-row gap-2">
           <Button

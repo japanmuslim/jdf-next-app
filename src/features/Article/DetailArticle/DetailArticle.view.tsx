@@ -62,7 +62,7 @@ const DetailArticleView = ({
   return (
     <>
       <section
-        className="md:min-h-[100vh] min-h-[78vh] md:mt-0 mt-[87px] relative w-full"
+        className="md:min-h-[100vh] min-h-[70vh] md:mt-0 mt-[87px] relative w-full"
         style={{
           background: `url(${data?.thumbnail_url ? data?.thumbnail_url : data?.cover || ''}) no-repeat center center / cover`,
           backgroundAttachment: 'fixed',

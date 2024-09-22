@@ -15,13 +15,15 @@ const useQuiz = () => {
   const [isWrongId, setIsWrongId] = useState<number>(0);
   const [isAnswered, setIsAnswered] = useState<number>(0);
 
-  const shuffleArray = (array: any[]) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
+  // const shuffleArray = (array: any[]) => {
+  //   for (let i = array.length - 1; i > 0; i--) {
+  //     const j = Math.floor(Math.random() * (i + 1));
+  //     [array[i], array[j]] = [array[j], array[i]];
+  //   }
+  //   return array;
+  // };
+
+  const shuffleArray = (array: any[]) => array.sort(() => Math.random() - 0.5);
 
   const handleStart = () => {
     if (data?.data?.length > 0) {
