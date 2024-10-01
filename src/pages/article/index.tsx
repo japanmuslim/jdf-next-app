@@ -19,7 +19,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      data: data?.data?.data?.data || [],
+      data: data?.data?.data || {},
       currentPages: data?.data?.current_page || 1,
       categories: categories?.data?.data || [],
       carousel: data?.data?.data?.data?.slice(0, 5) || [],
@@ -37,6 +37,7 @@ export default function Article({
     articles,
     isLoading,
     page,
+    lastPage,
     categoryRef,
     currentCategory,
     handlePaginate,
@@ -58,6 +59,7 @@ export default function Article({
         carousel={carousel}
         isLoading={isLoading}
         page={page}
+        lastPage={lastPage}
         categoryRef={categoryRef}
         onPaginate={handlePaginate}
         onRedirect={handleRedirect}

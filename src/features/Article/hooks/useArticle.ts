@@ -3,19 +3,21 @@ import { ArticleProps, ArticleState } from '../Article.type';
 import { useGetArticleQuery } from '@/services/api/articleService';
 import { useRouter } from 'next/router';
 
-const useArticle = ({ data, currentPages }: ArticleProps) => {
+const useArticle = ({ data, currentPages }: any) => {
   const router = useRouter();
-  const [articles, setArticles] = useState<ArticleState[]>(data || []);
+  const [articles, setArticles] = useState<ArticleState[]>(data?.data || []);
   const [page, setPage] = useState<number>(currentPages || 1);
   const [currentCategory, setCurrentCategory] = useState(0);
+  const [lastPage, setLastPage] = useState(1);
   const categoryRef = useRef<HTMLDivElement>(null);
 
   const { data: articlePaginate, isLoading } = useGetArticleQuery({ page });
 
   useEffect(() => {
     if (data) {
-      setArticles(data || []);
+      setArticles(data?.data || []);
       setPage(currentPages || 1);
+      setLastPage(data?.last_page || 1);
     }
   }, [data, currentPages]);
 
@@ -40,10 +42,12 @@ const useArticle = ({ data, currentPages }: ArticleProps) => {
     setCurrentCategory(id);
 
     if (id === 0) {
-      setArticles(data || []); // Show all articles if id is 0
+      setArticles(data?.data || []); // Show all articles if id is 0
     } else {
       setArticles(
-        data?.filter((item) => item?.news_categories_id === id) || [],
+        data?.data?.filter(
+          (item: ArticleState) => item?.news_categories_id === id,
+        ) || [],
       );
     }
   };
@@ -73,6 +77,7 @@ const useArticle = ({ data, currentPages }: ArticleProps) => {
     articles,
     isLoading,
     page,
+    lastPage,
     categoryRef,
     currentCategory,
     handleCategory,

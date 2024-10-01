@@ -24,6 +24,7 @@ export interface ArticleViewProps {
   isLoading?: boolean;
   currentCategory: number;
   page?: number;
+  lastPage?: number;
   categoryRef?: React.RefObject<HTMLDivElement>;
   onPaginate: (page: number) => void;
   onRedirect: (slug: string) => void;

@@ -23,12 +23,12 @@ const Carousel = dynamic(() => import('@/components/carousel'), {
 const ArticleView = ({
   categoryRef,
   articles,
-  data,
   categories,
   carousel,
   currentCategory,
   isLoading,
   page = 1,
+  lastPage,
   onPaginate,
   onRedirect,
   onCategory,
@@ -123,7 +123,7 @@ const ArticleView = ({
                 Previous
               </PaginationPrevious>
               <PaginationContent>
-                {[...Array(data?.last_page || 1)].map((_, index) => (
+                {[...Array(lastPage || 1)].map((_, index) => (
                   <PaginationItem
                     key={index}
                     onClick={() => onPaginate(index + 1)}
@@ -138,11 +138,9 @@ const ArticleView = ({
               </PaginationContent>
               <PaginationNext
                 className={
-                  page === data?.last_page ? '!cursor-not-allowed' : ''
+                  page === lastPage ? '!cursor-not-allowed' : 'cursor-pointer'
                 }
-                onClick={() =>
-                  page < (data?.last_page || 1) && onPaginate(page + 1)
-                }
+                onClick={() => page < (lastPage || 1) && onPaginate(page + 1)}
               >
                 Next
               </PaginationNext>

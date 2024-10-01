@@ -21,6 +21,7 @@ const navItems: NavItemsProps[] = [
   { links: 'Islamic Books', href: '/islamic-books' },
   { links: 'Article', href: '/article' },
   { links: 'Q&A', href: '/q&a' },
+  { links: 'FAQ', href: '/faq' },
   // { links: "Contact", href: "/contact" },
 ];
 
