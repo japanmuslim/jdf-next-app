@@ -14,6 +14,7 @@ import ArticleSkeleton from './components/ArticleSkeleton';
 import dynamic from 'next/dynamic';
 import Loading from '@/components/page/loading';
 import { useEffect, useRef } from 'react';
+import Paginate from '@/components/paginate';
 
 const Carousel = dynamic(() => import('@/components/carousel'), {
   ssr: false,
@@ -21,6 +22,7 @@ const Carousel = dynamic(() => import('@/components/carousel'), {
 });
 
 const ArticleView = ({
+  sectionRef,
   categoryRef,
   articles,
   categories,
@@ -39,7 +41,7 @@ const ArticleView = ({
       <Carousel id="carousel" data={carousel} />
       <div
         ref={categoryRef}
-        className="lg:hidden sticky top-24 inset-x-0 overflow-auto !z-[99] bg-[#191919] lg:py-4 py-6 pl-10"
+        className="lg:hidden sticky top-[5.4rem] inset-x-0 overflow-auto !z-[99] bg-[#191919] lg:py-4 py-6 pl-10"
       >
         <div className="flex flex-row gap-2">
           <Button
@@ -64,11 +66,15 @@ const ArticleView = ({
         </div>
       </div>
       <section
+        ref={sectionRef}
         id="list-article"
         className="relative z-50 bg-[#191919] lg:pt-14 pt-4 pb-14 px-10 max-md:overflow-hidden"
       >
         <div className="flex flex-col lg:flex-row gap-10">
-          <div className="hidden lg:block lg:w-1/4 relative">
+          <div
+            data-aos="fade-right"
+            className="hidden lg:block lg:w-1/4 relative"
+          >
             <div
               id="sticky-nav"
               className="py-8 px-6 rounded-2xl flex flex-col gap-4 border border-[#777A7B] lg:sticky lg:top-28"
@@ -94,11 +100,11 @@ const ArticleView = ({
               ))}
             </div>
           </div>
-          <div className="lg:w-3/4">
+          <div data-aos="fade-left" className="lg:w-3/4">
             <h2 className="text-white text-lg font-semibold mb-4 lg:hidden block">
               List Article
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10 gap-6">
               {!articles || articles?.length <= 0 || isLoading
                 ? [...Array(4)].map((_, index) => (
                     <ArticleSkeleton key={index} />
@@ -112,39 +118,11 @@ const ArticleView = ({
                   ))}
             </div>
 
-            <Pagination className="mt-10">
-              <PaginationPrevious
-                className={cn(
-                  'cursor-pointer',
-                  page === 1 && 'cursor-not-allowed',
-                )}
-                onClick={() => page > 1 && onPaginate(page - 1)}
-              >
-                Previous
-              </PaginationPrevious>
-              <PaginationContent>
-                {[...Array(lastPage || 1)].map((_, index) => (
-                  <PaginationItem
-                    key={index}
-                    onClick={() => onPaginate(index + 1)}
-                    className={cn(
-                      'cursor-pointer',
-                      index + 1 === page && 'bg-white text-primary rounded',
-                    )}
-                  >
-                    <PaginationLink>{index + 1}</PaginationLink>
-                  </PaginationItem>
-                ))}
-              </PaginationContent>
-              <PaginationNext
-                className={
-                  page === lastPage ? '!cursor-not-allowed' : 'cursor-pointer'
-                }
-                onClick={() => page < (lastPage || 1) && onPaginate(page + 1)}
-              >
-                Next
-              </PaginationNext>
-            </Pagination>
+            <Paginate
+              page={page}
+              lastPage={lastPage || 1}
+              onChange={onPaginate}
+            />
           </div>
         </div>
       </section>

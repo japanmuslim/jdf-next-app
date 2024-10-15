@@ -150,7 +150,10 @@ const DetailArticleView = ({
             </BreadcrumbList>
           </Breadcrumb>
 
-          <h1 className="font-bold md:text-[35px] text-lg leading-normal md:!my-10 my-4">
+          <h1
+            data-aos="fade-up"
+            className="font-bold md:text-[35px] text-lg leading-normal md:!my-10 my-4"
+          >
             {data?.title}
           </h1>
 
@@ -245,19 +248,75 @@ const DetailArticleView = ({
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl md:h-[500px] lg:-mx-32 md:-mx-8 -mx-4">
-            <Image
-              src={
-                data?.thumbnail_url ? data?.thumbnail_url : data?.cover || ''
-              }
-              width={0}
-              height={0}
-              sizes="100vw"
-              alt={data?.title || 'Article Cover'}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
+          {(data?.images?.length || 0) > 0 ? (
+            <div className="relative lg:-mx-32 md:-mx-6 -mx-[6px] md:!mb-14 !mb-10">
+              <Swiper
+                // slidesToShow={1}
+                // slidesToScroll={1}
+                buttonNextClassName="!top-[46%] !-translate-y-1/2 md:!-right-1 hover:!shadow-lg hover:!shadow"
+                buttonPrevClassName="!top-[46%] !-translate-y-1/2 md:!-left-5 hover:!shadow-lg hover:!shadow"
+                infinite={false}
+                dots={true}
+                responsive={[
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                      dots: true,
+                    },
+                  },
+                  {
+                    breakpoint: 768,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                      dots: true,
+                    },
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                      dots: true,
+                    },
+                  },
+                ]}
+              >
+                {data?.images?.map((image, index) => (
+                  <div
+                    key={index}
+                    className="overflow-hidden rounded-2xl h-full md:max-h-[500px] relative"
+                  >
+                    <Image
+                      src={image?.thumbnail_url || ''}
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      alt={image?.alt_url_image || 'Article Cover'}
+                      className="w-full h-full object-cover"
+                      priority
+                    />
+                  </div>
+                ))}
+              </Swiper>
+            </div>
+          ) : (
+            <div className="relative overflow-hidden rounded-2xl h-full md:max-h-[500px] lg:-mx-32 md:-mx-6 -mx-[6px] md:!mb-14 !mb-10">
+              <Image
+                src={
+                  data?.thumbnail_url ? data?.thumbnail_url : data?.cover || ''
+                }
+                width={0}
+                height={0}
+                sizes="100vw"
+                alt={data?.title || 'Article Cover'}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          )}
 
           {data?.desc && (
             <ConvertText
@@ -303,18 +362,26 @@ const DetailArticleView = ({
           <Swiper
             className="slider-container-related-post !mt-4"
             autoplay={true}
-            slidesToScroll={5}
-            slidesToShow={5}
+            // slidesToScroll={5}
+            // slidesToShow={5}
             infinite={true}
             speed={5000}
             buttonNextClassName="lg:!-right-5 !-right-3 !p-1 !top-[25%]"
             buttonPrevClassName="!p-1 !top-[25%]"
             responsive={[
               {
-                breakpoint: 1024,
+                breakpoint: 1440,
                 settings: {
                   slidesToShow: 5,
                   slidesToScroll: 5,
+                  dots: true,
+                },
+              },
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 4,
+                  slidesToScroll: 4,
                   dots: true,
                 },
               },
@@ -336,34 +403,36 @@ const DetailArticleView = ({
               },
             ]}
           >
-            {relatedPost?.map((article: ArticleState, index: number) => (
-              <div
-                key={index}
-                className={cn(
-                  'flex space-y-4 cursor-pointer custom-scrollbar hover:-translate-y-2 duration-300 transition-all pt-2',
-                )}
-                onClick={() => onRedirect(article?.slug || '')}
-              >
-                <div className="relative overflow-hidden rounded-xl md:h-44 h-32 border-[#777A7B] border">
-                  {article?.thumbnail_url ? (
-                    <Image
-                      src={article?.thumbnail_url || ''}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      alt={article?.title || 'Article Cover'}
-                      className="w-full h-full object-cover"
-                      priority
-                    />
-                  ) : (
-                    <FaRegFileImage className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#777A7B] text-2xl" />
+            {relatedPost
+              ?.filter((item: ArticleState) => item?.slug !== data?.slug)
+              ?.map((article: ArticleState, index: number) => (
+                <div
+                  key={index}
+                  className={cn(
+                    'flex space-y-4 cursor-pointer custom-scrollbar hover:-translate-y-2 duration-300 transition-all pt-2',
                   )}
+                  onClick={() => onRedirect(article?.slug || '')}
+                >
+                  <div className="relative overflow-hidden rounded-xl md:h-44 h-32 border-[#777A7B] border">
+                    {article?.thumbnail_url ? (
+                      <Image
+                        src={article?.thumbnail_url || ''}
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        alt={article?.title || 'Article Cover'}
+                        className="w-full h-full object-cover"
+                        priority
+                      />
+                    ) : (
+                      <FaRegFileImage className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#777A7B] text-2xl" />
+                    )}
+                  </div>
+                  <h4 className="font-semibold">
+                    {article?.title || 'Article Title'}
+                  </h4>
                 </div>
-                <h4 className="font-semibold">
-                  {article?.title || 'Article Title'}
-                </h4>
-              </div>
-            ))}
+              ))}
           </Swiper>
         </div>
       </section>

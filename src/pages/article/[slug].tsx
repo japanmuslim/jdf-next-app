@@ -70,6 +70,7 @@ export async function getStaticProps({ params }: { params: { slug: number } }) {
       data: data?.data?.data || {},
       relatedPost: relatedPost?.data?.data?.data || [],
     },
+    revalidate: 10,
   };
 }
 

@@ -27,7 +27,10 @@ const QuizView: FC<QuizViewProps> = ({
     className="min-h-screen flex justify-center items-center lg:px-8 px-6 relative"
   >
     {!quiz && (
-      <div className="bg-white w-full md:max-w-2xl px-8 py-10 rounded-3xl text-primary relative z-10">
+      <div
+        data-aos="fade-up"
+        className="bg-white w-full md:max-w-2xl px-8 py-10 rounded-3xl text-primary relative z-10"
+      >
         <h1 className="md:text-3xl text-2xl font-bold text-center">Quiz</h1>
         <div className="mt-4">
           <p className="text-center md:text-3xl text-2xl">
@@ -48,7 +51,10 @@ const QuizView: FC<QuizViewProps> = ({
     )}
 
     {quiz && !isFinish && (
-      <div className="bg-white w-full lg:max-w-2xl px-8 md:py-10 py-8 md:mt-0 mt-20 rounded-3xl text-primary relative z-10 overflow-hidden">
+      <div
+        data-aos="fade-up"
+        className="bg-white w-full lg:max-w-2xl px-8 md:py-10 py-8 md:mt-0 mt-20 rounded-3xl text-primary relative z-10 overflow-hidden"
+      >
         <div className="absolute top-0 left-0 right-0 h-3 bg-gray-200">
           <Skeleton
             className="h-3 bg-green-600 rounded-full rounded-l-none relative"
@@ -64,7 +70,7 @@ const QuizView: FC<QuizViewProps> = ({
           </p>
         </div>
         <h1 className="md:text-3xl text-2xl font-bold text-center md:mt-12 mt-8 md:mb-14 mb-8">
-          {quiz.title + quiz.id}
+          {quiz.title}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {(anwser?.length || 0) > 0 &&
@@ -74,7 +80,7 @@ const QuizView: FC<QuizViewProps> = ({
                 type="button"
                 disabled={isAnswered !== 0}
                 className={cn(
-                  'w-full rounded-full hover:-translate-y-1 duration-300 transition-all whitespace-break-spaces md:text-lg text-md min-h-14 disabled:cursor-not-allowed disabled:opacity-100',
+                  'w-full rounded-full hover:-translate-y-1 duration-300 transition-all whitespace-break-spaces md:text-lg text-[16px] min-h-14 disabled:cursor-not-allowed disabled:opacity-100',
 
                   // Jika jawaban benar, tambahkan bg hijau
                   isCorrectId === answer.id
@@ -112,7 +118,7 @@ const QuizView: FC<QuizViewProps> = ({
         <div className="flex justify-center md:mt-12 mt-10">
           <Button
             type="button"
-            className="rounded-full bg-white text-primary border border-primary px-6 py-6 hover:bg-primary hover:text-white hover:-translate-y-2 duration-300 transition-all hover:shadow-md w-full md:text-lg text-md"
+            className="rounded-full bg-white text-primary border border-primary px-6 py-6 hover:bg-primary hover:text-white hover:-translate-y-2 duration-300 transition-all hover:shadow-md w-full md:text-lg text-[16px]"
             onClick={quizLength - 1 ? onNextQuiz : onFinishedQuiz}
           >
             {quizLength - 1 ? <span> 次へ</span> : <span> 終了</span>}
@@ -149,7 +155,10 @@ const QuizView: FC<QuizViewProps> = ({
 
     {isFinish && (
       <>
-        <div className="bg-gradient-to-t from-[#000000b6] to-transparent absolute inset-0 z-0" />
+        <div
+          data-aos="fade-up"
+          className="bg-gradient-to-t from-[#000000b6] to-transparent absolute inset-0 z-0"
+        />
         <div className="flex flex-col relative z-10 md:mt-0 mt-20">
           <h1
             className={`md:text-4xl text-2xl font-extrabold text-center m-0 animate-bounce ${

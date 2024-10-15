@@ -21,6 +21,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Link from 'next/link';
 import { FaXTwitter } from 'react-icons/fa6';
+import { toast } from 'react-toastify';
 
 interface CarouselProps {
   id: string;
@@ -78,22 +79,22 @@ const Carousel: FC<CarouselProps> = ({ id = 'carousel', data }) => {
   };
 
   const handleRedirect = (slug: string) => {
-    if (!slug) return;
-    router.push(`/article/${slug}`);
+    if (!slug) {
+      toast('Article not found!', {
+        type: 'error',
+        theme: 'colored',
+      });
+    } else {
+      router.push(`/article/${slug}`);
+    }
   };
 
   return (
-    <header
-      id={id}
-      className="lg:h-screen md:h-[60vh] h-[85vh] w-full overflow-hidden"
-    >
+    <header id={id} className="h-screen w-full overflow-hidden">
       <div className="slider-container -mr-4 md:mb-0 -mb-2">
         <Slider ref={sliderRef} {...settings}>
           {data?.map((item, index) => (
-            <div
-              key={index}
-              className="w-full lg:h-screen md:h-[60vh] h-[85vh] relative"
-            >
+            <div key={index} className="w-full h-screen relative">
               <Image
                 src={
                   item?.thumbnail_url
@@ -146,7 +147,7 @@ const Carousel: FC<CarouselProps> = ({ id = 'carousel', data }) => {
                             handleScrollSmooth('#section-detail-article')
                           }
                         >
-                          <FaInstagram className="md:text-2xl text-md" />
+                          <FaInstagram className="md:text-2xl text-[15px]" />
                         </button>
                         <button
                           type="button"

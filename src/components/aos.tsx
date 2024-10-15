@@ -11,11 +11,12 @@ interface AosInitProps {
 const AosInit: FC<AosInitProps> = ({
   duration = 1000,
   // easing = 'ease-in-out',
-  once = false,
+  once = true,
 }) => {
   AOS.init({
     duration,
     once,
+    delay: 100,
   });
   return null;
 };

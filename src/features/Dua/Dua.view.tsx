@@ -99,6 +99,7 @@ const DuaView = ({
         {data?.map((item, index) => (
           <div
             key={index}
+            data-aos="fade-up"
             id="cardSurah"
             className="relative overflow-hidden rounded-lg p-6 lg:h-64 md:h-64 h-48 cursor-pointer"
             onClick={() => onCurrent && onCurrent(index)}

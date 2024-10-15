@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ArticleProps, ArticleState } from '../Article.type';
 import { useGetArticleQuery } from '@/services/api/articleService';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const useArticle = ({ data, currentPages }: any) => {
   const router = useRouter();
@@ -9,6 +10,7 @@ const useArticle = ({ data, currentPages }: any) => {
   const [page, setPage] = useState<number>(currentPages || 1);
   const [currentCategory, setCurrentCategory] = useState(0);
   const [lastPage, setLastPage] = useState(1);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const categoryRef = useRef<HTMLDivElement>(null);
 
   const { data: articlePaginate, isLoading } = useGetArticleQuery({ page });
@@ -24,6 +26,10 @@ const useArticle = ({ data, currentPages }: any) => {
   const handlePaginate = (newPage: number) => {
     if (newPage < 1) return;
     setPage(newPage);
+
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -33,9 +39,14 @@ const useArticle = ({ data, currentPages }: any) => {
   }, [articlePaginate]);
 
   const handleRedirect = (slug: string) => {
-    if (!slug) return;
-
-    router.push(`/article/${slug}`);
+    if (!slug) {
+      toast('Article not found!', {
+        type: 'error',
+        theme: 'colored',
+      });
+    } else {
+      router.push(`/article/${slug}`);
+    }
   };
 
   const handleCategory = (id: number) => {
@@ -79,6 +90,7 @@ const useArticle = ({ data, currentPages }: any) => {
     page,
     lastPage,
     categoryRef,
+    sectionRef,
     currentCategory,
     handleCategory,
     handlePaginate,

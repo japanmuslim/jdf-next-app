@@ -3,9 +3,6 @@ import store from '@/init/store/store';
 import { ArticleApi } from '@/services/api/articleService';
 import { ArticleProps } from '@/features/Article/Article.type';
 import useArticle from '@/features/Article/hooks/useArticle';
-// import { ArticleView } from '@/features/Article';
-import dynamic from 'next/dynamic';
-import Loading from '@/components/page/loading';
 import ArticleView from '@/features/Article';
 
 export async function getStaticProps() {
@@ -39,6 +36,7 @@ export default function Article({
     page,
     lastPage,
     categoryRef,
+    sectionRef,
     currentCategory,
     handlePaginate,
     handleRedirect,
@@ -60,6 +58,7 @@ export default function Article({
         isLoading={isLoading}
         page={page}
         lastPage={lastPage}
+        sectionRef={sectionRef}
         categoryRef={categoryRef}
         onPaginate={handlePaginate}
         onRedirect={handleRedirect}

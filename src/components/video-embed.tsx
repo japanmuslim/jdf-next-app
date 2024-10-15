@@ -7,6 +7,7 @@ import Loading from './page/loading';
 interface VideoEmbedProps {
   src: string;
   playing?: boolean;
+  loop?: boolean;
   light?: string;
   controls?: boolean;
   className?: string;
@@ -19,38 +20,39 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
   playing = true,
   light,
   controls = true,
+  loop = false,
   onPlay,
   onPause,
   className,
 }) => {
   const videoRef = useRef<ReactPlayer>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isPiPActive, setIsPiPActive] = useState(false);
+  // const [isPiPActive, setIsPiPActive] = useState(false);
 
-  useEffect(() => {
-    const handleScrollY = () => {
-      try {
-        const scrolledToBottom = window.innerHeight + window.scrollY >= 400;
-        const scrolledToTop = window.scrollY <= 0;
+  // useEffect(() => {
+  //   const handleScrollY = () => {
+  //     try {
+  //       const scrolledToBottom = window.innerHeight + window.scrollY >= 400;
+  //       const scrolledToTop = window.scrollY <= 0;
 
-        if (scrolledToBottom) {
-          setIsPiPActive(true);
-        }
+  //       if (scrolledToBottom) {
+  //         setIsPiPActive(true);
+  //       }
 
-        if (scrolledToTop) {
-          setIsPiPActive(false);
-        }
-      } catch (error) {
-        console.error('Error during scroll event:', error);
-      }
-    };
+  //       if (scrolledToTop) {
+  //         setIsPiPActive(false);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error during scroll event:', error);
+  //     }
+  //   };
 
-    window.addEventListener('scroll', handleScrollY);
+  //   window.addEventListener('scroll', handleScrollY);
 
-    return () => {
-      window.removeEventListener('scroll', handleScrollY);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScrollY);
+  //   };
+  // }, []);
 
   if (!src) return <Loading />;
 
@@ -69,13 +71,14 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
         style={{ position: 'absolute', top: 0, left: 0 }}
         width="100%"
         height="100%"
+        loop={loop}
         playing={playing}
         playsinline={playing}
         controls={controls}
         light={light}
         onPlay={onPlay}
         onPause={onPause}
-        pip={isPiPActive}
+        // pip={isPiPActive}
       />
     </div>
   );

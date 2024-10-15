@@ -32,29 +32,7 @@ interface Responsive {
 }
 
 const NextArrow = (props: any) => {
-  const { onClick, currentSlide, slideCount, buttonNextClassName } = props;
-
-  const router = useRouter();
-
-  const isArticleDetail = router.pathname === '/article/[slug]';
-
-  const [slidesToShow, setSlidesToShow] = React.useState(0);
-  const isDesktop = typeof window !== 'undefined' && window.innerWidth > 1024;
-  const isTablet =
-    typeof window !== 'undefined' &&
-    window.innerWidth > 768 &&
-    window.innerWidth <= 1024;
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-
-  useEffect(() => {
-    if (isDesktop) {
-      setSlidesToShow(!isArticleDetail ? 3 : 5);
-    } else if (isTablet) {
-      setSlidesToShow(!isArticleDetail ? 2 : 5);
-    } else if (isMobile) {
-      setSlidesToShow(!isArticleDetail ? 1 : 2);
-    }
-  }, [isDesktop, isTablet, isMobile, isArticleDetail]);
+  const { onClick, buttonNextClassName } = props;
 
   return (
     <button
@@ -62,17 +40,15 @@ const NextArrow = (props: any) => {
         buttonNextClassName ?? ''
       }`}
       onClick={onClick}
-      style={{
-        display: currentSlide === slideCount - slidesToShow ? 'none' : 'block',
-      }}
+      style={{ display: onClick ? 'block' : 'none' }}
     >
-      <ChevronRight size={28} />
+      <ChevronRight />
     </button>
   );
 };
 
 const PrevArrow = (props: any) => {
-  const { onClick, currentSlide, buttonPrevClassName } = props;
+  const { onClick, buttonPrevClassName } = props;
 
   return (
     <button
@@ -81,10 +57,10 @@ const PrevArrow = (props: any) => {
       }`}
       onClick={onClick}
       style={{
-        display: currentSlide === 0 ? 'none' : 'block',
+        display: onClick ? 'block' : 'none',
       }}
     >
-      <ChevronRight size={28} className="rotate-180" />
+      <ChevronRight className="rotate-180" />
     </button>
   );
 };
@@ -92,8 +68,8 @@ const PrevArrow = (props: any) => {
 const Swiper: FC<SwiperProps> = ({
   children,
   infinite = false,
-  slidesToShow = 3,
-  slidesToScroll = 3,
+  slidesToShow,
+  slidesToScroll,
   autoplay = false,
   dots = true,
   speed = 500,
@@ -101,6 +77,14 @@ const Swiper: FC<SwiperProps> = ({
   buttonNextClassName,
   buttonPrevClassName,
   responsive = [
+    {
+      breakpoint: 1440,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        dots: true,
+      },
+    },
     {
       breakpoint: 1024,
       settings: {
@@ -112,8 +96,8 @@ const Swiper: FC<SwiperProps> = ({
     {
       breakpoint: 768,
       settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: 2,
+        slidesToScroll: 2,
         dots: true,
       },
     },
@@ -132,8 +116,14 @@ const Swiper: FC<SwiperProps> = ({
       <Slider
         initialSlide={0}
         infinite={infinite}
-        slidesToShow={slidesToShow}
-        slidesToScroll={slidesToScroll}
+        slidesToShow={
+          slidesToShow ? slidesToShow : responsive[0].settings.slidesToShow
+        }
+        slidesToScroll={
+          slidesToScroll
+            ? slidesToScroll
+            : responsive[0].settings.slidesToScroll
+        }
         dots={dots}
         speed={speed}
         autoplay={autoplay}

@@ -26,10 +26,20 @@ export interface ArticleViewProps {
   page?: number;
   lastPage?: number;
   categoryRef?: React.RefObject<HTMLDivElement>;
+  sectionRef?: React.RefObject<HTMLDivElement>;
   onPaginate: (page: number) => void;
   onRedirect: (slug: string) => void;
   onCategory: (id: number) => void;
   onSlideCategory: (index: number) => void;
+}
+
+export interface Images {
+  id: number;
+  post_id: number;
+  thumbnail_url: string;
+  alt_url_image: null | string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface ArticleState {
@@ -39,6 +49,7 @@ export interface ArticleState {
   tags_id: number;
   cover: null | string;
   thumbnail_url: null;
+  images?: Images[];
   title: string;
   slug: string;
   desc: string;
