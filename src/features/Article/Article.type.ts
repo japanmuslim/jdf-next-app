@@ -42,6 +42,24 @@ export interface Images {
   updated_at: Date;
 }
 
+export interface Tags {
+  id: number;
+  name: string;
+  slug: string;
+  keywords: string;
+  meta_desc: string;
+  is_active: number;
+  deleted_at: null;
+  created_at: Date;
+  updated_at: Date;
+  pivot: Pivot;
+}
+
+export interface Pivot {
+  post_id: number;
+  tag_id: number;
+}
+
 export interface ArticleState {
   id: number;
   user_id: number;
@@ -60,6 +78,7 @@ export interface ArticleState {
   created_at: Date;
   updated_at: Date;
   category: Category;
+  tags: Tags[];
 }
 
 export interface Link {

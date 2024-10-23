@@ -1,10 +1,57 @@
 import { cn } from '@/lib/utils';
-import { CardVideosProps } from '../Home.type';
 import Image from 'next/image';
 import { IoPlay } from 'react-icons/io5';
+import { CategoryVideoProps, VideoState } from '../Home.type';
+
+interface CardVideosProps {
+  type?: 'category' | 'video';
+  className?: string;
+  onClick?: () => void;
+  item: any;
+}
 
 const CardVideos = (props: CardVideosProps) => {
-  const { name_tafseer, className, thumbnail_url, onClick } = props;
+  const { className, onClick, item, type } = props;
+
+  if (type === 'category') {
+    return (
+      <div
+        className={cn(
+          'grid-card-item-flip lg:w-80 lg:h-44 md:w-60 md:h-36 w-28 h-16 shadow-lg perspective',
+          className,
+        )}
+      >
+        {/* Bagian depan card */}
+        <div className="grid-card-item-front">
+          <Image
+            src={item?.thumbnail || ''}
+            alt={item?.category_name || 'Category'}
+            layout="fill"
+            objectFit="cover"
+          />
+          <h3 className="card-title">{item?.category_name || 'Category'}</h3>
+        </div>
+
+        {/* Bagian belakang card */}
+        <div className="grid-card-item-back bg-[#191919] relative">
+          <Image
+            src={item?.thumbnail || ''}
+            alt={item?.category_name || 'Category'}
+            layout="fill"
+            objectFit="cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center h-full w-full bg-black/80">
+            <p
+              onClick={onClick}
+              className="font-semibold md:text-xl text-base hover:-translate-y-2 duration-300 transition-all hover:text-white/80 cursor-pointer"
+            >
+              {item?.category_name}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -14,8 +61,8 @@ const CardVideos = (props: CardVideosProps) => {
       )}
     >
       <Image
-        src={thumbnail_url || ''}
-        alt={name_tafseer || 'Tafseer'}
+        src={item?.thumbnail_url || ''}
+        alt={item?.name_video || 'Video'}
         layout="fill"
         objectFit="cover"
       />
@@ -28,7 +75,7 @@ const CardVideos = (props: CardVideosProps) => {
             <IoPlay className="md:text-3xl text-xs text-white" />
           </button>
           <h3 className="md:text-lg text-[8px] font-medium text-white absolute inset-x-0 md:bottom-3 bottom-1 w-full text-center">
-            {name_tafseer}
+            {item?.name_video}
           </h3>
         </div>
       </div>

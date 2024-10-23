@@ -51,7 +51,7 @@ const QuestionList = ({
           >
             <div className="flex flex-row justify-between">
               <div className="flex flex-row gap-2">
-                <Icon className="md:h-10 md:w-10 h-8 w-8" />
+                <Icon className="md:h-10 md:w-10 h-8 w-8 flex-shrink-0" />
                 <div>
                   <h2 className="md:text-base text-sm font-semibold">
                     {item?.content}

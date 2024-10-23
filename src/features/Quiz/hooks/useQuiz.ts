@@ -192,7 +192,7 @@ const useQuiz = () => {
     }
   };
 
-  const finalScore = ((score / 3) * 100).toFixed(2).toString();
+  const finalScore = Math.floor((score / 3) * 100).toString();
 
   return {
     quiz: currentQuiz,

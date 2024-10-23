@@ -351,7 +351,7 @@ export default function Question() {
         </div>
       </header>
       <nav className="lg:h-24 md:h-20 h-16 bg-[#191919] flex items-center lg:px-32 px-8">
-        <Breadcrumb pageName="Question & Answer" />
+        <Breadcrumb />
       </nav>
       <div ref={sectionRef} className="lg:px-32 px-8 py-10 lg:py-14">
         <h2 className="lg:text-2xl text-base font-bold lg:mb-8 mb-6 lg:mt-0 -mt-4">

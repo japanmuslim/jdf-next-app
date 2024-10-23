@@ -8,6 +8,7 @@ interface VideoEmbedProps {
   src: string;
   playing?: boolean;
   loop?: boolean;
+  muted?: boolean;
   light?: string;
   controls?: boolean;
   className?: string;
@@ -20,13 +21,16 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
   playing = true,
   light,
   controls = true,
-  loop = false,
+  loop = true,
+  muted = false,
   onPlay,
   onPause,
   className,
 }) => {
   const videoRef = useRef<ReactPlayer>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMuted, setIsMuted] = useState<boolean>(muted);
+
   // const [isPiPActive, setIsPiPActive] = useState(false);
 
   // useEffect(() => {
@@ -72,7 +76,8 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
         width="100%"
         height="100%"
         loop={loop}
-        playing={playing}
+        muted={muted}
+        playing={playing || !controls}
         playsinline={playing}
         controls={controls}
         light={light}
