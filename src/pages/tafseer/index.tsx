@@ -21,6 +21,7 @@ export const getStaticProps: GetStaticProps = async () => {
       juz: juz?.data?.data ?? [],
       latest: getLatest?.data?.data ?? [],
     },
+    revalidate: 10,
   };
 };
 

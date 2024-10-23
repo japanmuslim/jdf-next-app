@@ -21,6 +21,7 @@ export async function getStaticProps() {
       categories: categories?.data?.data || [],
       carousel: data?.data?.data?.data?.slice(0, 5) || [],
     },
+    revalidate: 10,
   };
 }
 
