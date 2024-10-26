@@ -19,5 +19,5 @@ export interface QuestionState {
   is_active: number;
   created_at?: string;
   updated_at?: string;
-  answers?: string;
+  answer_question?: string;
 }

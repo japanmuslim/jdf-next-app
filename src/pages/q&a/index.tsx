@@ -50,7 +50,7 @@ const QuestionList = dynamic(
 export default function Question() {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnswerOpen, setIsAnswerOpen] = useState(false);
-  const [questionId, setQuestionId] = useState(0);
+  const [questionId, setQuestionId] = useState<number>(0);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [clearSearch, setClearSearch] = useState(false);
@@ -72,7 +72,7 @@ export default function Question() {
     useSearchQuestionQuery(search);
 
   const { data: dataQuestionView, isLoading: isLoadingView } =
-    useGetQuestionByIdQuery(questionId || 0);
+    useGetQuestionByIdQuery(questionId);
 
   const [store, { isLoading: isLoadingStore }] = useStoreQuestionMutation();
 

@@ -20,16 +20,16 @@ const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
 
 const HomeView = () => (
   <section className="flex items-center justify-center min-h-screen w-full relative">
-    <div className="absolute -translate-y-1/2 -translate-x-1/2 top-[43%] left-1/2 flex justify-around w-[100%] z-50 px-10">
+    <div className="absolute -translate-y-1/2 -translate-x-1/2 lg:top-[43%] md:top-[47%] top-[48%] left-1/2 flex justify-around w-[100%] z-50 lg:px-10 px-6">
       <Link
         href="/muslim"
-        className="text-white font-extrabold text-3xl text-center w-40 duration-300 hover:scale-125"
+        className="text-white font-extrabold lg:text-3xl md:text-xl text-[8px] text-center w-40 duration-300 hover:scale-125"
       >
         ムスリム
       </Link>
       <Link
         href="/non-muslim"
-        className="text-white font-extrabold text-3xl text-center w-40 duration-300 hover:scale-125"
+        className="text-white font-extrabold lg:text-3xl md:text-xl text-[8px] text-center w-40 duration-300 hover:scale-125"
       >
         非ムスリム
       </Link>

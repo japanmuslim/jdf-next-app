@@ -24,7 +24,9 @@ const Videos = (props: VideosProps) => {
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data: dataVideo, isLoading } = useGetVideoQuery(videoId || 0);
+  const { data: dataVideo, isLoading } = useGetVideoQuery(videoId || 0, {
+    skip: !videoId,
+  });
 
   const onHandleVideo = useCallback(
     (videoId: number) => {

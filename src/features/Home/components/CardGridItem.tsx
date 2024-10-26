@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { IoPlay } from 'react-icons/io5';
 import { CategoryVideoProps, VideoState } from '../Home.type';
+import { IMG_BLUR } from '@/contants';
 
 interface CardVideosProps {
   type?: 'category' | 'video';
@@ -29,7 +30,9 @@ const CardVideos = (props: CardVideosProps) => {
             layout="fill"
             objectFit="cover"
           />
-          <h3 className="card-title">{item?.category_name || 'Category'}</h3>
+          <h3 className="card-title text-center">
+            {item?.category_name || 'Category'}
+          </h3>
         </div>
 
         {/* Bagian belakang card */}
@@ -39,11 +42,14 @@ const CardVideos = (props: CardVideosProps) => {
             alt={item?.category_name || 'Category'}
             layout="fill"
             objectFit="cover"
+            blurDataURL={IMG_BLUR}
+            placeholder="blur"
+            priority
           />
           <div className="absolute inset-0 flex items-center justify-center h-full w-full bg-black/80">
             <p
               onClick={onClick}
-              className="font-semibold md:text-xl text-base hover:-translate-y-2 duration-300 transition-all hover:text-white/80 cursor-pointer"
+              className="font-semibold text-center lg:text-xl md:text-md text-xs hover:-translate-y-2 duration-300 transition-all hover:text-white/80 cursor-pointer"
             >
               {item?.category_name}
             </p>
@@ -65,6 +71,9 @@ const CardVideos = (props: CardVideosProps) => {
         alt={item?.name_video || 'Video'}
         layout="fill"
         objectFit="cover"
+        blurDataURL={IMG_BLUR}
+        placeholder="blur"
+        priority
       />
       <div className="grid-card-item-overlay">
         <div className="flex flex-col items-center justify-center h-full relative w-full">

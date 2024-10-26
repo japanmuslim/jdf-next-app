@@ -91,9 +91,9 @@ const QuestionList = ({
                 )}
               </Button>
             </div>
-            {item?.answers ? (
+            {item?.answer_question ? (
               <p className="text-white md:mt-4 mt-2">
-                {truncate(item?.answers || '', 200)}
+                {truncate(item?.answer_question || '', 200)}
               </p>
             ) : (
               <p className="text-white md:mt-4 mt-2">No answer yet...</p>

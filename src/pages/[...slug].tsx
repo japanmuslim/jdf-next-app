@@ -1,9 +1,6 @@
 import Loading from '@/components/page/loading';
 import { CategoryVideoProps } from '@/features/Home/Home.type';
-import {
-  useGetCategoryVideoQuery,
-  useGetVideoQuery,
-} from '@/services/api/homeService';
+import { useGetCategoryVideoQuery } from '@/services/api/homeService';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
@@ -14,11 +11,6 @@ const Category = dynamic(() => import('@/features/Home/screens/Category'), {
 });
 
 const Videos = dynamic(() => import('@/features/Home/screens/Videos'), {
-  ssr: false,
-  loading: () => <Loading />,
-});
-
-const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,
   loading: () => <Loading />,
 });

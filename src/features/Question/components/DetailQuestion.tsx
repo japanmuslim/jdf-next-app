@@ -72,21 +72,9 @@ const DetailQuestion = (props: DetailQuestionProps) => {
           </div>
         </div>
         <hr className="my-4" />
-        <p>{data?.answers ? data?.answers : 'No answer yet...'}</p>
-        {/* <p>
-          A battery cycle count refers to the number of complete charge and
-          discharge cycles a rechargeable battery has undergone. One cycle is
-          defined as using 100% of the battery's capacity, but not necessarily
-          in one single charge. For example, if you use 50% of your battery one
-          day and then recharge it fully, and then use another 50% the next day,
-          that would count as one complete cycle.Cycle counts are important
-          because they help indicate the health and longevity of a battery. As
-          the cycle count increases, the battery's capacity to hold a charge
-          typically decreases, leading to shorter usage times between charges.
-          Manufacturers often specify a maximum cycle count for their batteries,
-          which can help users understand when a battery might need to be
-          replaced.
-        </p> */}
+        <p className="md:text-lg text-base">
+          {data?.answer_question ? data?.answer_question : 'No answer yet...'}
+        </p>
       </div>
     </Modal>
   );

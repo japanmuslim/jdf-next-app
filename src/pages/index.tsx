@@ -1,11 +1,12 @@
 import Loading from '@/components/page/loading';
+import HomeView from '@/features/Home';
 import Layout from '@/layouts/Layout';
 import dynamic from 'next/dynamic';
 
-const HomeView = dynamic(() => import('@/features/Home/Home.view'), {
-  ssr: false,
-  loading: () => <Loading />,
-});
+// const HomeView = dynamic(() => import('@/features/Home/Home.view'), {
+//   ssr: false,
+//   loading: () => <Loading />,
+// });
 
 export default function Home() {
   return (
