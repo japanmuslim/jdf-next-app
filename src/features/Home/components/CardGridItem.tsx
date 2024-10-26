@@ -18,7 +18,7 @@ const CardVideos = (props: CardVideosProps) => {
     return (
       <div
         className={cn(
-          'grid-card-item-flip lg:w-80 lg:h-44 md:w-60 md:h-36 w-28 h-16 shadow-lg perspective',
+          'grid-card-item-flip lg:w-80 lg:h-44 md:w-60 md:h-36 w-28 h-16 shadow-lg perspective !delay-300',
           className,
         )}
       >
