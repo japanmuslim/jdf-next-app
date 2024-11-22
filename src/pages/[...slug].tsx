@@ -1,9 +1,7 @@
 import Loading from '@/components/page/loading';
-import { CategoryVideoProps } from '@/features/Home/Home.type';
-import { useGetCategoryVideoQuery } from '@/services/api/homeService';
+import useHome from '@/features/Home/hooks/useHome';
+import MobileView from '@/features/Home/screens/Mobile.view';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
 
 const Category = dynamic(() => import('@/features/Home/screens/Category'), {
   ssr: false,
@@ -16,28 +14,20 @@ const Videos = dynamic(() => import('@/features/Home/screens/Videos'), {
 });
 
 const Slug = () => {
-  const router = useRouter();
-  const isCategory = router.query.slug?.[0];
-  const isVideo = router.query.slug?.[1];
+  const {
+    isCategory,
+    isVideo,
+    breakpoint,
+    dataCategory,
+    isLoadingCategory,
+    currentCategoryData,
+    handleCategory,
+  } = useHome();
 
-  const { data: dataCategory, isLoading: isLoadingCategory } =
-    useGetCategoryVideoQuery(isCategory);
+  if (breakpoint === 'sm' || breakpoint === 'md')
+    return <MobileView data={dataCategory?.data} />;
 
-  const currentCategoryData = dataCategory?.data.find(
-    (category: CategoryVideoProps) =>
-      category?.category_name?.replace(/ /g, '-').toLowerCase() === isVideo,
-  );
-
-  const handleCategory = useCallback(
-    (categoryName: string) => {
-      const name = categoryName.replace(/ /g, '-').toLowerCase();
-
-      router.push(`/${isCategory}/${name}`);
-    },
-    [router, isCategory],
-  );
-
-  if (isCategory && !isVideo) {
+  if (isCategory && !isVideo && breakpoint === 'lg') {
     return (
       <Category
         data={dataCategory?.data}
