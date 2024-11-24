@@ -7,6 +7,8 @@ export default function Home() {
       id="home"
       pageTitle="Home | Japan Dahwa Foundation"
       pageDescription="Home page description"
+      navbar={false}
+      footer={false}
     >
       <HomeView />
     </Layout>

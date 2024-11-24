@@ -296,12 +296,109 @@
     background: rgba(0, 0, 0, 0.6);
     z-index: 1;
   } */
+
+  #qa header#hero {
+    position: relative;
+    background: url('/assets/images/question/bg-hero.webp') no-repeat center
+      center/cover;
+    z-index: 1;
+  }
+
+  #qa header#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+
+  #faq header#hero {
+    position: relative;
+    background: url('/assets/images/faq/bg-hero.webp') no-repeat center
+      center/cover;
+    z-index: 1;
+  }
+
+  #faq header#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
 }
 
 .slick-slide > div {
   transition: transform 0.3s;
   margin: 0 1rem 0 0;
 }
+
+.slider-container-related-post .slick-slide > div {
+  transition: transform 0.3s;
+  margin: 0 0.5rem 0 0;
+}
+
+.slick-disabled {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .slick-slide > div {
+    margin: 0 0.5rem 0 0;
+  }
+}
+
+/* .slick-next {
+  right: 0px !important;
+  background-color: #313131 !important;
+  border-radius: 100%;
+  padding: 20px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.slick-prev {
+  left: -20px !important;
+  background-color: #313131 !important;
+  border-radius: 100%;
+  padding: 20px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 10 !important;
+} */
+
+.slick-disabled {
+  display: none !important;
+}
+
+/* .slick-prev::before,
+.slick-next::before {
+  display: none !important;
+} */
+
+/* .slick-next:hover,
+.slick-prev:hover {
+  scale: 1.2 !important;
+  transition: all 0.3s;
+}
+
+.slick-next::before {
+  font-size: 20px !important;
+  color: #fff !important;
+}
+
+.slick-prev::before {
+  font-size: 50px !important;
+  color: #313131 !important;
+} */
 
 .slick-dots {
   position: absolute;
@@ -400,4 +497,152 @@
 
 #sticky-nav {
   box-shadow: 5px 6px 0 #777a7b;
+}
+
+.bg-pattern {
+  --s: 50px;
+  --c1: #383838;
+  --c2: #313131;
+
+  --_g: var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%, var(--c2) 26% 35%,
+    var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%, var(--c2) 66% 75%,
+    var(--c1) 76% 85%, var(--c2) 86% 95%, #0000 96%;
+
+  background:
+    radial-gradient(50% 50% at 100% 0, var(--_g)),
+    radial-gradient(50% 50% at 0 100%, var(--_g)),
+    radial-gradient(50% 50%, var(--_g)),
+    radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2)
+      var(--c1);
+  background-size: var(--s) var(--s);
+}
+
+.bg-pattern-dark {
+  --s: 50px;
+  --c1: #222222;
+  --c2: #191919;
+
+  --_g: var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%, var(--c2) 26% 35%,
+    var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%, var(--c2) 66% 75%,
+    var(--c1) 76% 85%, var(--c2) 86% 95%, #0000 96%;
+
+  background:
+    radial-gradient(50% 50% at 100% 0, var(--_g)),
+    radial-gradient(50% 50% at 0 100%, var(--_g)),
+    radial-gradient(50% 50%, var(--_g)),
+    radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2)
+      var(--c1);
+  background-size: var(--s) var(--s);
+}
+
+.hover-section {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.perspective-wrapper {
+  perspective: 1000px; /* Menambahkan depth */
+}
+
+.card {
+  transition: transform 0.3s ease-out;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  transform: rotateY(15deg) rotateX(10deg);
+}
+
+/* .grid-card-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.grid-card-item:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+
+.grid-card-item:hover .grid-card-item-overlay {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.grid-card-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+
+.grid-card-item-flip {
+  position: relative;
+  transition: transform 0.6s ease-out;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.grid-card-item-flip:hover {
+  transform: rotateY(180deg);
+}
+
+.grid-card-item-front,
+.grid-card-item-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.grid-card-item-front {
+  background-color: #191919;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.grid-card-item-back {
+  /* background: rgba(0, 0, 0, 0.6); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.grid-card-item-flip:hover .grid-card-item-back {
+  opacity: 1;
+}
+
+.grid-card-item-flip:hover .grid-card-item-front {
+  opacity: 0;
 }

@@ -1,36 +1,47 @@
-import React, { FC, memo } from 'react';
+import React from 'react';
 import { DuaViewProps } from './Dua.type';
 import SearchDrawer from '@/components/search-drawer';
-import { Input } from '@/components/ui/input';
-import ReactPlayer from 'react-player';
-import Swiper from '@/components/ui/swiper';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { DM_Serif_Display } from 'next/font/google';
 import { FaSearch } from 'react-icons/fa';
+import dynamic from 'next/dynamic';
+import Loading from '@/components/page/loading';
+import VideoListLoading from '@/components/video-list-loading';
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
   weight: '400',
 });
 
-const DuaView: FC<DuaViewProps> = ({
+const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
+  ssr: false,
+  loading: () => <Loading />,
+});
+
+const Swiper = dynamic(() => import('@/components/ui/swiper'), {
+  ssr: false,
+  loading: () => <VideoListLoading />,
+});
+
+const DuaView = ({
   data,
   duaRef,
   filteredData,
   isCurrent,
+  isCloseDrawer,
   onCurrent,
   onSearch,
   onPlay,
   onPause,
-}) => (
+}: DuaViewProps) => (
   <>
     <section
       id="hero"
       ref={duaRef}
       className="min-h-screen flex items-center justify-center"
     >
-      <SearchDrawer className="py-8">
+      <SearchDrawer className="py-8" isOpen={isCloseDrawer}>
         <div className="mx-4 relative border border-gray-500 focus-within:border-white rounded-lg h-10">
           <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white" />
           <input
@@ -72,31 +83,12 @@ const DuaView: FC<DuaViewProps> = ({
           )}
         </div>
       </SearchDrawer>
-      <div className="relative lg:min-h-screen md:min-h-screen min-h-[30vh] w-full overflow-hidden">
-        <ReactPlayer
-          url={data[isCurrent || 0]?.link}
-          style={{ position: 'absolute', top: 0, left: 0 }}
-          width="100%"
-          height="100%"
-          loop
-          playing
-          controls
-          light={data[isCurrent || 0]?.thumbnail_url}
-          onPlay={onPlay}
-          onPause={onPause}
-          config={{
-            youtube: {
-              playerVars: {
-                autoplay: 1, // Enable auto-play
-                modestbranding: 0,
-                fs: 0, // Hide full-screen button
-                rel: 0, // Avoid related videos
-                showinfo: 0, // Hide video info (deprecated)
-              },
-            },
-          }}
-        />
-      </div>
+      <VideoEmbed
+        src={data[isCurrent || 0]?.link}
+        // light={data[isCurrent || 0]?.thumbnail_url}
+        onPlay={onPlay}
+        onPause={onPause}
+      />
     </section>
     <section
       id="latest-dua"
@@ -107,6 +99,7 @@ const DuaView: FC<DuaViewProps> = ({
         {data?.map((item, index) => (
           <div
             key={index}
+            data-aos="fade-up"
             id="cardSurah"
             className="relative overflow-hidden rounded-lg p-6 lg:h-64 md:h-64 h-48 cursor-pointer"
             onClick={() => onCurrent && onCurrent(index)}
@@ -133,4 +126,4 @@ const DuaView: FC<DuaViewProps> = ({
   </>
 );
 
-export default memo(DuaView);
+export default DuaView;

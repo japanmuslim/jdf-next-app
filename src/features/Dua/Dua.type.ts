@@ -11,6 +11,7 @@ export interface DuaViewProps {
   duaRef?: React.RefObject<HTMLDivElement>;
   filteredData?: DuaState[];
   isCurrent?: number;
+  isCloseDrawer?: boolean;
   onCurrent?: (current: number) => void;
   onSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
   onPlay?: () => void;

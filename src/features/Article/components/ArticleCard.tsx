@@ -36,8 +36,8 @@ const ArticleCard: FC<ArticleCardProps> = ({ key, article, onRedirect }) => (
       )}
     </div>
     <div className="space-y-2 mt-2">
-      <p className="text-md text-[#f05454] flex items-center gap-2 h-4">
-        <IoTimeOutline className="text-lg" />
+      <p className="md:text-md text-xs text-[#f05454] flex items-center gap-1 h-4">
+        <IoTimeOutline className="md:text-lg text-md" />
         {typeof window !== 'undefined' &&
           new Date(article?.created_at).toLocaleString('ja-JP', {
             weekday: 'long',
@@ -46,23 +46,26 @@ const ArticleCard: FC<ArticleCardProps> = ({ key, article, onRedirect }) => (
             day: 'numeric',
           })}
       </p>
-      <h3 className="text-xl font-bold">{article?.title}</h3>
+      <h3 className="md:text-xl text-base font-bold">{article?.title}</h3>
       <div
         dangerouslySetInnerHTML={{
           __html: `${article?.desc.slice(0, 70)}...`,
         }}
         className="text-[#777A7B] md:text-sm text-xs whitespace-wrap !font-normal"
       />
-      <div className="flex flex-wrap gap-2">
-        {article?.keywords.split(',').map((keyword, index) => (
-          <span
-            key={index}
-            className="text-xs rounded-full px-4 py-[6px] bg-primary bg-opacity-10 text-blue-500 capitalize"
-          >
-            {keyword}
-          </span>
-        ))}
-      </div>
+      {(article?.tags?.length || 0) > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {article?.tags?.map((item, index) => (
+            <button
+              type="button"
+              key={index}
+              className="text-md rounded-full px-6 py-2 bg-blue-500 bg-opacity-10 text-blue-500 capitalize"
+            >
+              {item?.name}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   </div>
 );

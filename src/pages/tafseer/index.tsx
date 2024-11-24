@@ -1,6 +1,7 @@
 import Loading from '@/components/page/loading';
+import TafseerView from '@/features/Tafseer';
 import { useTafseer } from '@/features/Tafseer/hooks/useTafseer';
-import { TafseerProps, TafseerState } from '@/features/Tafseer/Tafseer.type';
+import { TafseerProps } from '@/features/Tafseer/Tafseer.type';
 import store from '@/init/store/store';
 import Layout from '@/layouts/Layout';
 import { TafseerApi } from '@/services/api/tafseerService';
@@ -20,13 +21,9 @@ export const getStaticProps: GetStaticProps = async () => {
       juz: juz?.data?.data ?? [],
       latest: getLatest?.data?.data ?? [],
     },
+    revalidate: 10,
   };
 };
-
-const TafseerView = dynamic(() => import('@/features/Tafseer'), {
-  ssr: false,
-  loading: () => <Loading />,
-});
 
 export default function Tafseer({ data, juz, latest }: TafseerProps) {
   const {
@@ -37,15 +34,16 @@ export default function Tafseer({ data, juz, latest }: TafseerProps) {
     isTab,
     isJuz,
     isCurrentJuz,
+    isCloseDrawer,
     handleCurrentSurah,
     handleCurrentTafseer,
     handleSearch,
     isNavVisible,
-    handlePlay,
-    handlePause,
     handleTab,
     handleCurrentJuz,
     handleCurrentLatest,
+    handlePlayVideo,
+    handlePauseVideo,
   } = useTafseer({ data, juz });
 
   return (
@@ -65,15 +63,16 @@ export default function Tafseer({ data, juz, latest }: TafseerProps) {
         isTab={isTab}
         isJuz={isJuz}
         isCurrentJuz={isCurrentJuz}
+        isCloseDrawer={isCloseDrawer}
         tafseerRef={tafseerRef}
         onSearch={handleSearch}
         onCurrentSurah={handleCurrentSurah}
         onCurrentTafseer={handleCurrentTafseer}
-        onPlay={handlePlay}
-        onPause={handlePause}
         onTab={handleTab}
         onCurrentJuz={handleCurrentJuz}
         onCurrentLatest={handleCurrentLatest}
+        onPlay={handlePlayVideo}
+        onPause={handlePauseVideo}
       />
     </Layout>
   );

@@ -24,9 +24,40 @@ export interface ArticleViewProps {
   isLoading?: boolean;
   currentCategory: number;
   page?: number;
+  lastPage?: number;
+  categoryRef?: React.RefObject<HTMLDivElement>;
+  sectionRef?: React.RefObject<HTMLDivElement>;
   onPaginate: (page: number) => void;
   onRedirect: (slug: string) => void;
   onCategory: (id: number) => void;
+  onSlideCategory: (index: number) => void;
+}
+
+export interface Images {
+  id: number;
+  post_id: number;
+  thumbnail_url: string;
+  alt_url_image: null | string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface Tags {
+  id: number;
+  name: string;
+  slug: string;
+  keywords: string;
+  meta_desc: string;
+  is_active: number;
+  deleted_at: null;
+  created_at: Date;
+  updated_at: Date;
+  pivot: Pivot;
+}
+
+export interface Pivot {
+  post_id: number;
+  tag_id: number;
 }
 
 export interface ArticleState {
@@ -36,6 +67,7 @@ export interface ArticleState {
   tags_id: number;
   cover: null | string;
   thumbnail_url: null;
+  images?: Images[];
   title: string;
   slug: string;
   desc: string;
@@ -46,6 +78,7 @@ export interface ArticleState {
   created_at: Date;
   updated_at: Date;
   category: Category;
+  tags: Tags[];
 }
 
 export interface Link {

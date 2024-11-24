@@ -1,26 +1,21 @@
-import Loading from '@/components/page/loading';
+import DuaView from '@/features/Dua';
 import { DuaProps } from '@/features/Dua/Dua.type';
 import useDua from '@/features/Dua/hooks/useDua';
 import store from '@/init/store/store';
 import Layout from '@/layouts/Layout';
 import { DuaApi } from '@/services/api/duaService';
 import { GetStaticProps } from 'next';
-import dynamic from 'next/dynamic';
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await store.dispatch(DuaApi.endpoints.getDuaLatest.initiate({}));
 
   return {
     props: {
-      data: data?.data?.data,
+      data: data?.data?.data || [],
     },
+    revalidate: 10,
   };
 };
-
-const DuaView = dynamic(() => import('@/features/Dua'), {
-  ssr: false,
-  loading: () => <Loading />,
-});
 
 export default function Dua({ data }: DuaProps) {
   const {
@@ -28,10 +23,11 @@ export default function Dua({ data }: DuaProps) {
     filteredData,
     isCurrent,
     isNavVisible,
+    isCloseDrawer,
     handleCurrent,
     handleSearch,
-    handlePlay,
-    handlePause,
+    handlePlayVideo,
+    handlePauseVideo,
   } = useDua({ data });
 
   return (
@@ -46,10 +42,11 @@ export default function Dua({ data }: DuaProps) {
         duaRef={duaRef}
         filteredData={filteredData}
         isCurrent={isCurrent}
+        isCloseDrawer={isCloseDrawer}
         onCurrent={handleCurrent}
         onSearch={handleSearch}
-        onPlay={handlePlay}
-        onPause={handlePause}
+        onPlay={handlePlayVideo}
+        onPause={handlePauseVideo}
       />
     </Layout>
   );

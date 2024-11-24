@@ -3,9 +3,7 @@ import store from '@/init/store/store';
 import { ArticleApi } from '@/services/api/articleService';
 import { ArticleProps } from '@/features/Article/Article.type';
 import useArticle from '@/features/Article/hooks/useArticle';
-// import { ArticleView } from '@/features/Article';
-import dynamic from 'next/dynamic';
-import Loading from '@/components/page/loading';
+import ArticleView from '@/features/Article';
 
 export async function getStaticProps() {
   const data = await store.dispatch(
@@ -18,18 +16,14 @@ export async function getStaticProps() {
 
   return {
     props: {
-      data: data?.data?.data?.data || [],
+      data: data?.data?.data || {},
       currentPages: data?.data?.current_page || 1,
       categories: categories?.data?.data || [],
       carousel: data?.data?.data?.data?.slice(0, 5) || [],
     },
+    revalidate: 10,
   };
 }
-
-const ArticleView = dynamic(() => import('@/features/Article'), {
-  ssr: false,
-  loading: () => <Loading />,
-});
 
 export default function Article({
   data,
@@ -41,10 +35,14 @@ export default function Article({
     articles,
     isLoading,
     page,
+    lastPage,
+    categoryRef,
+    sectionRef,
     currentCategory,
     handlePaginate,
     handleRedirect,
     handleCategory,
+    handleSlideCategory,
   } = useArticle({ data, currentPages });
 
   return (
@@ -60,9 +58,13 @@ export default function Article({
         carousel={carousel}
         isLoading={isLoading}
         page={page}
+        lastPage={lastPage}
+        sectionRef={sectionRef}
+        categoryRef={categoryRef}
         onPaginate={handlePaginate}
         onRedirect={handleRedirect}
         onCategory={handleCategory}
+        onSlideCategory={handleSlideCategory}
       />
     </Layout>
   );

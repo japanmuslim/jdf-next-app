@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const useDetailArticle = () => {
   const router = useRouter();
@@ -57,9 +58,14 @@ const useDetailArticle = () => {
   };
 
   const handleRedirect = (slug: string) => {
-    if (!slug) return;
-
-    router.push(`/article/${slug}`);
+    if (!slug) {
+      toast('Article not found!', {
+        type: 'error',
+        theme: 'colored',
+      });
+    } else {
+      router.push(`/article/${slug}`);
+    }
   };
 
   return {

@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useState } from 'react';
+import React, { FC, memo, useCallback, useEffect, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 import { FaChevronRight, FaX } from 'react-icons/fa6';
@@ -8,12 +8,14 @@ interface SearchDrawerProps {
   children?: React.ReactNode;
   className?: string;
   isExtend?: boolean;
+  isOpen?: boolean;
 }
 
 const SearchDrawer: FC<SearchDrawerProps> = ({
   children,
   className,
   isExtend = false,
+  isOpen,
 }) => {
   const [openSheet, setOpenSheet] = useState(false);
 
@@ -21,6 +23,13 @@ const SearchDrawer: FC<SearchDrawerProps> = ({
     setOpenSheet((prev) => !prev);
     document.body.style.overflow = openSheet ? 'auto' : 'hidden';
   }, [openSheet]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setOpenSheet(false);
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
 
   return (
     <>
