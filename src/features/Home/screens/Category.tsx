@@ -13,22 +13,25 @@ const Category = (props: CategoryProps) => {
   const { data, isLoading, onHandleCategory } = props;
 
   return (
-    <Layout
-      id="home"
-      pageTitle="Categories | Japan Dahwa Foundation"
-      pageDescription="Home page description"
-    >
-      <section
-        id="hero"
-        className="flex items-center justify-center min-h-screen w-full relative"
+    <div className="w-full">
+      test
+      <Layout
+        id="home"
+        pageTitle="Categories | Japan Dahwa Foundation"
+        pageDescription="Home page description"
       >
-        <GridVideos
-          type="category"
-          data={data}
-          onHandleCategory={onHandleCategory}
-        />
-      </section>
-    </Layout>
+        <section
+          id="hero"
+          className="flex items-center justify-center min-h-screen w-full relative"
+        >
+          <GridVideos
+            type="category"
+            data={data}
+            onHandleCategory={onHandleCategory}
+          />
+        </section>
+      </Layout>
+    </div>
   );
 };
 
