@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { Button } from './ui/button';
 import { FaFacebookF, FaInstagram, FaXTwitter } from 'react-icons/fa6';
 import Icon from './icon';
+import { handleSocialMedia } from '@/lib/helpers';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -37,15 +39,29 @@ const Footer = () => {
             <h4 className="text-white text-base font-bold mb-4">Quick Links</h4>
             <div className="grid grid-cols-2">
               <ul className="text-white text-sm space-y-3">
-                <li>Home</li>
-                <li>Tafseer Video</li>
-                <li>Dua</li>
-                <li>Islamic Books</li>
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                <li>
+                  <Link href="/tafseer">Tafseer Video</Link>
+                </li>
+                <li>
+                  <Link href="/dua">Dua</Link>
+                </li>
+                <li>
+                  <Link href="/islamic-books">Islamic Books</Link>
+                </li>
               </ul>
               <ul className="text-white text-sm space-y-3">
-                <li>Article</li>
-                <li>Q&A</li>
-                <li>Contact</li>
+                <li>
+                  <Link href="/article">Article</Link>
+                </li>
+                <li>
+                  <Link href="/q&a">Q&A</Link>
+                </li>
+                <li>
+                  <Link href="/quiz">Quiz</Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -54,6 +70,7 @@ const Footer = () => {
               variant={`destructive`}
               size={`icon`}
               className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
+              onClick={() => handleSocialMedia('fb')}
             >
               <FaFacebookF className="text-2xl" />
             </Button>
@@ -61,6 +78,7 @@ const Footer = () => {
               variant={`destructive`}
               size={`icon`}
               className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
+              onClick={() => handleSocialMedia('x')}
             >
               <FaXTwitter className="text-2xl" />
             </Button>
@@ -68,6 +86,7 @@ const Footer = () => {
               variant={`destructive`}
               size={`icon`}
               className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
+              onClick={() => handleSocialMedia('ig')}
             >
               <FaInstagram className="text-2xl" />
             </Button>

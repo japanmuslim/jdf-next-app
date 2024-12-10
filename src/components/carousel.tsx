@@ -22,6 +22,7 @@ import 'aos/dist/aos.css';
 import Link from 'next/link';
 import { FaXTwitter } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
+import { handleSocialMedia } from '@/lib/helpers';
 
 interface CarouselProps {
   id: string;
@@ -143,27 +144,21 @@ const Carousel: FC<CarouselProps> = ({ id = 'carousel', data }) => {
                         <button
                           type="button"
                           className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                          onClick={() =>
-                            handleScrollSmooth('#section-detail-article')
-                          }
+                          onClick={() => handleSocialMedia('ig')}
                         >
                           <FaInstagram className="md:text-2xl text-[15px]" />
                         </button>
                         <button
                           type="button"
                           className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                          onClick={() =>
-                            handleScrollSmooth('#section-detail-article')
-                          }
+                          onClick={() => handleSocialMedia('fb')}
                         >
                           <FaFacebook className="md:text-xl text-md" />
                         </button>
                         <button
                           type="button"
                           className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                          onClick={() =>
-                            handleScrollSmooth('#section-detail-article')
-                          }
+                          onClick={() => handleSocialMedia('x')}
                         >
                           <FaXTwitter className="md:text-xl text-md" />
                         </button>

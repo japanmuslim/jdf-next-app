@@ -28,17 +28,22 @@ const Videos = (props: VideosProps) => {
     skip: !videoId,
   });
 
-  const onHandleVideo = useCallback(
-    (videoId: number) => {
+  useEffect(() => {
+    if (dataVideo?.data?.link) {
+      setVideoUrl(dataVideo.data.link);
       setIsOpen(true);
-      setVideoUrl(dataVideo?.data?.link || '');
-      setVideoId(videoId);
-    },
-    [dataVideo],
-  );
+    }
+  }, [dataVideo]);
+
+  const onHandleVideo = (id: number) => {
+    if (!id) return;
+    setVideoId(id);
+  };
 
   const handleDrawer = useCallback(() => {
     setIsOpen(false);
+    setVideoId(null);
+    setVideoUrl(null);
   }, []);
 
   return (
@@ -51,7 +56,12 @@ const Videos = (props: VideosProps) => {
         id="hero"
         className="flex items-center justify-center min-h-screen w-full relative"
       >
-        <GridVideos data={data} type="video" onHandleVideo={onHandleVideo} />
+        <GridVideos
+          data={data}
+          type="video"
+          onHandleVideo={onHandleVideo}
+          isLoading={isLoading}
+        />
       </section>
       <Sheet open={isOpen}>
         <SheetContent

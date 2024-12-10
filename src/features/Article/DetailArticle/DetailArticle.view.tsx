@@ -41,6 +41,7 @@ import { ChevronDownCircle } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Swiper from '@/components/ui/swiper';
 import Breadcrumb from '@/components/breadcrumb';
+import { handleSocialMedia } from '@/lib/helpers';
 
 const ConvertText = dynamic(() => import('@/components/convert-text'), {
   ssr: false,
@@ -94,21 +95,21 @@ const DetailArticleView = ({
               <button
                 type="button"
                 className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                onClick={() => onScrollSmooth('#section-detail-article')}
+                onClick={() => handleSocialMedia('ig')}
               >
                 <FaInstagram className="md:text-2xl text-xl" />
               </button>
               <button
                 type="button"
                 className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                onClick={() => onScrollSmooth('#section-detail-article')}
+                onClick={() => handleSocialMedia('fb')}
               >
                 <FaFacebook className="md:text-lg" />
               </button>
               <button
                 type="button"
                 className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                onClick={() => onScrollSmooth('#section-detail-article')}
+                onClick={() => handleSocialMedia('x')}
               >
                 <FaXTwitter className="md:text-lg" />
               </button>
