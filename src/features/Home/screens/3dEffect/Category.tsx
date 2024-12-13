@@ -1,13 +1,7 @@
 import { CategoryVideoProps } from '../Home.type';
 import Layout from '@/layouts/Layout';
-// import CanvasScene from './3dEffect/CanvasScene';
-import React from 'react';
-import dynamic from 'next/dynamic';
 import CanvasScene from './3dEffect/CanvasScene';
-
-// const Scene3D = dynamic(() => import("./3dEffect2/Scene"), {
-//   ssr: false,
-// });
+import React from 'react';
 
 interface CategoryProps {
   data: CategoryVideoProps[];
