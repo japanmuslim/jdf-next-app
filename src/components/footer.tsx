@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { Button } from './ui/button';
 import { FaFacebookF, FaInstagram, FaXTwitter } from 'react-icons/fa6';
 import Icon from './icon';
+import { handleSocialMedia } from '@/lib/helpers';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -21,11 +23,9 @@ const Footer = () => {
         </div>
         <div className="flex flex-col">
           <div className="flex-1 space-y-2">
-            <h4 className="text-white text-base font-bold mb-4">Head Office</h4>
-            <p className="text-white text-sm">
-              Shizuka shi, Suruga-ku, Hirono 5-14-5
-            </p>
-            <p className="text-white text-sm">Email: sma@muslimjapan.com</p>
+            <h4 className="text-white text-base font-bold mb-4">本社</h4>
+            <p className="text-white text-sm">静岡市駿河区広野5-14-5</p>
+            <p className="text-white text-sm">Email: Eメール</p>
             <p className="text-white text-sm">muslimjapan.com</p>
           </div>
           <small className="text-white lg:block hidden">
@@ -37,15 +37,29 @@ const Footer = () => {
             <h4 className="text-white text-base font-bold mb-4">Quick Links</h4>
             <div className="grid grid-cols-2">
               <ul className="text-white text-sm space-y-3">
-                <li>Home</li>
-                <li>Tafseer Video</li>
-                <li>Dua</li>
-                <li>Islamic Books</li>
+                <li>
+                  <Link href="/">ホームページ</Link>
+                </li>
+                <li>
+                  <Link href="/tafseer">タフスィール</Link>
+                </li>
+                <li>
+                  <Link href="/dua">ドゥア</Link>
+                </li>
+                <li>
+                  <Link href="/islamic-books">イスラム書籍</Link>
+                </li>
               </ul>
               <ul className="text-white text-sm space-y-3">
-                <li>Article</li>
-                <li>Q&A</li>
-                <li>Contact</li>
+                <li>
+                  <Link href="/article">記事</Link>
+                </li>
+                <li>
+                  <Link href="/q&a">Q&よくある質問</Link>
+                </li>
+                <li>
+                  <Link href="/quiz">クイズを受ける</Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -54,6 +68,7 @@ const Footer = () => {
               variant={`destructive`}
               size={`icon`}
               className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
+              onClick={() => handleSocialMedia('fb')}
             >
               <FaFacebookF className="text-2xl" />
             </Button>
@@ -61,6 +76,7 @@ const Footer = () => {
               variant={`destructive`}
               size={`icon`}
               className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
+              onClick={() => handleSocialMedia('x')}
             >
               <FaXTwitter className="text-2xl" />
             </Button>
@@ -68,6 +84,7 @@ const Footer = () => {
               variant={`destructive`}
               size={`icon`}
               className="rounded-full shadow-xl w-12 h-12 hover:scale-110 duration-300 transition-all"
+              onClick={() => handleSocialMedia('ig')}
             >
               <FaInstagram className="text-2xl" />
             </Button>

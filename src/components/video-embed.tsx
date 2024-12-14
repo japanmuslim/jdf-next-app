@@ -29,7 +29,7 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
 }) => {
   const videoRef = useRef<ReactPlayer>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMuted, setIsMuted] = useState<boolean>(muted);
+  // const [isMuted, setIsMuted] = useState<boolean>(muted);
 
   // const [isPiPActive, setIsPiPActive] = useState(false);
 

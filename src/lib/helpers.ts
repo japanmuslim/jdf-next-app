@@ -29,3 +29,23 @@ export const isEven = (num: number) => num % 2 === 0;
 export const truncate = (str: string, n: number) => {
   return str.length > n ? str.substr(0, n - 1) + '...' : str;
 };
+
+export const handleSocialMedia = (socialMedia: string) => {
+  switch (socialMedia) {
+    case 'fb':
+      return window.open(
+        'https://www.facebook.com/JapanDahwaFoundation',
+        '_blank',
+      );
+    case 'ig':
+      return window.open(
+        'https://www.instagram.com/japandahwafoundation',
+        '_blank',
+      );
+    case 'x':
+      return window.open('https://x.com/DahwaJapan', '_blank');
+
+    default:
+      return;
+  }
+};

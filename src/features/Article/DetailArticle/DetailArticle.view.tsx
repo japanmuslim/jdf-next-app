@@ -41,6 +41,7 @@ import { ChevronDownCircle } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Swiper from '@/components/ui/swiper';
 import Breadcrumb from '@/components/breadcrumb';
+import { handleSocialMedia } from '@/lib/helpers';
 
 const ConvertText = dynamic(() => import('@/components/convert-text'), {
   ssr: false,
@@ -94,21 +95,21 @@ const DetailArticleView = ({
               <button
                 type="button"
                 className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                onClick={() => onScrollSmooth('#section-detail-article')}
+                onClick={() => handleSocialMedia('ig')}
               >
                 <FaInstagram className="md:text-2xl text-xl" />
               </button>
               <button
                 type="button"
                 className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                onClick={() => onScrollSmooth('#section-detail-article')}
+                onClick={() => handleSocialMedia('fb')}
               >
                 <FaFacebook className="md:text-lg" />
               </button>
               <button
                 type="button"
                 className="rounded-full bg-transparent hover:text-gray-500 text-white flex justify-center items-center"
-                onClick={() => onScrollSmooth('#section-detail-article')}
+                onClick={() => handleSocialMedia('x')}
               >
                 <FaXTwitter className="md:text-lg" />
               </button>
@@ -119,7 +120,7 @@ const DetailArticleView = ({
             className="rounded-md text-primary md:px-10 md:py-[10px] px-6 py-2 bg-transparent border text-white flex items-center md:mt-12 mt-8 hover:-translate-y-2 shadow-xl transition-all duration-300 ease-in-out hover:bg-[#191919] hover:text-white md:!text-base !text-xs"
             onClick={() => onScrollSmooth('#section-detail-article')}
           >
-            Read More
+            さらに読む
             <ChevronDownCircle className="ml-2 h-4 w-4" />
           </button>
         </div>
@@ -336,7 +337,7 @@ const DetailArticleView = ({
         )}
 
         <h1 className="border-l-4 border-[#f05454] pl-2 font-semibold !mt-12 md:text-2xl text-lg">
-          Related Post
+          関連記事
         </h1>
 
         <Swiper

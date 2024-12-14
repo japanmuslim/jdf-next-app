@@ -81,7 +81,7 @@ const QuestionList = ({
                 {!isLoadingButton ? (
                   <div className="flex items-center justify-center text-white gap-2 text-xs">
                     <BsChatRightTextFill className="md:text-md text-xs" />
-                    <span>Answer</span>
+                    <span>回答</span>
                   </div>
                 ) : (
                   <div className="flex items-center justify-center text-white gap-2 text-xs">

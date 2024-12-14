@@ -91,9 +91,9 @@ export default function Question() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-primary">Email</FormLabel>
+                  <FormLabel className="text-primary">Eメール</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Email" />
+                    <Input {...field} placeholder="Eメール" />
                   </FormControl>
                   {/* <FormDescription>
                         This is your public display name.
@@ -107,11 +107,11 @@ export default function Question() {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-primary">Question</FormLabel>
+                  <FormLabel className="text-primary">質問</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Ask your question"
+                      placeholder="質問を記入してください"
                       className="h-32"
                     />
                   </FormControl>
@@ -132,7 +132,7 @@ export default function Question() {
                       htmlFor="is_show"
                       className="text-primary cursor-pointer"
                     >
-                      Show on public
+                      公開する
                     </label>
                     <Switch
                       id="is_show"
@@ -156,7 +156,7 @@ export default function Question() {
               ) : (
                 <>
                   <IoSendSharp className="md:text-md text-xs -rotate-45 -mt-1 mr-2" />
-                  Send
+                  送信する
                 </>
               )}
             </Button>
@@ -178,13 +178,13 @@ export default function Question() {
             data-aos="fade-up"
             className="md:text-4xl text-2xl font-bold text-center text-white"
           >
-            Have a question?
+            ご質問はありますか？
           </h2>
           <p
             data-aos="fade-up"
             className="text-center text-white md:mt-6 mt-2 md:text-lg text-md"
           >
-            We are here to help you.
+            お困りの際はいつでもご連絡ください
           </p>
           {/* <div className="flex gap-2 w-full mt-8">
             <div className="relative bg-white focus-within:border-primary rounded md:h-11 h-10 w-full">
@@ -192,7 +192,7 @@ export default function Question() {
               <input
                 type="text"
                 className="w-full h-full bg-transparent pl-10 text-primary outline-primary"
-                placeholder="Search for your question"
+                placeholder="質問を検索する"
                 onChange={handleSearch}
               />
             </div>
@@ -210,7 +210,7 @@ export default function Question() {
       </nav>
       <div ref={sectionRef} className="lg:px-32 px-8 py-10 lg:py-14">
         <h2 className="lg:text-2xl text-base font-bold lg:mb-8 mb-6 lg:mt-0 -mt-4">
-          Frequently Asked Questions
+          よくある質問
         </h2>
         <FaqList data={faqs} isLoading={isLoadingFaq} />
       </div>
@@ -218,22 +218,20 @@ export default function Question() {
         <div className="flex md:flex-row flex-col md:gap-8 gap-10">
           <div className="lg:w-3/4 md:w-3/5 w-full">
             <div className="h-12 flex items-center justify-between mb-6">
-              <h2 className="lg:text-2xl text-base font-bold">
-                Question & Answer
-              </h2>
+              <h2 className="lg:text-2xl text-base font-bold">質問と回答</h2>
               <Button
                 className="gap-1 text-primary md:py-2 !bg-white md:px-4 px-3 rounded hover:!bg-primary duration-300 relative md:text-sm text-xs hover:!text-white flex items-center"
                 onClick={handleToggleModal}
               >
                 <IoSendSharp className="md:text-lg text-xs -rotate-45 -mt-1" />
-                Ask a Question
+                質問を投稿する
               </Button>
             </div>
             <div className="relative flex lg:hidden h-12 w-full mb-6">
               <input
                 type="text"
                 className="w-full h-full bg-primary/50 pl-10 text-primary outline-primary rounded text-white"
-                placeholder="Search for your question"
+                placeholder="質問を検索する"
                 onChange={handleSearch}
                 value={search}
               />
@@ -268,7 +266,7 @@ export default function Question() {
               <input
                 type="text"
                 className="w-full h-full bg-primary/50 px-10 text-primary outline-primary rounded text-white"
-                placeholder="Search for your question"
+                placeholder="質問を検索する"
                 onChange={handleSearch}
                 value={search}
               />
@@ -285,7 +283,7 @@ export default function Question() {
             </div>
             <div data-aos="fade-left" className="flex flex-col">
               <div className="py-4 md:px-6 px-4 bg-primary/60">
-                <h2 className="font-medium">Hot Question</h2>
+                <h2 className="font-medium">注目の質問</h2>
               </div>
               {isLoadingHotQuestion && (
                 <div className="flex flex-col gap-4">
