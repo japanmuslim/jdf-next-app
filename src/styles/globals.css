@@ -193,14 +193,14 @@
 
   #islamic-books section#hero {
     position: relative;
-    background: url('/assets/images/islamic-books/bg-hero.webp') no-repeat
-      center top/cover;
+    background: url('/assets/images/islamic-books/bg-hero.png') no-repeat center
+      bottom/cover;
   }
 
   @media (min-width: 768px) {
     #islamic-books section#hero {
       position: relative;
-      background: url('/assets/images/islamic-books/bg-hero.webp') no-repeat
+      background: url('/assets/images/islamic-books/bg-hero.png') no-repeat
         center top;
       background-size: 100% 100%;
     }

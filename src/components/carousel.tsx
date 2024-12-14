@@ -186,7 +186,7 @@ const Carousel: FC<CarouselProps> = ({ id = 'carousel', data }) => {
                     className="rounded-md text-primary md:px-10 md:py-[10px] px-6 py-2 bg-transparent border text-white flex items-center lg:mt-12 mt-8 hover:translate-x-2 shadow-xl transition-all duration-300 ease-in-out hover:bg-[#191919] hover:text-white md:!text-base !text-xs"
                     onClick={() => handleRedirect(item?.slug)}
                   >
-                    Read More
+                    さらに読む
                     <ChevronDownCircle className="ml-2 h-4 w-4 -rotate-90" />
                   </button>
                 </div>

@@ -249,7 +249,7 @@ const TafseerView = ({
       id="latest-tafseer"
       className="bg-[#191919] py-12 space-y-8 lg:px-8 px-6 overflow-hidden"
     >
-      <h2 className="font-bold text-2xl">Latest Tafseer</h2>
+      <h2 className="font-bold text-2xl">最新のタフスィール</h2>
       {(latest?.length || 0) > 0 ? (
         <Swiper>
           {latest?.map((item, index) => (

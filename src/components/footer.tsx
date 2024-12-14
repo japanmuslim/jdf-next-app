@@ -23,11 +23,9 @@ const Footer = () => {
         </div>
         <div className="flex flex-col">
           <div className="flex-1 space-y-2">
-            <h4 className="text-white text-base font-bold mb-4">Head Office</h4>
-            <p className="text-white text-sm">
-              Shizuka shi, Suruga-ku, Hirono 5-14-5
-            </p>
-            <p className="text-white text-sm">Email: sma@muslimjapan.com</p>
+            <h4 className="text-white text-base font-bold mb-4">本社</h4>
+            <p className="text-white text-sm">静岡市駿河区広野5-14-5</p>
+            <p className="text-white text-sm">Email: Eメール</p>
             <p className="text-white text-sm">muslimjapan.com</p>
           </div>
           <small className="text-white lg:block hidden">
@@ -40,27 +38,27 @@ const Footer = () => {
             <div className="grid grid-cols-2">
               <ul className="text-white text-sm space-y-3">
                 <li>
-                  <Link href="/">Home</Link>
+                  <Link href="/">ホームページ</Link>
                 </li>
                 <li>
-                  <Link href="/tafseer">Tafseer Video</Link>
+                  <Link href="/tafseer">タフスィール</Link>
                 </li>
                 <li>
-                  <Link href="/dua">Dua</Link>
+                  <Link href="/dua">ドゥア</Link>
                 </li>
                 <li>
-                  <Link href="/islamic-books">Islamic Books</Link>
+                  <Link href="/islamic-books">イスラム書籍</Link>
                 </li>
               </ul>
               <ul className="text-white text-sm space-y-3">
                 <li>
-                  <Link href="/article">Article</Link>
+                  <Link href="/article">記事</Link>
                 </li>
                 <li>
-                  <Link href="/q&a">Q&A</Link>
+                  <Link href="/q&a">Q&よくある質問</Link>
                 </li>
                 <li>
-                  <Link href="/quiz">Quiz</Link>
+                  <Link href="/quiz">クイズを受ける</Link>
                 </li>
               </ul>
             </div>
