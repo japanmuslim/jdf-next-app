@@ -33,6 +33,7 @@ export interface VideoState {
   is_active: number;
   created_at: Date | string;
   updated_at: Date | string;
+  position?: number[];
 }
 
 export interface GridVideosProps {
