@@ -646,3 +646,18 @@
 .grid-card-item-flip:hover .grid-card-item-front {
   opacity: 0;
 }
+
+.swiper-container-islamic-books .swiper-pagination-bullet {
+  background: #ffffff !important;
+  width: 14px !important;
+  height: 14px !important;
+  margin: 0 4px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-container-islamic-books .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 3px !important;
+  }
+}
