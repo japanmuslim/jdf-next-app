@@ -1,9 +1,7 @@
 import { Html } from '@react-three/drei';
-import { useLoader, Vector3 } from '@react-three/fiber';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { Vector3 } from '@react-three/fiber';
+import { motion } from 'framer-motion';
 import { CategoryVideoProps } from '../../Home.type';
-import * as THREE from 'three';
-import { useEffect, useState } from 'react';
 
 interface ThumbnailProps {
   data: CategoryVideoProps;
