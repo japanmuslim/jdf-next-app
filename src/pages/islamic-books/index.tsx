@@ -143,25 +143,11 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
                   {[...Array(itemsPerSlide)].map((_, j) => {
                     const dataIndex = i * itemsPerSlide + j;
 
-                    if (dataIndex >= dataLength) {
-                      return (
-                        <div
-                          key={j}
-                          className="xl:h-60 lg:h-56 w-full bg-slate-50 max-w-[200px] mx-auto"
-                        ></div>
-                      );
-                    }
-
                     const item =
                       data[currentCategory]?.islamic_books[dataIndex];
 
                     if (!item) {
-                      return (
-                        <div
-                          key={j}
-                          className="xl:h-60 lg:h-56 w-full bg-slate-50 max-w-[200px] mx-auto"
-                        ></div>
-                      );
+                      return null;
                     }
 
                     return (
@@ -171,7 +157,7 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
                       >
                         <Image
                           src={item?.cover}
-                          alt="Test"
+                          alt={item?.book_title}
                           height={200}
                           width={200}
                           onClick={() => handleCurrentBook(dataIndex)}

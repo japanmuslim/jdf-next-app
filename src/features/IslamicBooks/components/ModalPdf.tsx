@@ -21,7 +21,7 @@ const ModalPdf = ({
   return (
     <div
       className={cn(
-        'absolute inset-0 bg-black/80 w-full h-full top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2 flex justify-center items-center z-[999] transition-all duration-300',
+        'fixed inset-0 bg-black/80 w-full h-full top-1/2 -translate-x-1/2 left-1/2 -translate-y-1/2 flex justify-center items-center z-[999] transition-all duration-300',
         isOpen && url ? 'opacity-100' : 'opacity-0 pointer-events-none',
       )}
     >

@@ -14,7 +14,7 @@ const useIslamicBooks = (data: Datum[]) => {
   const isMd = typeof window !== 'undefined' && window.innerWidth > 768;
   const isSm = typeof window !== 'undefined' && window.innerWidth < 768;
 
-  const dataLength = data.length;
+  const dataLength = data[currentCategory]?.islamic_books.length;
   const itemsPerSlide = isMd ? 4 : isSm ? 2 : 1;
   const totalSlides = Math.ceil(dataLength / itemsPerSlide);
 
