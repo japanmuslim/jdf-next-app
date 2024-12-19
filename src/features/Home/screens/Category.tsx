@@ -3,11 +3,13 @@ import Layout from '@/layouts/Layout';
 // import CanvasScene from './3dEffect/CanvasScene';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import CanvasScene from './3dEffect/CanvasScene';
 
-// const Scene3D = dynamic(() => import("./3dEffect2/Scene"), {
-//   ssr: false,
-// });
+const Scene3D = dynamic(() => import('./3dEffects/CanvasCategories'), {
+  ssr: false,
+});
+
+// Referensi
+// https://jsfiddle.net/krxdcnv7/
 
 interface CategoryProps {
   data: CategoryVideoProps[];
@@ -29,7 +31,8 @@ const Category = (props: CategoryProps) => {
           id="hero"
           className="flex items-center justify-center min-h-screen w-full relative"
         >
-          <CanvasScene data={data} />
+          {/* <CanvasScene data={data} /> */}
+          <Scene3D data={data} />
         </section>
       </Layout>
     </div>

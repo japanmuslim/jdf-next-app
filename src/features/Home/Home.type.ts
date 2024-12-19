@@ -18,6 +18,7 @@ export interface CategoryVideoProps {
   created_at: Date | string;
   updated_at: Date | string;
   videos: VideoState[];
+  deleted_at?: Date | string | null;
   position?: number[];
 }
 
@@ -33,6 +34,7 @@ export interface VideoState {
   is_active: number;
   created_at: Date | string;
   updated_at: Date | string;
+  deleted_at?: Date | string | null;
   position?: number[];
 }
 

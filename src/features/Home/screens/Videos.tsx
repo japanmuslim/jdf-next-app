@@ -7,6 +7,7 @@ import { Sheet, SheetClose, SheetContent } from '@/components/ui/sheet';
 import Loading from '@/components/page/loading';
 import dynamic from 'next/dynamic';
 import { IoClose } from 'react-icons/io5';
+import CanvasVideos from './3dEffects/CanvasVideos';
 
 const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,
@@ -14,11 +15,11 @@ const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
 });
 
 interface VideosProps {
-  data: CategoryVideoProps[];
+  data: VideoState[];
 }
 
 const Videos = (props: VideosProps) => {
-  const { data } = props;
+  const { data } = props;  
 
   const [videoId, setVideoId] = useState<number | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -51,7 +52,9 @@ const Videos = (props: VideosProps) => {
         id="hero"
         className="flex items-center justify-center min-h-screen w-full relative"
       >
-        <GridVideos data={data} type="video" onHandleVideo={onHandleVideo} />
+        {/* <GridVideos data={data} type="video" onHandleVideo={onHandleVideo} /> */}
+        {/* Video Canvas */}
+        <CanvasVideos data={data} onHandleVideo={onHandleVideo} />
       </section>
       <Sheet open={isOpen}>
         <SheetContent
