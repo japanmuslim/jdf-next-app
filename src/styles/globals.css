@@ -575,10 +575,10 @@
   transition: transform 0.3s;
 }
 
-.grid-card-item:hover .grid-card-item-overlay {
+/* .grid-card-item:hover .grid-card-item-overlay {
   opacity: 1;
   transition: opacity 0.3s;
-}
+} */
 
 .grid-card-item-overlay {
   position: absolute;

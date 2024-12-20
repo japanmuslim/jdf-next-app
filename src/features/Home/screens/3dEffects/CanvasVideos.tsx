@@ -12,12 +12,14 @@ interface Props {
 function setThumbnailPosition(dataLength: number) {
   // [x, y]
   const defaultPosition = [
+    [-370, -200], 
+    [-410, 0], 
+    [-390, 200],
+    [370, -200],
     [410, 0],
-    [-410, 0],
     [370, 200],
-    [-370, -200],
-    [370, 400],
-    [-370, -400],
+    [0, 320],
+    [0, -320]
   ];
 
   for (let i = 0; i < dataLength; i++) {
