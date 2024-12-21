@@ -25,7 +25,7 @@ function getRandomNumber(min: number, max: number) {
 
 function ScatteredThumbnail(props: ThumbnailProps) {
   const randomX = getRandomNumber(5, 15);
-  const randomY = getRandomNumber(2, 7);
+  const randomY = getRandomNumber(0, 7);
   const randomZ = Math.random() * (-6 - 1) + 0;
   const position = [randomX, randomY, randomZ];
   const rotateX = randomX >= 1 ? -25 : randomX <= -1 ? 25 : 0;
@@ -67,6 +67,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
               }}
               whileHover={{
                 backgroundColor: 'rgba(255, 0, 0, 0.5)', // Warna overlay saat hover
+                cursor: 'pointer',
               }}
               transition={{ duration: 0.3 }}
             />

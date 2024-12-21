@@ -56,6 +56,7 @@ export default function CategoryThumbnail(props: Props) {
             }}
             whileHover={{
               backgroundColor: 'rgba(255, 0, 0, 0.5)', // Warna overlay saat hover
+              cursor: 'pointer',
             }}
             transition={{ duration: 0.3 }}
           />
