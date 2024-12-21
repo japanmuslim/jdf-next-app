@@ -8,9 +8,6 @@ const Scene3D = dynamic(() => import('./3dEffects/CanvasCategories'), {
   ssr: false,
 });
 
-// Referensi
-// https://jsfiddle.net/krxdcnv7/
-
 interface CategoryProps {
   data: CategoryVideoProps[];
   isLoading: boolean;
@@ -32,7 +29,7 @@ const Category = (props: CategoryProps) => {
           className="flex items-center justify-center min-h-screen w-full relative"
         >
           {/* <CanvasScene data={data} /> */}
-          <Scene3D data={data} />
+          <Scene3D data={data} isLoading={isLoading} onHandleCategory={onHandleCategory} />
         </section>
       </Layout>
     </div>

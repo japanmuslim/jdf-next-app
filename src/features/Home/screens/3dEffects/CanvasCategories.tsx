@@ -8,6 +8,8 @@ import CategoryScatteredThumbnail from './CategoryScatteredThumbnail';
 
 interface Props {
   data: CategoryVideoProps[];
+  isLoading?: boolean;
+  onHandleCategory?: (category: string) => void;
 }
 
 function setPosition(data: CategoryVideoProps[]) {
@@ -53,7 +55,7 @@ export default function CanvasCategories(props: Props) {
         onPointerMissed={() => {} /* setLocation('/') */}
       >
         {dataWithPosition?.map((d: CategoryVideoProps) => {
-          return <CategoryThumbnail key={d.id} data={d} />;
+          return <CategoryThumbnail key={d.id} data={d} onHandleCategory={props.onHandleCategory} />;
         })}
         {dataWithPosition?.map((d: CategoryVideoProps) => {
           return <CategoryScatteredThumbnail key={d.id} data={d} />;
