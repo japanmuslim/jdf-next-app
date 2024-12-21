@@ -1,9 +1,8 @@
-import { useFrame, Vector3 } from '@react-three/fiber';
+import { Vector3 } from '@react-three/fiber';
 import { CategoryVideoProps, VideoState } from '../../Home.type';
 import { motion as motion3D } from 'framer-motion-3d';
 import { Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 interface Props {
   data: CategoryVideoProps;
@@ -25,12 +24,12 @@ function getRandomNumber(min: number, max: number) {
 
 function ScatteredThumbnail(props: ThumbnailProps) {
   const randomX = getRandomNumber(5, 15);
-  const randomY = getRandomNumber(0, 7);
+  const randomY = getRandomNumber(1, 6);
   const randomZ = Math.random() * (-6 - 1) + 0;
   const position = [randomX, randomY, randomZ];
-  const rotateX = randomX >= 1 ? -25 : randomX <= -1 ? 25 : 0;
-  const rotateY = randomY >= 2 ? 25 : randomY <= -2 ? -25 : 0;
-
+  const rotateX = randomX >= 1 ? -15 : randomX <= -1 ? 15 : 0;
+  const rotateY = randomY >= 2 ? 15 : randomY <= -2 ? -15 : 0;
+  
   const { data } = props;
 
   return (
@@ -63,7 +62,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                backgroundColor: 'rgba(255, 255, 255, 0)', // Transparan secara default
+                backgroundColor: `rgba(20, 13, 13, ${(randomZ/-10 < 0.2 ? 0.2 : (randomZ/-10) + 0.2)})`, // Transparan secara default
               }}
               whileHover={{
                 backgroundColor: 'rgba(255, 0, 0, 0.5)', // Warna overlay saat hover

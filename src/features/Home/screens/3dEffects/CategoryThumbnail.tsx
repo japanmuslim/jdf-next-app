@@ -1,12 +1,8 @@
-import { Html, Image } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 import { motion as motion3D } from 'framer-motion-3d';
-import { useEffect, useRef } from 'react';
-import { CategoryVideoProps, VideoState } from '../../Home.type';
+import { CategoryVideoProps } from '../../Home.type';
 import { motion } from 'framer-motion';
 import { Vector3 } from '@react-three/fiber';
-import { TextureLoader } from 'three';
-import { useRouter } from 'next/router';
-import useHome from '../../hooks/useHome';
 
 interface Props {
   data: CategoryVideoProps;
@@ -15,8 +11,6 @@ interface Props {
 
 export default function CategoryThumbnail(props: Props) {
   const { data, onHandleCategory } = props;
-  const router = useRouter();
-  const { isCategory, isVideo, } = useHome();
 
   return (
     <motion3D.mesh
@@ -36,7 +30,7 @@ export default function CategoryThumbnail(props: Props) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            transform: 'perspective(300px) rotateX(-10deg)',
+            transform: 'perspective(300px) rotateX(-15deg)',
           }}
           onClick={(e) => onHandleCategory?.(data?.category_name)}
         >
@@ -56,7 +50,7 @@ export default function CategoryThumbnail(props: Props) {
             }}
             whileHover={{
               backgroundColor: 'rgba(255, 0, 0, 0.5)', // Warna overlay saat hover
-              cursor: 'pointer',
+                cursor: 'pointer',
             }}
             transition={{ duration: 0.3 }}
           />
