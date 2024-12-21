@@ -25,7 +25,7 @@ export default function CameraController({ centerRef }: CameraControllerProps) {
     camera.position.x += (targetX - camera.position.x) * 0.06;
 
     camera.lookAt(0, 0, 5);
-
+    
     if (centerRef.current) {
       centerRef.current.position.x = mouse.current.x * 1; // Move opposite to mouse X
     }

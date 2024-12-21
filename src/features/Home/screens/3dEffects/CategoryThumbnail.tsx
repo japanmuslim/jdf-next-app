@@ -33,7 +33,7 @@ export default function CategoryThumbnail(props: Props) {
           <motion.img
             src={data.thumbnail}
             alt="Look at mouse"
-            style={{ maxHeight: '100px', maxWidth: '100px' }}
+            style={{ maxHeight: '50px', maxWidth: '100px' }}
           />
           {/* <Image texture={new TextureLoader().load(data.thumbnail)} /> */}
         </motion.div>
