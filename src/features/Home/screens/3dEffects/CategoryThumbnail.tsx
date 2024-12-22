@@ -3,14 +3,26 @@ import { motion as motion3D } from 'framer-motion-3d';
 import { CategoryVideoProps } from '../../Home.type';
 import { motion } from 'framer-motion';
 import { Vector3 } from '@react-three/fiber';
+import { setCategoryId } from '@/services/slice/categoryIdSlicer';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface Props {
   data: CategoryVideoProps;
-  onHandleCategory?: (category: string) => void
+  onHandleCategory?: (category: string) => void;
 }
 
 export default function CategoryThumbnail(props: Props) {
   const { data, onHandleCategory } = props;
+  const dispatch = useDispatch();
+  const activeCategoryId = useSelector((state: any) => state.categoryId.id);
+
+  const onMouseEnter = (e: React.MouseEvent) => {    
+    dispatch(setCategoryId(data.id));
+    
+  };
+  const onMouseLeave = (e: React.MouseEvent) => {
+    dispatch(setCategoryId(null));
+  };
 
   return (
     <motion3D.mesh
@@ -32,7 +44,8 @@ export default function CategoryThumbnail(props: Props) {
             alignItems: 'center',
             transform: 'perspective(300px) rotateX(-15deg)',
           }}
-          onClick={(e) => onHandleCategory?.(data?.category_name)}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         >
           <motion.img
             src={data.thumbnail}
@@ -46,11 +59,11 @@ export default function CategoryThumbnail(props: Props) {
               left: 0,
               width: '100%',
               height: '100%',
-              backgroundColor: 'rgba(255, 255, 255, 0)', // Transparan secara default
+              backgroundColor: data.id === activeCategoryId ? 'rgba(255, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0)', // Transparan secara default
             }}
             whileHover={{
-              backgroundColor: 'rgba(255, 0, 0, 0.5)', // Warna overlay saat hover
-                cursor: 'pointer',
+              // backgroundColor: 'rgba(255, 0, 0, 0.5)',
+              cursor: 'pointer',
             }}
             transition={{ duration: 0.3 }}
           />

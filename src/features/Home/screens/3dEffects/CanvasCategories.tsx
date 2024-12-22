@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { motion as motion3D } from 'framer-motion-3d';
 import { CategoryVideoProps } from '../../Home.type';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CameraController from './CameraController';
 import CategoryThumbnail from './CategoryThumbnail';
 import CategoryScatteredThumbnail from './CategoryScatteredThumbnail';
@@ -34,7 +34,7 @@ export default function CanvasCategories(props: Props) {
   const ref = useRef(null);
   const { data } = props;
   const [dataWithPosition, setDataWithPosition] = useState(setPosition(data));
-
+  
   return (
     <Canvas
       style={{ height: '100vh', width: '100vw' }}
@@ -43,19 +43,15 @@ export default function CanvasCategories(props: Props) {
       <motion3D.ambientLight intensity={0.5} />
       <motion3D.fog attach="fog" args={['#191920', 0, 15]} />
       <CameraController centerRef={ref} />
-      <motion3D.group
-        ref={ref}
-        position={[0, -0.5, 0]}
-        onClick={
-          (e) => e.stopPropagation()
-          // setLocation(
-          //   clicked.current === e.object ? '/' : '/item/' + e.object.name,
-          // )
-        }
-        onPointerMissed={() => {} /* setLocation('/') */}
-      >
+      <motion3D.group ref={ref} position={[0, -0.5, 0]}>
         {dataWithPosition?.map((d: CategoryVideoProps) => {
-          return <CategoryThumbnail key={d.id} data={d} onHandleCategory={props.onHandleCategory} />;
+          return (
+            <CategoryThumbnail
+              key={d.id}
+              data={d}
+              onHandleCategory={props.onHandleCategory}
+            />
+          );
         })}
         {dataWithPosition?.map((d: CategoryVideoProps) => {
           return <CategoryScatteredThumbnail key={d.id} data={d} />;
