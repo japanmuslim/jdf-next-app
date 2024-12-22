@@ -3,7 +3,13 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { CategoryVideoProps, VideoState } from '../Home.type';
 import GridVideos from '../components/GridPerspective';
 import { useGetVideoQuery } from '@/services/api/homeService';
-import { Sheet, SheetClose, SheetContent } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import Loading from '@/components/page/loading';
 import dynamic from 'next/dynamic';
 import { IoClose } from 'react-icons/io5';
@@ -23,7 +29,7 @@ const Videos = (props: VideosProps) => {
   const { data } = props;
 
   const [videoId, setVideoId] = useState<number | null>(null);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [videoUrl, setVideoUrl] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: dataVideo, isLoading } = useGetVideoQuery(videoId || 0, {
@@ -32,8 +38,6 @@ const Videos = (props: VideosProps) => {
 
   const onHandleVideo = useCallback(
     (videoId: number) => {
-      setIsOpen(true);
-      setVideoUrl(dataVideo?.data?.link || '');
       setVideoId(videoId);
     },
     [dataVideo],
@@ -41,7 +45,15 @@ const Videos = (props: VideosProps) => {
 
   const handleDrawer = useCallback(() => {
     setIsOpen(false);
+    setVideoId(null);
   }, []);
+
+  useEffect(() => {
+    if (dataVideo) {
+      setVideoUrl(dataVideo.data?.link);
+      setIsOpen(true);
+    }
+  }, [dataVideo]);
 
   return (
     <Layout
@@ -60,11 +72,13 @@ const Videos = (props: VideosProps) => {
         </section>
       </div>
       <Sheet open={isOpen}>
+        <SheetTitle>Menu</SheetTitle>
+        <SheetDescription>Description goes here</SheetDescription>
         <SheetContent
           side="bottom"
           className="z-[999999] min-w-[100vw] p-0 h-full max-h-[100vh] overflow-y-auto bg-primary border-none flex items-center justify-center"
         >
-          <VideoEmbed src={videoUrl || ''} />
+          <VideoEmbed src={videoUrl} />
           <SheetClose asChild>
             <button
               type="button"

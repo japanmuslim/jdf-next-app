@@ -22,7 +22,6 @@ const useHome = () => {
     (categoryName: string) => {
       const name = categoryName.replace(/ /g, '-').toLowerCase();
       router.push(`/${isCategory}/${name}`);
-      console.log(isCategory);
     },
     [router, isCategory],
   );

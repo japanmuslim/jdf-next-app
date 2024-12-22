@@ -6,7 +6,7 @@ interface Props {
   videoData?: VideoState;
   categoryData?: CategoryVideoProps;
   position?: number[];
-  index?: number;
+  index ?: number;
   onHandleVideo?: (videoId: number) => void;
 }
 
@@ -15,19 +15,6 @@ export default function VideoThumbnail(props: Props) {
   if (categoryData) {
     return (
       <motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-          style={{
-            textAlign: 'center',
-            marginBottom: '3em',
-            fontSize: '2em',
-            fontWeight: 'bold',
-          }}
-        >
-          {categoryData?.category_name}
-        </motion.div>
         <motion.img
           src={categoryData?.thumbnail}
           alt="Look at mouse"
