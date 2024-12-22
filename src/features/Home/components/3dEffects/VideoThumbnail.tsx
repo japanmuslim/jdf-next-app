@@ -7,10 +7,11 @@ interface Props {
   categoryData?: CategoryVideoProps;
   position?: number[];
   index?: number;
+  onHandleVideo?: (videoId: number) => void;
 }
 
 export default function VideoThumbnail(props: Props) {
-  const { videoData, categoryData, position, index } = props;
+  const { videoData, categoryData, position, index, onHandleVideo } = props;
   if (categoryData) {
     return (
       <motion.div>
@@ -78,14 +79,12 @@ export default function VideoThumbnail(props: Props) {
         />
         <motion.div
           className="grid-card-item-overlay"
-          whileHover={{ opacity: 1}}
+          whileHover={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
+          onClick={() => onHandleVideo?.(videoData?.id)}
         >
-          <div className="flex flex-col items-center justify-center h-full relative w-full">
-            <button
-              // onClick={onClick}
-              className="md:p-4 p-1 rounded-full hover:bg-primary/80 hover:-translate-y-2 duration-300 transition-all hover:shadow shadow-lg"
-            >
+          <div className="flex flex-col items-center justify-center h-full relative w-full hover:cursor-pointer">
+            <button className="md:p-4 p-1 rounded-full hover:bg-primary/80 hover:-translate-y-2 duration-300 transition-all hover:shadow shadow-lg">
               <IoPlay className="md:text-3xl text-xs text-white" />
             </button>
             <h3 className="md:text-lg text-[8px] font-medium text-white absolute inset-x-0 md:bottom-3 bottom-1 w-full text-center">

@@ -30,8 +30,7 @@ function setThumbnailPosition(dataLength: number) {
 }
 
 export default function CanvasVideos(props: Props) {
-  const { data } = props;
-  const router = useRouter();
+  const { data, onHandleVideo } = props;
   const { currentCategoryData } = useHome();
 
   return (
@@ -47,6 +46,7 @@ export default function CanvasVideos(props: Props) {
           index={index}
           videoData={d}
           position={setThumbnailPosition(data.length)[index - 1]}
+          onHandleVideo={onHandleVideo}
         />
       ))}
     </motion.div>
