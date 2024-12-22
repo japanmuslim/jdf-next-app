@@ -7,7 +7,7 @@ import { Sheet, SheetClose, SheetContent } from '@/components/ui/sheet';
 import Loading from '@/components/page/loading';
 import dynamic from 'next/dynamic';
 import { IoClose } from 'react-icons/io5';
-import CanvasVideos from './3dEffects/CanvasVideos';
+import CanvasVideos from '../components/3dEffects/CanvasVideos';
 
 const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,

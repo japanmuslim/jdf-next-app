@@ -4,7 +4,7 @@ import Layout from '@/layouts/Layout';
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-const Scene3D = dynamic(() => import('./3dEffects/CanvasCategories'), {
+const Scene3D = dynamic(() => import('../components/3dEffects/CanvasCategories'), {
   ssr: false,
 });
 
