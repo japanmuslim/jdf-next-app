@@ -44,6 +44,7 @@ export default function CategoryThumbnail(props: Props) {
             alignItems: 'center',
             transform: 'perspective(300px) rotateX(-15deg)',
           }}
+          onClick={(e) => onHandleCategory?.(data?.category_name)}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >

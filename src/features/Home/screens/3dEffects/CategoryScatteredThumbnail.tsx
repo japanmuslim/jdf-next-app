@@ -8,6 +8,8 @@ import { setCategoryId } from '@/services/slice/categoryIdSlicer';
 
 interface Props {
   data: CategoryVideoProps;
+  onHandleCategory?: (category: string) => void;
+  category_name: string;
 }
 
 interface ThumbnailProps {
@@ -15,6 +17,8 @@ interface ThumbnailProps {
   index: number;
   // [x, y, z]
   position: number[];
+  onHandleCategory?: (category: string) => void;
+  category_name: string;
 }
 
 function getRandomNumber(min: number, max: number) {
@@ -27,16 +31,15 @@ function getRandomNumber(min: number, max: number) {
 }
 
 function ScatteredThumbnail(props: ThumbnailProps) {
-  const { data, position } = props;
+  const { data, position, onHandleCategory, category_name } = props;
 
   const rotateX = position[0] >= 1 ? -15 : position[0] <= -1 ? 15 : 0;
   const rotateY = position[1] >= 2 ? 15 : position[1] <= -2 ? -15 : 0;
   const activeCategoryId = useSelector((state: any) => state.categoryId.id);
   const dispatch = useDispatch();
 
-  const onMouseEnter = (e: React.MouseEvent) => {    
+  const onMouseEnter = (e: React.MouseEvent) => {
     dispatch(setCategoryId(data.video_category_id));
-    
   };
   const onMouseLeave = (e: React.MouseEvent) => {
     dispatch(setCategoryId(null));
@@ -58,6 +61,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
               alignItems: 'center',
               transform: `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`,
             }}
+            onClick={(e) => onHandleCategory?.(category_name)}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
@@ -76,7 +80,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
                 backgroundColor:
                   data.video_category_id === activeCategoryId
                     ? `rgba(253, 53, 53, 0.63)`
-                    : `rgba(20, 13, 13, ${position[2] / -10 < 0.2 ? 0.2 : position[2] / -10 + 0.3})`,
+                    : `rgba(20, 13, 13, ${position[2] / -10 < 0.2 ? 0.3 : position[2] / -10 + 0.2})`,
               }}
               whileHover={{
                 backgroundColor: 'rgba(255, 0, 0, 0.5)', // Warna overlay saat hover
@@ -92,11 +96,12 @@ function ScatteredThumbnail(props: ThumbnailProps) {
 }
 
 export default function CategoryScatteredThumbnail(props: Props) {
-  const { data } = props;
+  const { data, onHandleCategory } = props;
 
   return (
     <>
       {data?.videos?.map((d, i) => {
+        if (i > 6) return null;
         return (
           <ScatteredThumbnail
             key={i}
@@ -107,6 +112,8 @@ export default function CategoryScatteredThumbnail(props: Props) {
               getRandomNumber(1, 6),
               Math.random() * (-6 - 1) + 0,
             ]}
+            onHandleCategory={onHandleCategory}
+            category_name={data.category_name}
           />
         );
       })}

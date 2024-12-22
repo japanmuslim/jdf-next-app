@@ -34,7 +34,7 @@ export default function CanvasCategories(props: Props) {
   const ref = useRef(null);
   const { data } = props;
   const [dataWithPosition, setDataWithPosition] = useState(setPosition(data));
-  
+
   return (
     <Canvas
       style={{ height: '100vh', width: '100vw' }}
@@ -54,7 +54,13 @@ export default function CanvasCategories(props: Props) {
           );
         })}
         {dataWithPosition?.map((d: CategoryVideoProps) => {
-          return <CategoryScatteredThumbnail key={d.id} data={d} />;
+          return (
+            <CategoryScatteredThumbnail
+              key={d.id}
+              data={d}
+              onHandleCategory={props.onHandleCategory}
+            />
+          );
         })}
       </motion3D.group>
       {/* </motion3D.group> */}
