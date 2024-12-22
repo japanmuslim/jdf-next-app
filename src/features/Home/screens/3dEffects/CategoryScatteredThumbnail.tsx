@@ -9,7 +9,6 @@ import { setCategoryId } from '@/services/slice/categoryIdSlicer';
 interface Props {
   data: CategoryVideoProps;
   onHandleCategory?: (category: string) => void;
-  category_name: string;
 }
 
 interface ThumbnailProps {
