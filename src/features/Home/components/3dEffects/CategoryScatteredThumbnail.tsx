@@ -41,7 +41,6 @@ function ScatteredThumbnail(props: ThumbnailProps) {
   
   const onMouseEnter = (e: React.MouseEvent) => {
     dispatch(setCategoryId(data.video_category_id));
-    console.log(activeCategoryId);
   };
   const onMouseLeave = (e: React.MouseEvent) => {
     dispatch(setCategoryId(null));
@@ -71,6 +70,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
               src={data.thumbnail_url || ''}
               alt="Look at mouse"
               style={{ maxHeight: '50px', maxWidth: '100px' }}
+              loading='lazy'
             />
             <motion.div
               style={{

@@ -39,7 +39,7 @@ export default function CanvasCategories(props: Props) {
 
   return (
     <div style={{ height: '100vh', width: '100vw' }}>
-      {!isRendered &&  <Loading />}
+      {/* {!isRendered &&  <Loading />} */}
       <Canvas
         style={{ height: '100vh', width: '100vw' }}
         camera={{ position: [0, 0, 10], fov: 50 }}

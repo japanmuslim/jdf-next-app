@@ -19,6 +19,7 @@ import FallingSakura from '../components/fallingSakura/FallingSakura';
 const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,
   loading: () => <Loading />,
+  suspense: true,
 });
 
 interface VideosProps {
@@ -35,11 +36,12 @@ const Videos = (props: VideosProps) => {
   const { data: dataVideo, isLoading } = useGetVideoQuery(videoId || 0, {
     skip: !videoId,
   });
-  
+
   const onHandleVideo = useCallback(
     (videoId: number) => {
       setVideoId(videoId);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [dataVideo],
   );
 
@@ -60,7 +62,7 @@ const Videos = (props: VideosProps) => {
       id="home"
       pageTitle="Categories | Japan Dahwa Foundation"
       pageDescription="Home page description"
-      className='overflow-x-hidden'
+      className="overflow-x-hidden"
     >
       <div style={{ position: 'relative', zIndex: 1 }}>
         <FallingSakura />

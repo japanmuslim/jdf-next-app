@@ -53,6 +53,7 @@ export default function CategoryThumbnail(props: Props) {
             src={data.thumbnail}
             alt="Look at mouse"
             style={{ maxHeight: '50px', maxWidth: '100px' }}
+            loading='lazy'
           />
           <motion.div
             style={{
