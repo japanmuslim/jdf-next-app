@@ -7,7 +7,7 @@ export const QuizApi = createApi({
   baseQuery: baseQuery,
   endpoints: (builder) => ({
     getQuiz: builder.query({
-      query: () => `quizzes`,
+      query: ({ page: number }) => `quizzes?page=${number || 1}`,
     }),
   }),
 });
