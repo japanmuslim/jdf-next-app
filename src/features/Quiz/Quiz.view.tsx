@@ -69,7 +69,7 @@ const QuizView: FC<QuizViewProps> = ({
             <strong>{stepQuiz + 1}</strong>/{quizLength}
           </p>
         </div>
-        <h1 className="md:text-3xl text-2xl font-bold text-center md:mt-12 mt-8 md:mb-14 mb-8">
+        <h1 className="md:text-2xl text-xl font-bold text-center md:mt-12 mt-8 md:mb-14 mb-8">
           {quiz.title}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

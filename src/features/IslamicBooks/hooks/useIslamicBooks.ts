@@ -1,35 +1,73 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Datum } from '../IslamicBook.type';
 
-const useIslamicBooks = () => {
-  const [isOpenBooks, setIsOpenBooks] = useState(false);
+const useIslamicBooks = (data: Datum[]) => {
+  const [currentCategory, setCurrentCategory] = useState<number>(0);
+  const [currentBook, setCurrentBook] = useState<number>(0);
+  const [isOpenBooks, setIsOpenBooks] = useState<{
+    isOpen: boolean;
+    url: string;
+  }>();
 
   const containerPdf = useRef<HTMLIFrameElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        containerPdf.current &&
-        !containerPdf.current.contains(e.target as Node)
-      ) {
-        setIsOpenBooks(false);
-      }
-    };
+  const isMd = typeof window !== 'undefined' && window.innerWidth > 768;
+  const isSm = typeof window !== 'undefined' && window.innerWidth < 768;
 
-    document.addEventListener('mousedown', handleClickOutside);
+  const dataLength = data[currentCategory]?.islamic_books.length;
+  const itemsPerSlide = isMd ? 4 : isSm ? 2 : 1;
+  const totalSlides = Math.ceil(dataLength / itemsPerSlide);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [containerPdf]);
+  // useEffect(() => {
+  //   const handleClickOutside = (e: MouseEvent) => {
+  //     if (
+  //       containerPdf.current &&
+  //       !containerPdf.current.contains(e.target as Node)
+  //     ) {
+  //       setIsOpenBooks(false);
+  //     }
+  //   };
 
-  const handleOpenBooks = useCallback(() => {
-    setIsOpenBooks((prev) => !prev);
+  //   document.addEventListener('mousedown', handleClickOutside);
+
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, [containerPdf]);
+
+  const handleCurrentCategory = useCallback((index: number) => {
+    setCurrentCategory(index);
+  }, []);
+
+  const handleCurrentBook = useCallback(
+    (index: number) => {
+      setCurrentBook(index);
+      setIsOpenBooks({
+        isOpen: true,
+        url: data[currentCategory]?.islamic_books[index]?.link_external,
+      });
+    },
+    [currentCategory, data],
+  );
+
+  const handleCloseBooks = useCallback(() => {
+    setIsOpenBooks({
+      isOpen: false,
+      url: '',
+    });
   }, []);
 
   return {
     containerPdf,
+    currentCategory,
+    currentBook,
     isOpenBooks,
-    handleOpenBooks,
+    dataLength,
+    itemsPerSlide,
+    totalSlides,
+    handleCurrentBook,
+    handleCloseBooks,
+    handleCurrentCategory,
   };
 };
 
