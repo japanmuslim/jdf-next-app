@@ -5,6 +5,7 @@ import { HomeApi } from '@/services/api/homeService';
 import { QuestionApi } from '@/services/api/questionService';
 import { QuizApi } from '@/services/api/quizService';
 import { TafseerApi } from '@/services/api/tafseerService';
+import { categoryIdSlice } from '@/services/slice/categoryIdSlicer';
 import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   [ArticleApi.reducerPath]: ArticleApi.reducer,
   [QuestionApi.reducerPath]: QuestionApi.reducer,
   [FaqApi.reducerPath]: FaqApi.reducer,
+  categoryId: categoryIdSlice.reducer,
 });
 
 export default rootReducer;

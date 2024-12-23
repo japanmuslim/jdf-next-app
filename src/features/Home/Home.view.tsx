@@ -1,3 +1,5 @@
+'use client';
+
 import { memo } from 'react';
 import dynamic from 'next/dynamic';
 import Loading from '@/components/page/loading';
@@ -12,6 +14,7 @@ const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
 const HomeView = () => {
   const { breakpoint } = useHome();
 
+  // Mobile and tab view
   if (breakpoint === 'sm' || breakpoint === 'md') {
     return (
       <section className="grid grid-cols-1 min-h-screen w-full">
@@ -43,6 +46,7 @@ const HomeView = () => {
     );
   }
 
+  // Desktop View
   return (
     <section className="flex items-center justify-center min-h-screen w-full relative">
       <div className="absolute -translate-y-1/2 -translate-x-1/2 lg:top-[43%] md:top-[47%] top-[48%] left-1/2 flex justify-around w-[100%] z-50 lg:px-10 px-6">

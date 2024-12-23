@@ -3,10 +3,18 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { CategoryVideoProps, VideoState } from '../Home.type';
 import GridVideos from '../components/GridPerspective';
 import { useGetVideoQuery } from '@/services/api/homeService';
-import { Sheet, SheetClose, SheetContent } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import Loading from '@/components/page/loading';
 import dynamic from 'next/dynamic';
 import { IoClose } from 'react-icons/io5';
+import CanvasVideos from '../components/3dEffects/CanvasVideos';
+import FallingSakura from '../components/fallingSakura/FallingSakura';
 
 const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,
@@ -14,37 +22,38 @@ const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
 });
 
 interface VideosProps {
-  data: CategoryVideoProps[];
+  data: VideoState[];
 }
 
 const Videos = (props: VideosProps) => {
   const { data } = props;
 
   const [videoId, setVideoId] = useState<number | null>(null);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [videoUrl, setVideoUrl] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: dataVideo, isLoading } = useGetVideoQuery(videoId || 0, {
     skip: !videoId,
   });
-
-  useEffect(() => {
-    if (dataVideo?.data?.link) {
-      setVideoUrl(dataVideo.data.link);
-      setIsOpen(true);
-    }
-  }, [dataVideo]);
-
-  const onHandleVideo = (id: number) => {
-    if (!id) return;
-    setVideoId(id);
-  };
+  
+  const onHandleVideo = useCallback(
+    (videoId: number) => {
+      setVideoId(videoId);
+    },
+    [dataVideo],
+  );
 
   const handleDrawer = useCallback(() => {
     setIsOpen(false);
     setVideoId(null);
-    setVideoUrl(null);
   }, []);
+
+  useEffect(() => {
+    if (dataVideo) {
+      setVideoUrl(dataVideo.data?.link);
+      setIsOpen(true);
+    }
+  }, [dataVideo]);
 
   return (
     <Layout
@@ -52,23 +61,24 @@ const Videos = (props: VideosProps) => {
       pageTitle="Categories | Japan Dahwa Foundation"
       pageDescription="Home page description"
     >
-      <section
-        id="hero"
-        className="flex items-center justify-center min-h-screen w-full relative"
-      >
-        <GridVideos
-          data={data}
-          type="video"
-          onHandleVideo={onHandleVideo}
-          isLoading={isLoading}
-        />
-      </section>
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <FallingSakura />
+        <section
+          id="hero"
+          className="flex items-center justify-center min-h-screen w-full relative"
+        >
+          {/* Video Canvas */}
+          <CanvasVideos data={data} onHandleVideo={onHandleVideo} />
+        </section>
+      </div>
       <Sheet open={isOpen}>
+        <SheetTitle>Menu</SheetTitle>
+        <SheetDescription>Description goes here</SheetDescription>
         <SheetContent
           side="bottom"
           className="z-[999999] min-w-[100vw] p-0 h-full max-h-[100vh] overflow-y-auto bg-primary border-none flex items-center justify-center"
         >
-          <VideoEmbed src={videoUrl || ''} />
+          <VideoEmbed src={videoUrl} />
           <SheetClose asChild>
             <button
               type="button"

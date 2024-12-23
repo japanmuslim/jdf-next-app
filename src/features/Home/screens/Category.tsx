@@ -1,7 +1,17 @@
-import React, { memo, useState } from 'react';
 import { CategoryVideoProps } from '../Home.type';
 import Layout from '@/layouts/Layout';
-import GridVideos from '../components/GridPerspective';
+// import CanvasScene from './3dEffect/CanvasScene';
+import React from 'react';
+import dynamic from 'next/dynamic';
+import FallingSakura from '../components/fallingSakura/FallingSakura';
+import Loading from '@/components/page/loading';
+
+const Scene3D = dynamic(
+  () => import('../components/3dEffects/CanvasCategories'),
+  {
+    ssr: false,
+  },
+);
 
 interface CategoryProps {
   data: CategoryVideoProps[];
@@ -13,23 +23,30 @@ const Category = (props: CategoryProps) => {
   const { data, isLoading, onHandleCategory } = props;
 
   return (
-    <Layout
-      id="home"
-      pageTitle="Categories | Japan Dahwa Foundation"
-      pageDescription="Home page description"
-    >
-      <section
-        id="hero"
-        className="flex items-center justify-center min-h-screen w-full relative"
+    <>
+      {isLoading && <Loading />}
+      <Layout
+        id="home"
+        pageTitle="Categories | Japan Dahwa Foundation"
+        pageDescription="Home page description"
       >
-        <GridVideos
-          type="category"
-          data={data}
-          onHandleCategory={onHandleCategory}
-        />
-      </section>
-    </Layout>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <FallingSakura />
+          <section
+            id="hero"
+            className="flex items-center justify-center min-h-screen w-full relative"
+          >
+            {/* <CanvasScene data={data} /> */}
+            <Scene3D
+              data={data}
+              isLoading={isLoading}
+              onHandleCategory={onHandleCategory}
+            />
+          </section>
+        </div>
+      </Layout>
+    </>
   );
 };
 
-export default memo(Category);
+export default Category;

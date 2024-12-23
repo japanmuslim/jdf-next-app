@@ -47,8 +47,6 @@ const Navbar = ({ isOpen }: { isOpen: boolean }) => {
     };
   }, []);
 
-  // console.log(pathname.startsWith('/article'));
-
   const handleActive = (href: string) => {
     if (pathname === href) {
       return 'border-b-2 border-white pb-2';

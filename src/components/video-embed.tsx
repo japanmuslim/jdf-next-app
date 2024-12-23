@@ -29,7 +29,8 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
 }) => {
   const videoRef = useRef<ReactPlayer>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  // const [isMuted, setIsMuted] = useState<boolean>(muted);
+  const [isMuted, setIsMuted] = useState<boolean>(muted);
+  const [videoSrc, setVideoSrc] = useState<string>(src);
 
   // const [isPiPActive, setIsPiPActive] = useState(false);
 
@@ -71,7 +72,7 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
     >
       <ReactPlayer
         ref={videoRef}
-        url={src}
+        url={videoSrc}
         style={{ position: 'absolute', top: 0, left: 0 }}
         width="100%"
         height="100%"

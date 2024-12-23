@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '@/styles/sakura.css';
 
 @layer base {
   :root {
@@ -126,8 +127,7 @@
 
   #home section#hero {
     position: relative;
-    background: url('/assets/images/home/bg-hero.png') no-repeat center
-      center/cover;
+    background: url('/assets/images/home/bg1.png') no-repeat center center/cover;
     z-index: 1;
   }
 
@@ -575,10 +575,10 @@
   transition: transform 0.3s;
 }
 
-.grid-card-item:hover .grid-card-item-overlay {
+/* .grid-card-item:hover .grid-card-item-overlay {
   opacity: 1;
   transition: opacity 0.3s;
-}
+} */
 
 .grid-card-item-overlay {
   position: absolute;
