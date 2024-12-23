@@ -29,6 +29,7 @@ const Category = (props: CategoryProps) => {
         id="home"
         pageTitle="Categories | Japan Dahwa Foundation"
         pageDescription="Home page description"
+        className='overflow-x-hidden'
       >
         <div style={{ position: 'relative', zIndex: 1 }}>
           <FallingSakura />
