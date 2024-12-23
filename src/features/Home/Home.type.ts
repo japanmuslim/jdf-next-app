@@ -41,6 +41,7 @@ export interface VideoState {
 export interface GridVideosProps {
   data: CategoryVideoProps[];
   type?: 'category' | 'video';
+  isLoading?: boolean;
   onHandleCategory?: (category: string) => void;
   onHandleCurrentCategory?: (category: CategoryVideoProps) => void;
   onHandleVideo?: (videoId: number) => void;

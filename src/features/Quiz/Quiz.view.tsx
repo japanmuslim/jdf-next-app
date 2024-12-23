@@ -31,7 +31,7 @@ const QuizView: FC<QuizViewProps> = ({
         data-aos="fade-up"
         className="bg-white w-full md:max-w-2xl px-8 py-10 rounded-3xl text-primary relative z-10"
       >
-        <h1 className="md:text-3xl text-2xl font-bold text-center">Quiz</h1>
+        <h1 className="md:text-3xl text-2xl font-bold text-center">クイズ</h1>
         <div className="mt-4">
           <p className="text-center md:text-3xl text-2xl">
             イスラムに関する知識を試す準備はできましたか？
@@ -44,7 +44,7 @@ const QuizView: FC<QuizViewProps> = ({
             className="rounded-full md:px-20"
             onClick={onStartQuiz}
           >
-            Start Quiz
+            さあ、クイズスタート！
           </Button>
         </div>
       </div>
@@ -172,13 +172,13 @@ const QuizView: FC<QuizViewProps> = ({
             }`}
           >
             {Number(score) >= 80
-              ? '🎉 Congratulations! 🎉'
+              ? '🎉 おめでとうございます！s! 🎉'
               : Number(score) >= 40
-                ? 'Excellent'
-                : 'Try Again'}
+                ? '素晴らしい！'
+                : 'もう一回やってみて！'}
           </h1>
           <p className="text-center md:text-lg text-base text-gray-300 my-4">
-            You have completed the quiz with a score of
+            クイズを終了しました！あなたのスコアは以下です
           </p>
           <h1
             className={`text-5xl font-bold text-center mt-4 mb-0 animate-scale ${
@@ -216,7 +216,7 @@ const QuizView: FC<QuizViewProps> = ({
             className="rounded-full bg-white text-primary border border-primary mt-4 w-fit mx-auto px-6 hover:bg-primary hover:text-white"
             onClick={onFinishedQuiz}
           >
-            Start Quiz Again
+            もう一度クイズを始めよう！
           </Button>
         </div>
       </>

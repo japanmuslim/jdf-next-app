@@ -3,16 +3,18 @@ import Image from 'next/image';
 import { IoPlay } from 'react-icons/io5';
 import { CategoryVideoProps, VideoState } from '../Home.type';
 import { IMG_BLUR } from '@/contants';
+import { FaSpinner } from 'react-icons/fa';
 
 interface CardVideosProps {
   type?: 'category' | 'video';
   className?: string;
   onClick?: () => void;
   item: any;
+  isLoading?: boolean;
 }
 
 const CardVideos = (props: CardVideosProps) => {
-  const { className, onClick, item, type } = props;
+  const { className, onClick, item, type, isLoading } = props;
 
   if (type === 'category') {
     return (
@@ -81,7 +83,11 @@ const CardVideos = (props: CardVideosProps) => {
             onClick={onClick}
             className="md:p-4 p-1 rounded-full hover:bg-primary/80 hover:-translate-y-2 duration-300 transition-all hover:shadow shadow-lg"
           >
-            <IoPlay className="md:text-3xl text-xs text-white" />
+            {isLoading ? (
+              <FaSpinner className={cn('animate-spin text-2xl')} />
+            ) : (
+              <IoPlay className="md:text-3xl text-xs text-white" />
+            )}
           </button>
           <h3 className="md:text-lg text-[8px] font-medium text-white absolute inset-x-0 md:bottom-3 bottom-1 w-full text-center">
             {item?.name_video}

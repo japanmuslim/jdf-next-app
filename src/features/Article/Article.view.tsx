@@ -50,7 +50,7 @@ const ArticleView = ({
             variant="secondary"
             className={`!py-2 !px-4 !text-xs ${currentCategory === 0 ? 'bg-primary border-[#777a7b] border text-white hover:bg-primary' : ''}`}
           >
-            Latest
+            新着記事
           </Button>
           {categories?.map((item, index) => (
             <Button
@@ -85,7 +85,7 @@ const ArticleView = ({
                 variant="secondary"
                 className={`${currentCategory === 0 ? 'bg-primary border-[#777a7b] border text-white hover:bg-primary' : ''}`}
               >
-                Latest
+                新着記事
               </Button>
               {categories?.map((item, index) => (
                 <Button

@@ -51,7 +51,7 @@ const groupData = (data: any) => {
 };
 
 const GridPerspective = (props: GridVideosProps) => {
-  const { data = [], type, onHandleVideo, onHandleCategory } = props;
+  const { data = [], type, onHandleVideo, onHandleCategory, isLoading } = props;
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const groupedDataVideo = groupData(data);
@@ -134,7 +134,9 @@ const GridPerspective = (props: GridVideosProps) => {
                 <CardVideos
                   key={index}
                   type={type}
-                  onClick={() => onHandleCategory?.(item?.category_name)}
+                  onClick={() =>
+                    onHandleCategory && onHandleCategory(item?.category_name)
+                  }
                   // className={renderSkewCategory(
                   //   groupIndex,
                   //   groupIndex === 1 ? index + 2 : index,
@@ -161,9 +163,10 @@ const GridPerspective = (props: GridVideosProps) => {
                 <CardVideos
                   key={index}
                   type={type}
-                  onClick={() => onHandleVideo?.(item?.id)}
+                  onClick={() => onHandleVideo && onHandleVideo(item?.id)}
                   // className={renderSkew(groupIndex === 1 ? index + 2 : index)}
                   item={item}
+                  isLoading={isLoading}
                 />
               ))}
             </div>

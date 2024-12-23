@@ -17,12 +17,12 @@ import { useRouter } from 'next/router';
 import { IoClose } from 'react-icons/io5';
 
 const navItems: NavItemsProps[] = [
-  { links: 'Home', href: '/' },
-  { links: 'Tafseer Video', href: '/tafseer' },
-  { links: 'Dua', href: '/dua' },
-  { links: 'Islamic Books', href: '/islamic-books' },
-  { links: 'Article', href: '/article' },
-  { links: 'Q&A', href: '/q&a' },
+  { links: 'ホームページ', href: '/' },
+  { links: 'タフスィール', href: '/tafseer' },
+  { links: 'ドゥア', href: '/dua' },
+  { links: 'イスラム書籍', href: '/islamic-books' },
+  { links: '記事', href: '/article' },
+  { links: 'よくある質問', href: '/q&a' },
   // { links: 'FAQ', href: '/faq' },
   // { links: "Contact", href: "/contact" },
 ];
@@ -107,7 +107,7 @@ const Navbar = ({ isOpen }: { isOpen: boolean }) => {
               className={`bg-transparent text-white rounded-full ${pathname === '/quiz' ? 'bg-white text-primary' : ''}`}
               asChild
             >
-              <Link href="/quiz">Take a Quiz</Link>
+              <Link href="/quiz">クイズを受ける</Link>
             </Button>
           </li>
         </ul>
@@ -152,7 +152,7 @@ const Navbar = ({ isOpen }: { isOpen: boolean }) => {
                         className="bg-transparent rounded-full w-full mt-4"
                         asChild
                       >
-                        <Link href="/quiz">Take a Quiz</Link>
+                        <Link href="/quiz">クイズを受ける</Link>
                       </Button>
                     </li>
                   </ul>

@@ -1,5 +1,5 @@
 import Layout from '@/layouts/Layout';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -13,6 +13,7 @@ import dynamic from 'next/dynamic';
 import Loading from '@/components/page/loading';
 import { Sheet, SheetClose, SheetContent } from '@/components/ui/sheet';
 import { IoClose } from 'react-icons/io5';
+import { cn } from '@/lib/utils';
 
 const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,
@@ -29,15 +30,26 @@ const MobileView = (props: MobileViewProps) => {
   const [videoId, setVideoId] = useState<number | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpand, setIsExpand] = useState<{
+    id: number | null;
+    value: boolean;
+  }>({ id: null, value: false });
 
   const { data: dataVideo, isLoading } = useGetVideoQuery(videoId || 0, {
     skip: !videoId,
   });
 
+  useEffect(() => {
+    if (dataVideo?.data?.link) {
+      setVideoUrl(dataVideo.data.link);
+      setIsOpen(true);
+    }
+  }, [dataVideo]);
+
   const handleVideo = useCallback(
     (videoId: number) => {
       setIsOpen(true);
-      setVideoUrl(dataVideo?.data?.link || '');
+      setVideoUrl(dataVideo?.data?.link!);
       setVideoId(videoId);
     },
     [dataVideo],
@@ -45,6 +57,20 @@ const MobileView = (props: MobileViewProps) => {
 
   const handleDrawer = useCallback(() => {
     setIsOpen(false);
+  }, []);
+
+  const handleExpandCategory = useCallback((id: number) => {
+    setIsExpand((prev) =>
+      prev.id === id
+        ? {
+            id: null,
+            value: false,
+          }
+        : {
+            id,
+            value: true,
+          },
+    );
   }, []);
 
   return (
@@ -55,48 +81,48 @@ const MobileView = (props: MobileViewProps) => {
     >
       <section className="w-full h-full md:pt-0 pt-[88px] overflow-x-hidden">
         {data?.map((val, index) => (
-          <Accordion key={val?.id} type="single" collapsible>
-            <AccordionItem value={`item-${index + 1}`} className="!border-b">
-              <AccordionTrigger className="!py-0 !-mr-4">
-                <div className="h-40 md:h-72 relative w-full">
-                  <div className="absolute inset-0 bg-black bg-opacity-30 z-10" />
+          <div key={val.id}>
+            <div
+              className="h-40 md:h-72 relative w-full cursor-pointer"
+              onClick={() => handleExpandCategory(val.id)}
+            >
+              <div className="absolute inset-0 bg-black bg-opacity-30 z-10" />
+              <Image
+                src={val?.thumbnail}
+                alt={val?.category_name}
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div
+              className={cn(
+                'bg-[#191919] !py-0',
+                isExpand.id === val.id ? 'block' : 'hidden',
+              )}
+            >
+              {val?.videos?.map((video, index) => (
+                <div
+                  key={video?.id}
+                  className="flex gap-4 border-b-[1px] border-[#777A7B] p-4 hover:bg-[#333333] cursor-pointer"
+                  onClick={() => handleVideo(video.id!)}
+                >
                   <Image
-                    src={val?.thumbnail}
-                    alt={val?.category_name}
-                    layout="fill"
-                    objectFit="cover"
+                    src={video?.thumbnail_url || '/images/placeholder.png'}
+                    alt={video?.name_video || 'Video'}
+                    width={120}
+                    height={100}
+                    loading="lazy"
                   />
+                  <div className="flex flex-col gap-1 h-full justify-center">
+                    <h3 className="text-sm font-medium">{video?.name_video}</h3>
+                    <p className="text-xs text-[#777A7B]">
+                      {video?.description_video}
+                    </p>
+                  </div>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent className="bg-[#191919] !py-0">
-                <div className="flex flex-col">
-                  {val?.videos?.map((video, index) => (
-                    <div
-                      key={video?.id}
-                      className="flex gap-4 border-b-[1px] border-[#777A7B] p-4 hover:bg-[#333333] cursor-pointer"
-                      onClick={() => handleVideo(video?.id)}
-                    >
-                      <Image
-                        src={video?.thumbnail_url || '/images/placeholder.png'}
-                        alt={video?.name_video || 'Video'}
-                        width={120}
-                        height={100}
-                        loading="lazy"
-                      />
-                      <div className="flex flex-col gap-1 h-full justify-center">
-                        <h3 className="text-sm font-medium">
-                          {video?.name_video}
-                        </h3>
-                        <p className="text-xs text-[#777A7B]">
-                          {video?.description_video}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+              ))}
+            </div>
+          </div>
         ))}
       </section>
       <Sheet open={isOpen}>
@@ -104,7 +130,7 @@ const MobileView = (props: MobileViewProps) => {
           side="bottom"
           className="z-[999999] p-0 h-full overflow-y-auto bg-primary border-none flex items-center justify-center"
         >
-          <VideoEmbed src={videoUrl || ''} />
+          <VideoEmbed src={videoUrl!} />
           <SheetClose asChild>
             <button
               type="button"
