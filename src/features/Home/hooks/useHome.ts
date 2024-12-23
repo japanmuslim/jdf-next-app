@@ -23,7 +23,6 @@ const useHome = () => {
   const handleCategory = useCallback(
     (categoryName: string) => {
       const name = categoryName.replace(/ /g, '-').toLowerCase();
-
       router.push(`/${isCategory}/${name}`);
     },
     [router, isCategory],

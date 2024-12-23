@@ -6,6 +6,7 @@ import { IslamicBooksApi } from '@/services/api/islamicBooksService';
 import { QuestionApi } from '@/services/api/questionService';
 import { QuizApi } from '@/services/api/quizService';
 import { TafseerApi } from '@/services/api/tafseerService';
+import { categoryIdSlice } from '@/services/slice/categoryIdSlicer';
 import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({

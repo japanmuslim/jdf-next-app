@@ -1,3 +1,4 @@
+import { Vector3 } from 'three';
 import { TafseerState } from '../Tafseer/Tafseer.type';
 
 // export interface CardVideosProps {
@@ -17,6 +18,8 @@ export interface CategoryVideoProps {
   created_at: Date | string;
   updated_at: Date | string;
   videos: VideoState[];
+  deleted_at?: Date | string | null;
+  position?: number[];
 }
 
 export interface VideoState {
@@ -31,6 +34,8 @@ export interface VideoState {
   is_active: number;
   created_at: Date | string;
   updated_at: Date | string;
+  deleted_at?: Date | string | null;
+  position?: number[];
 }
 
 export interface GridVideosProps {
