@@ -35,7 +35,7 @@ const Videos = (props: VideosProps) => {
   const { data: dataVideo, isLoading } = useGetVideoQuery(videoId || 0, {
     skip: !videoId,
   });
-
+  
   const onHandleVideo = useCallback(
     (videoId: number) => {
       setVideoId(videoId);

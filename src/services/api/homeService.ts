@@ -1,4 +1,4 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
+import { createApi, FetchArgs, skipToken } from '@reduxjs/toolkit/query/react';
 import { HomeService } from '../constant';
 import baseQuery from '@/init/baseQuery';
 
@@ -7,10 +7,11 @@ export const HomeApi = createApi({
   baseQuery: baseQuery,
   endpoints: (builder) => ({
     getCategoryVideo: builder.query({
-      query: (category?: string) => `/video/video-categories/${category || ''}`,
+      query: (category: string) => `/video/video-categories/${category}`,
     }),
     getVideo: builder.query({
-      query: (id: number) => `/video/video-categories/${id || 0}`,
+      query: (id: number) =>
+        id ? `/video/video-categories/${id}` : ({ url: '' } as FetchArgs),
     }),
   }),
 });

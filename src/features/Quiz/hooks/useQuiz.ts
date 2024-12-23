@@ -68,8 +68,8 @@ const useQuiz = () => {
     }
     // else {
     //   Swal.fire({
-    //     title: 'Quiz Completed',
-    //     text: 'You have completed the quiz',
+    //     title: 'クイズ終了しました！',
+    //     text: 'クイズを終了しました！あなたのスコアは以下です completed the quiz',
     //     icon: 'success',
     //     confirmButtonText: 'Selesai',
     //     confirmButtonColor: '#4caf50',
@@ -109,7 +109,7 @@ const useQuiz = () => {
     // ) {
     //   Swal.fire({
     //     title: 'Warning',
-    //     text: 'You have answered the question, please click next button',
+    //     text: 'クイズを終了しました！あなたのスコアは以下です answered the question, please click next button',
     //     icon: 'warning',
     //     showConfirmButton: false,
     //   });
@@ -149,8 +149,8 @@ const useQuiz = () => {
 
   const handleFinishedQuiz = () => {
     Swal.fire({
-      title: 'Quiz Completed',
-      text: 'Do you want to start the quiz again?',
+      title: 'クイズ終了しました！',
+      text: 'もう一度クイズを始めたいですか？',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Yes',

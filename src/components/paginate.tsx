@@ -27,7 +27,7 @@ const Paginate = ({
       className={cn('cursor-pointer', page === 1 && 'cursor-not-allowed')}
       onClick={() => page > 1 && onChange(page - 1)}
     >
-      Previous
+      前へ
     </PaginationPrevious>
     <PaginationContent>
       {[...Array(lastPage || 1)].map((_, index) => (
@@ -47,7 +47,7 @@ const Paginate = ({
       className={page === lastPage ? '!cursor-not-allowed' : 'cursor-pointer'}
       onClick={() => page < (lastPage || 1) && onChange(page + 1)}
     >
-      Next
+      次へ
     </PaginationNext>
   </Pagination>
 );

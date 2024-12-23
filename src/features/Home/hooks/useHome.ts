@@ -11,7 +11,9 @@ const useHome = () => {
   const [breakpoint, setBreakpoint] = useState<string>();
 
   const { data: dataCategory, isLoading: isLoadingCategory } =
-    useGetCategoryVideoQuery(isCategory);
+    useGetCategoryVideoQuery(isCategory || '', {
+      skip: !isCategory,
+    });
 
   const currentCategoryData = dataCategory?.data.find(
     (category: CategoryVideoProps) =>
