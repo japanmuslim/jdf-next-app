@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Vector3 } from '@react-three/fiber';
 import { setCategoryId } from '@/services/slice/categoryIdSlicer';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/init/store/store';
 
 interface Props {
   data: CategoryVideoProps;
@@ -14,7 +15,7 @@ interface Props {
 export default function CategoryThumbnail(props: Props) {
   const { data, onHandleCategory } = props;
   const dispatch = useDispatch();
-  const activeCategoryId = useSelector((state: any) => state.categoryId.id);
+  const activeCategoryId = useSelector((state: RootState) => state.categorySlice.id);
 
   const onMouseEnter = (e: React.MouseEvent) => {    
     dispatch(setCategoryId(data.id));

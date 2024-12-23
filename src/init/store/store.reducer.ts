@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
   [QuestionApi.reducerPath]: QuestionApi.reducer,
   [FaqApi.reducerPath]: FaqApi.reducer,
   [IslamicBooksApi.reducerPath]: IslamicBooksApi.reducer,
+  categorySlice: categoryIdSlice.reducer,
 });
 
 export default rootReducer;

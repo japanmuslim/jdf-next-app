@@ -5,6 +5,7 @@ import { Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId } from '@/services/slice/categoryIdSlicer';
+import { RootState } from '@/init/store/store';
 
 interface Props {
   data: CategoryVideoProps;
@@ -34,11 +35,13 @@ function ScatteredThumbnail(props: ThumbnailProps) {
 
   const rotateX = position[0] >= 1 ? -15 : position[0] <= -1 ? 15 : 0;
   const rotateY = position[1] >= 2 ? 15 : position[1] <= -2 ? -15 : 0;
-  const activeCategoryId = useSelector((state: any) => state.categoryId.id);
+  const activeCategoryId = useSelector((state: RootState) => state.categorySlice.id);
   const dispatch = useDispatch();
 
+  
   const onMouseEnter = (e: React.MouseEvent) => {
     dispatch(setCategoryId(data.video_category_id));
+    console.log(activeCategoryId);
   };
   const onMouseLeave = (e: React.MouseEvent) => {
     dispatch(setCategoryId(null));
