@@ -14,11 +14,10 @@ interface Props {
 export default function CategoryThumbnail(props: Props) {
   const { data, onHandleCategory } = props;
   const dispatch = useDispatch();
-  const activeCategoryId = useSelector((state: any) => state.categoryId.id);
+  const activeCategoryId = useSelector((state: any) => state?.categoryId?.id);
 
-  const onMouseEnter = (e: React.MouseEvent) => {    
+  const onMouseEnter = (e: React.MouseEvent) => {
     dispatch(setCategoryId(data.id));
-    
   };
   const onMouseLeave = (e: React.MouseEvent) => {
     dispatch(setCategoryId(null));
@@ -60,7 +59,10 @@ export default function CategoryThumbnail(props: Props) {
               left: 0,
               width: '100%',
               height: '100%',
-              backgroundColor: data.id === activeCategoryId ? 'rgba(255, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0)', // Transparan secara default
+              backgroundColor:
+                data.id === activeCategoryId
+                  ? 'rgba(255, 0, 0, 0.5)'
+                  : 'rgba(255, 255, 255, 0)', // Transparan secara default
             }}
             whileHover={{
               // backgroundColor: 'rgba(255, 0, 0, 0.5)',
