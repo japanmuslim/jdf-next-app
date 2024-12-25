@@ -35,7 +35,8 @@ function ScatteredThumbnail(props: ThumbnailProps) {
 
   const rotateX = position[0] >= 1 ? -15 : position[0] <= -1 ? 15 : 0;
   const rotateY = position[1] >= 2 ? 15 : position[1] <= -2 ? -15 : 0;
-  const activeCategoryId = useSelector((state: RootState) => state.categorySlice.id);
+  const activeCategoryId = useSelector((state: any) => state.categoryId?.id);
+
   const dispatch = useDispatch();
 
   
