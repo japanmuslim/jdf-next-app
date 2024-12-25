@@ -31,7 +31,7 @@ interface CarouselProps {
 
 const Carousel: FC<CarouselProps> = ({ id = 'carousel', data }) => {
   const router = useRouter();
-  const sliderRef = useRef<Slider>(null); // Menggunakan ref untuk mengontrol slider
+  const sliderRef = useRef<any>(null); // Menggunakan ref untuk mengontrol slider
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
