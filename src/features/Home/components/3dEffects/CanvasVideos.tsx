@@ -1,6 +1,5 @@
 import { VideoState } from '../../Home.type';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
 import VideoThumbnail from './VideoThumbnail';
 import useHome from '../../hooks/useHome';
 

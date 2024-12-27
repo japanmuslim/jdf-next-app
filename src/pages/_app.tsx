@@ -1,3 +1,4 @@
+'use client';
 import type { AppProps } from 'next/app';
 import { PagesProgressBar as ProgressBar } from 'next-nprogress-bar';
 import { Provider } from 'react-redux';

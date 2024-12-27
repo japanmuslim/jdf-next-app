@@ -1,11 +1,10 @@
 import { Canvas } from '@react-three/fiber';
 import { motion as motion3D } from 'framer-motion-3d';
 import { CategoryVideoProps } from '../../Home.type';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import CameraController from './CameraController';
 import CategoryThumbnail from './CategoryThumbnail';
 import CategoryScatteredThumbnail from './CategoryScatteredThumbnail';
-import Loading from '@/components/page/loading';
 
 interface Props {
   data: CategoryVideoProps[];
@@ -46,7 +45,6 @@ export default function CanvasCategories(props: Props) {
         onCreated={() => setIsRendered(true)}
       >
         <motion3D.ambientLight intensity={0.5} />
-        <motion3D.fog attach="fog" args={['#191920', 0, 15]} />
         <CameraController centerRef={ref} />
         <motion3D.group ref={ref} position={[0, -0.5, 0]}>
           {dataWithPosition?.map((d: CategoryVideoProps) => {

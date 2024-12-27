@@ -1,7 +1,6 @@
 import Layout from '@/layouts/Layout';
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { CategoryVideoProps, VideoState } from '../Home.type';
-import GridVideos from '../components/GridPerspective';
+import { VideoState } from '../Home.type';
 import { useGetVideoQuery } from '@/services/api/homeService';
 import {
   Sheet,
