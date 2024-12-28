@@ -53,7 +53,7 @@ const Videos = (props: VideosProps) => {
     if (dataVideo) {
       setVideoUrl(dataVideo.data?.link);
       setIsOpen(true);
-    }
+    } 
   }, [dataVideo]);
 
   return (
