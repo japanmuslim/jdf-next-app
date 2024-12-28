@@ -1,9 +1,11 @@
-import { Vector3 } from '@react-three/fiber';
+import { useFrame, Vector3 } from '@react-three/fiber';
 import { CategoryVideoProps, VideoState } from '../../Home.type';
 import { Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/init/store/store';
 import { setCategoryId } from '@/services/slice/categoryIdSlicer';
+import Image from 'next/image';
+import { IMG_BLUR } from '@/contants';
 
 interface Props {
   data: CategoryVideoProps;
@@ -42,7 +44,12 @@ function ScatteredThumbnail(props: ThumbnailProps) {
   const onMouseLeave = (e: React.MouseEvent) => {
     dispatch(setCategoryId(0));
   };
-  
+
+  useFrame(({ camera }) => {
+    // eslint-disable-next-line no-console
+    console.clear();
+  });
+
   return (
     <mesh castShadow position={position as Vector3}>
       <planeGeometry args={[1, 1, 1]} />
@@ -59,7 +66,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-            <motion.img
+            {/* <motion.img
               src={data.thumbnail_url || ''}
               alt="Look at mouse"
               style={{ maxHeight: '50px', maxWidth: '100px' }}
@@ -67,6 +74,16 @@ function ScatteredThumbnail(props: ThumbnailProps) {
               // initial={{ filter: 'blur(10px)' }} // Blur saat awal
               // animate={{ filter: 'blur(0px)' }} // Hilangkan blur setelah animasi berjalan
               // transition={{ duration: 1 }} // Durasi transisi
+            /> */}
+            <Image
+              src={data.thumbnail_url || ''}
+              alt={data.name_video || 'Video'}
+              style={{ maxHeight: '50px', maxWidth: '100px' }}
+              loading="lazy"
+              width={100}
+              height={50}
+              blurDataURL={IMG_BLUR}
+              placeholder="blur"
             />
             <motion.div
               style={{
