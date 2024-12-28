@@ -11,13 +11,14 @@ import { setCategoryId } from '@/services/slice/categoryIdSlicer';
 interface Props {
   data: CategoryVideoProps;
   onHandleCategory?: (category: string) => void;
+  position: number[];
   // onMouseEnter?: (e: React.MouseEvent, id: number) => void;
   // onMouseLeave?: (e: React.MouseEvent) => void;
   // activeId: number;
 }
 
 export default function CategoryThumbnail(props: Props) {
-  const { data, onHandleCategory } = props;
+  const { data, onHandleCategory, position } = props;
   const dispatch = useAppDispatch();
   const activeId = useAppSelector((state) => state.categorySlice.id);
   const onMouseEnter = (e: React.MouseEvent) => {
@@ -32,7 +33,7 @@ export default function CategoryThumbnail(props: Props) {
       name={data.category_name}
       onPointerOver={(e) => e.stopPropagation()}
       onPointerOut={(e) => e.stopPropagation()}
-      position={data?.position as Vector3}
+      position={position as Vector3}
     >
       <motion3D.planeGeometry args={[1, 1, 1]} />
       <motion3D.meshBasicMaterial

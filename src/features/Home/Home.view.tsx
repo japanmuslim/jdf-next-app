@@ -27,7 +27,7 @@ const HomeView = () => {
           }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-60 w-full h-full flex justify-center items-center">
-            <Link href="/muslim">ムスリム</Link>
+            <Link href="/muslim" >ムスリム</Link>
           </div>
         </div>
         <div

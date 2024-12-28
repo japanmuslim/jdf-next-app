@@ -1,6 +1,5 @@
 import { Vector3 } from '@react-three/fiber';
 import { CategoryVideoProps, VideoState } from '../../Home.type';
-import { motion as motion3D } from 'framer-motion-3d';
 import { Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/init/store/store';
@@ -45,13 +44,9 @@ function ScatteredThumbnail(props: ThumbnailProps) {
   };
 
   return (
-    <motion3D.mesh castShadow position={position as Vector3}>
-      <motion3D.planeGeometry args={[1, 1, 1]} />
-      <motion3D.meshBasicMaterial
-        color={'#fff'}
-        transparent={true}
-        opacity={0}
-      />
+    <mesh castShadow position={position as Vector3}>
+      <planeGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial color={'#fff'} transparent={true} opacity={0} />
       <Html transform distanceFactor={10}>
         {data.thumbnail_url && (
           <motion.div
@@ -69,6 +64,9 @@ function ScatteredThumbnail(props: ThumbnailProps) {
               alt="Look at mouse"
               style={{ maxHeight: '50px', maxWidth: '100px' }}
               loading="lazy"
+              // initial={{ filter: 'blur(10px)' }} // Blur saat awal
+              // animate={{ filter: 'blur(0px)' }} // Hilangkan blur setelah animasi berjalan
+              // transition={{ duration: 1 }} // Durasi transisi
             />
             <motion.div
               style={{
@@ -78,9 +76,9 @@ function ScatteredThumbnail(props: ThumbnailProps) {
                 width: '100%',
                 height: '100%',
                 backgroundColor:
-                data.video_category_id === activeId
-                  ? `rgba(253, 53, 53, 0.63)`
-                  : `rgba(20, 13, 13, ${position[2] / -10 < 0.2 ? 0.3 : position[2] / -10 + 0.2})`,
+                  data.video_category_id === activeId
+                    ? `rgba(253, 53, 53, 0.63)`
+                    : `rgba(20, 13, 13, ${position[2] / -10 < 0.2 ? 0.3 : position[2] / -10 + 0.2})`,
               }}
               whileHover={{
                 backgroundColor: 'rgba(255, 0, 0, 0.5)', // Warna overlay saat hover
@@ -91,17 +89,18 @@ function ScatteredThumbnail(props: ThumbnailProps) {
           </motion.div>
         )}
       </Html>
-    </motion3D.mesh>
+    </mesh>
   );
 }
 
 export default function CategoryScatteredThumbnail(props: Props) {
   const { data, onHandleCategory } = props;
+  const maxImage = 3;
 
   return (
     <>
       {data?.videos?.map((d, i) => {
-        if (i > 6) return null;
+        if (i > maxImage) return null;
         return (
           <ScatteredThumbnail
             key={i}
