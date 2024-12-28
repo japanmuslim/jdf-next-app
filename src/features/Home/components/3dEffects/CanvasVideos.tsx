@@ -8,25 +8,16 @@ interface Props {
   onHandleVideo?: (videoId: number) => void;
 }
 
-function setThumbnailPosition(dataLength: number) {
-  // [x, y]
-  const defaultPosition = [
-    [-370, -200],
-    [-410, 0],
-    [-390, 200],
-    [370, -200],
-    [410, 0],
-    [370, 200],
-    [0, 320],
-    [0, -320],
-  ];
-
-  // for (let i = 0; i < dataLength; i++) {
-  //   defaultPosition.push([200, 200]);
-  // }
-
-  return defaultPosition;
-}
+const defaultPosition = [
+  [-370, -200],
+  [-410, 0],
+  [-390, 200],
+  [370, -200],
+  [410, 0],
+  [370, 200],
+  [0, 320],
+  [0, -320],
+];
 
 export default function CanvasVideos(props: Props) {
   const { data, onHandleVideo } = props;
@@ -39,13 +30,13 @@ export default function CanvasVideos(props: Props) {
         key={'category-' + currentCategoryData?.id}
       />
 
-      {data?.map((d, index) => {        
+      {data?.map((d, index) => {
         return (
           <VideoThumbnail
             key={'video-' + d.id}
             index={index + 1}
             videoData={d}
-            position={setThumbnailPosition(data.length)[index]}
+            position={defaultPosition[index]}
             onHandleVideo={onHandleVideo}
           />
         );

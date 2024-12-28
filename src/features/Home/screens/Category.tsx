@@ -3,7 +3,7 @@
 import { CategoryVideoProps } from '../Home.type';
 import Layout from '@/layouts/Layout';
 // import CanvasScene from './3dEffect/CanvasScene';
-import React, { memo, useCallback, useState } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import FallingSakura from '../components/fallingSakura/FallingSakura';
 import Loading from '@/components/page/loading';
@@ -12,13 +12,7 @@ const Scene3D = dynamic(
   () => import('../components/3dEffects/CanvasCategories'),
   {
     ssr: false,
-    loading: () => {
-      return (
-        <div className="flex items-center justify-center w-full h-screen">
-          <Loading />
-        </div>
-      );
-    }
+    loading: () => <Loading />,
   },
 );
 
@@ -45,11 +39,11 @@ const Category = (props: CategoryProps) => {
           className="flex items-center justify-center min-h-screen w-full relative"
         >
           {/* <CanvasScene data={data} /> */}
-            <Scene3D
-              data={data}
-              isLoading={isLoading}
-              onHandleCategory={onHandleCategory}
-            />
+          <Scene3D
+            data={data}
+            isLoading={isLoading}
+            onHandleCategory={onHandleCategory}
+          />
         </section>
       </div>
     </Layout>
