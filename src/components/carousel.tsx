@@ -1,12 +1,5 @@
 import Image from 'next/image';
-import React, {
-  FC,
-  memo,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { FC, memo, useCallback, useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
@@ -31,7 +24,7 @@ interface CarouselProps {
 
 const Carousel: FC<CarouselProps> = ({ id = 'carousel', data }) => {
   const router = useRouter();
-  const sliderRef = useRef<Slider>(null); // Menggunakan ref untuk mengontrol slider
+  const sliderRef = useRef<Slider | null>(null); // Updated type
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {

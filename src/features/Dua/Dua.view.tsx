@@ -63,7 +63,7 @@ const DuaView = ({
                 )}
                 onClick={() => onCurrent && onCurrent(index)}
               >
-                <div className="relative w-36 h-20 rounded-lg overflow-hidden drop-shadow-lg">
+                <div className="relative shrink-0 w-36 h-20 rounded-lg overflow-hidden drop-shadow-lg">
                   <Image
                     src={item.thumbnail_url}
                     alt={item.name_dua}

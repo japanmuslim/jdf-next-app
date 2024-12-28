@@ -20,7 +20,6 @@ export default function CategoryThumbnail(props: Props) {
   const { data, onHandleCategory } = props;
   const dispatch = useAppDispatch();
   const activeId = useAppSelector((state) => state.categorySlice.id);
-
   const onMouseEnter = (e: React.MouseEvent) => {
     dispatch(setCategoryId(data.id));
   };
