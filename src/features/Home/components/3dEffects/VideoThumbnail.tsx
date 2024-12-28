@@ -32,6 +32,7 @@ export default function VideoThumbnail(props: Props) {
             border: '2px solid #fff',
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
           }}
+          loading='lazy'
         />
       </motion.div>
     );
@@ -63,6 +64,7 @@ export default function VideoThumbnail(props: Props) {
             zIndex: 99,
           }}
           transition={{ duration: 0.3 }}
+          loading='lazy'
         />
         <motion.div
           className="grid-card-item-overlay"

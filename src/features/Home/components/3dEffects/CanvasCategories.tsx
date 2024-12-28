@@ -5,7 +5,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import CameraController from './CameraController';
 import CategoryThumbnail from './CategoryThumbnail';
 import CategoryScatteredThumbnail from './CategoryScatteredThumbnail';
-import Loading from '@/components/page/loading';
+import StoreProvider from '@/features/StoreProviders';
+import { Provider, useDispatch } from 'react-redux';
+import { setCategoryId } from '@/services/slice/categoryIdSlicer';
+import store, { useAppDispatch, useAppSelector } from '@/init/store/store';
 
 interface Props {
   data: CategoryVideoProps[];
@@ -35,38 +38,38 @@ export default function CanvasCategories(props: Props) {
   const ref = useRef(null);
   const { data } = props;
   const [dataWithPosition, setDataWithPosition] = useState(setPosition(data));
-  const [isRendered, setIsRendered] = useState(false);
 
   return (
     <div style={{ height: '100vh', width: '100vw' }}>
-      {!isRendered &&  <Loading />}
+      {/* {!isRendered &&  <Loading />} */}
       <Canvas
         style={{ height: '100vh', width: '100vw' }}
         camera={{ position: [0, 0, 10], fov: 50 }}
-        onCreated={() => setIsRendered(true)}
       >
         <motion3D.ambientLight intensity={0.5} />
         <motion3D.fog attach="fog" args={['#191920', 0, 15]} />
         <CameraController centerRef={ref} />
         <motion3D.group ref={ref} position={[0, -0.5, 0]}>
-          {dataWithPosition?.map((d: CategoryVideoProps) => {
-            return (
-              <CategoryThumbnail
-                key={d.id}
-                data={d}
-                onHandleCategory={props.onHandleCategory}
-              />
-            );
-          })}
-          {dataWithPosition?.map((d: CategoryVideoProps) => {
-            return (
-              <CategoryScatteredThumbnail
-                key={d.id}
-                data={d}
-                onHandleCategory={props.onHandleCategory}
-              />
-            );
-          })}
+          <StoreProvider>
+            {dataWithPosition?.map((d: CategoryVideoProps) => {
+              return (
+                <CategoryThumbnail
+                  key={d.id}
+                  data={d}
+                  onHandleCategory={props.onHandleCategory}
+                />
+              );
+            })}
+            {dataWithPosition?.map((d: CategoryVideoProps) => {
+              return (
+                <CategoryScatteredThumbnail
+                  key={d.id}
+                  data={d}
+                  onHandleCategory={props.onHandleCategory}
+                />
+              );
+            })}
+          </StoreProvider>
         </motion3D.group>
       </Canvas>
     </div>

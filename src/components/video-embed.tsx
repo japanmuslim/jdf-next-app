@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { cn } from '@/lib/utils';
 import React, { FC, memo, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';

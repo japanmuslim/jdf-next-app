@@ -1,3 +1,5 @@
+'use client';
+
 import Loading from '@/components/page/loading';
 import useHome from '@/features/Home/hooks/useHome';
 import MobileView from '@/features/Home/screens/Mobile.view';
