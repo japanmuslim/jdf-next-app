@@ -42,7 +42,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
   const onMouseLeave = (e: React.MouseEvent) => {
     dispatch(setCategoryId(0));
   };
-
+  
   return (
     <mesh castShadow position={position as Vector3}>
       <planeGeometry args={[1, 1, 1]} />

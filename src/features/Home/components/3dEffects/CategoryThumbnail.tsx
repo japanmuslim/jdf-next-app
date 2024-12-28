@@ -12,22 +12,20 @@ interface Props {
   data: CategoryVideoProps;
   onHandleCategory?: (category: string) => void;
   position: number[];
-  // onMouseEnter?: (e: React.MouseEvent, id: number) => void;
-  // onMouseLeave?: (e: React.MouseEvent) => void;
-  // activeId: number;
 }
 
 export default function CategoryThumbnail(props: Props) {
   const { data, onHandleCategory, position } = props;
   const dispatch = useAppDispatch();
   const activeId = useAppSelector((state) => state.categorySlice.id);
+  
   const onMouseEnter = (e: React.MouseEvent) => {
     dispatch(setCategoryId(data.id));
   };
   const onMouseLeave = (e: React.MouseEvent) => {
     dispatch(setCategoryId(0));
   };
-
+  
   return (
     <motion3D.mesh
       name={data.category_name}
