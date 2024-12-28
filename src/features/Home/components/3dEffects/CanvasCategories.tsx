@@ -7,6 +7,7 @@ import CategoryScatteredThumbnail from './CategoryScatteredThumbnail';
 import StoreProvider from '@/features/StoreProviders';
 import Loading from '@/components/page/loading';
 import * as THREE from 'three';
+import FallingSakura from '../fallingSakura/FallingSakura';
 
 interface Props {
   data: CategoryVideoProps[];
@@ -30,7 +31,8 @@ export default function CanvasCategories(props: Props) {
   const { data, isLoading } = props;
 
   return (
-    <div style={{ height: '100vh', width: '100vw' }}>
+    <div className="h-screen w-screen bg-transparent">
+      <FallingSakura />
       {isLoading && <Loading />}
       {!isLoading && (
         <Canvas

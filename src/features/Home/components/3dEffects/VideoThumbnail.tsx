@@ -6,7 +6,7 @@ interface Props {
   videoData?: VideoState;
   categoryData?: CategoryVideoProps;
   position?: number[];
-  index ?: number;
+  index?: number;
   onHandleVideo?: (videoId: number) => void;
 }
 
@@ -14,7 +14,7 @@ export default function VideoThumbnail(props: Props) {
   const { videoData, categoryData, position, index, onHandleVideo } = props;
   if (categoryData) {
     return (
-      <motion.div>
+      <motion.div className="absolute">
         <motion.img
           src={categoryData?.thumbnail}
           alt="Look at mouse"
@@ -32,7 +32,7 @@ export default function VideoThumbnail(props: Props) {
             border: '2px solid #fff',
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
           }}
-          loading='lazy'
+          loading="lazy"
         />
       </motion.div>
     );
@@ -64,7 +64,7 @@ export default function VideoThumbnail(props: Props) {
             zIndex: 99,
           }}
           transition={{ duration: 0.3 }}
-          loading='lazy'
+          loading="lazy"
         />
         <motion.div
           className="grid-card-item-overlay"

@@ -2,6 +2,7 @@ import { VideoState } from '../../Home.type';
 import { motion } from 'framer-motion';
 import VideoThumbnail from './VideoThumbnail';
 import useHome from '../../hooks/useHome';
+import FallingSakura from '../fallingSakura/FallingSakura';
 
 interface Props {
   data: VideoState[];
@@ -24,7 +25,8 @@ export default function CanvasVideos(props: Props) {
   const { currentCategoryData } = useHome();
 
   return (
-    <motion.div className="w-full flex items-center justify-center">
+    <motion.div className="w-screen flex items-center justify-center bg-transparent">
+      <FallingSakura />
       <VideoThumbnail
         categoryData={currentCategoryData}
         key={'category-' + currentCategoryData?.id}
