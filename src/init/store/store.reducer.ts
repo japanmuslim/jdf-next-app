@@ -6,7 +6,7 @@ import { IslamicBooksApi } from '@/services/api/islamicBooksService';
 import { QuestionApi } from '@/services/api/questionService';
 import { QuizApi } from '@/services/api/quizService';
 import { TafseerApi } from '@/services/api/tafseerService';
-import { categoryIdSlice } from '@/services/slice/categoryIdSlicer';
+import categoryIdReducer from '@/services/slice/categoryIdSlicer';
 import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   [QuestionApi.reducerPath]: QuestionApi.reducer,
   [FaqApi.reducerPath]: FaqApi.reducer,
   [IslamicBooksApi.reducerPath]: IslamicBooksApi.reducer,
-  categorySlice: categoryIdSlice.reducer,
+  categorySlice: categoryIdReducer,
 });
 
 export default rootReducer;

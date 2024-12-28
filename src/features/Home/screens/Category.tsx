@@ -1,7 +1,9 @@
+'use client';
+
 import { CategoryVideoProps } from '../Home.type';
 import Layout from '@/layouts/Layout';
 // import CanvasScene from './3dEffect/CanvasScene';
-import React, { memo } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
 import FallingSakura from '../components/fallingSakura/FallingSakura';
 import Loading from '@/components/page/loading';
@@ -38,11 +40,11 @@ const Category = (props: CategoryProps) => {
           className="flex items-center justify-center min-h-screen w-full relative"
         >
           {/* <CanvasScene data={data} /> */}
-          <Scene3D
-            data={data}
-            isLoading={isLoading}
-            onHandleCategory={onHandleCategory}
-          />
+            <Scene3D
+              data={data}
+              isLoading={isLoading}
+              onHandleCategory={onHandleCategory}
+            />
         </section>
       </div>
     </Layout>

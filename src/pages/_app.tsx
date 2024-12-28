@@ -1,7 +1,6 @@
-'use client';
 import type { AppProps } from 'next/app';
 import { PagesProgressBar as ProgressBar } from 'next-nprogress-bar';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 
 import store from '@/init/store/store';
 
@@ -18,10 +17,9 @@ const settings = {
     showSpinner: false,
   },
 };
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
+    <Provider store={store} stabilityCheck="never">
       <ProgressBar {...settings} />
       <ToastContainer />
       <TooltipProvider>
