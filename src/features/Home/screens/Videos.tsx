@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/sheet';
 import Loading from '@/components/page/loading';
 import dynamic from 'next/dynamic';
-import { IoClose } from 'react-icons/io5';
+import { IoArrowBack, IoBackspace, IoClose } from 'react-icons/io5';
 import CanvasVideos from '../components/3dEffects/CanvasVideos';
 import FallingSakura from '../components/fallingSakura/FallingSakura';
 
@@ -64,7 +64,14 @@ const Videos = (props: VideosProps) => {
       className="overflow-x-hidden"
     >
       <div style={{ position: 'relative', zIndex: 1 }}>
-        <FallingSakura />
+        <button
+          type="button"
+          onClick={() => history.back()}
+          className="absolute top-24 left-4 rounded-full bg-primary/20 hover:bg-primary flex z-50 px-4 py-2 cursor-pointer font-semibold text-lg"
+        >
+          {' '}
+          &lt; &nbsp; 戻る
+        </button>
         <section
           id="hero"
           className="flex items-center justify-center min-h-screen w-full relative"

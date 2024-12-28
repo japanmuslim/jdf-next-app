@@ -33,10 +33,9 @@ const Category = (props: CategoryProps) => {
       className="overflow-x-hidden"
     >
       <div style={{ position: 'relative', zIndex: 1 }}>
-        <FallingSakura />
         <section
           id="hero"
-          className="flex items-center justify-center min-h-screen w-full relative"
+          className="flex items-center justify-center min-h-screen w-full relative bg-transparent"
         >
           {/* <CanvasScene data={data} /> */}
           <Scene3D
