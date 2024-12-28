@@ -38,7 +38,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
   const activeId = useAppSelector((state) => state.categorySlice.id);
 
   const onMouseEnter = (e: React.MouseEvent) => {
-    dispatch(setCategoryId(data.id));
+    dispatch(setCategoryId(data.video_category_id));
   };
   const onMouseLeave = (e: React.MouseEvent) => {
     dispatch(setCategoryId(0));
