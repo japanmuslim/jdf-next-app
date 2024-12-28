@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { CategoryVideoProps, VideoState } from '../../Home.type';
 import { IoPlay } from 'react-icons/io5';
+import Image from 'next/image';
+import { IMG_BLUR } from '@/contants';
 
 interface Props {
   videoData?: VideoState;
@@ -55,16 +57,21 @@ export default function VideoThumbnail(props: Props) {
           ease: 'easeInOut',
         }}
       >
-        <motion.img
+        <Image
           src={videoData?.thumbnail_url || ''}
           alt={videoData?.name_video || ''}
+          blurDataURL={IMG_BLUR}
+          placeholder="blur"
+          loading="lazy"
           style={{
             objectFit: 'cover',
             perspective: '1000px',
             zIndex: 99,
+            maxWidth: '250px',
+            maxHeight: '150px',
           }}
-          transition={{ duration: 0.3 }}
-          loading="lazy"
+          width={250}
+          height={150}  
         />
         <motion.div
           className="grid-card-item-overlay"

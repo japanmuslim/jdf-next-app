@@ -66,15 +66,6 @@ function ScatteredThumbnail(props: ThumbnailProps) {
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-            {/* <motion.img
-              src={data.thumbnail_url || ''}
-              alt="Look at mouse"
-              style={{ maxHeight: '50px', maxWidth: '100px' }}
-              loading="lazy"
-              // initial={{ filter: 'blur(10px)' }} // Blur saat awal
-              // animate={{ filter: 'blur(0px)' }} // Hilangkan blur setelah animasi berjalan
-              // transition={{ duration: 1 }} // Durasi transisi
-            /> */}
             <Image
               src={data.thumbnail_url || ''}
               alt={data.name_video || 'Video'}
