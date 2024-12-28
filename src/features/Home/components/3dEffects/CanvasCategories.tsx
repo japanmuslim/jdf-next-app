@@ -39,8 +39,6 @@ export default function CanvasCategories(props: Props) {
           onCreated={({ gl }) => {
             gl.shadowMap.enabled = true;
             gl.shadowMap.type = THREE.PCFSoftShadowMap;
-            // eslint-disable-next-line no-console
-            console.clear();
           }}
         >
           {/* <motion3D.ambientLight intensity={0.5} /> */}

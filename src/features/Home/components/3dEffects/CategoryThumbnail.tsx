@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Vector3 } from '@react-three/fiber';
 import { useAppDispatch, useAppSelector } from '@/init/store/store';
 import { setCategoryId } from '@/services/slice/categoryIdSlicer';
+import Image from 'next/image';
 
 interface Props {
   data: CategoryVideoProps;
