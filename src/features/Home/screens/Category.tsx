@@ -12,8 +12,13 @@ const Scene3D = dynamic(
   () => import('../components/3dEffects/CanvasCategories'),
   {
     ssr: false,
-    loading: () => <Loading />,
-    suspense: true,
+    loading: () => {
+      return (
+        <div className="flex items-center justify-center w-full h-screen">
+          <Loading />
+        </div>
+      );
+    }
   },
 );
 
@@ -51,4 +56,4 @@ const Category = (props: CategoryProps) => {
   );
 };
 
-export default memo(Category);
+export default Category;
