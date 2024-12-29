@@ -1,7 +1,6 @@
 import Layout from '@/layouts/Layout';
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { CategoryVideoProps, VideoState } from '../Home.type';
-import GridVideos from '../components/GridPerspective';
+import { VideoState } from '../Home.type';
 import { useGetVideoQuery } from '@/services/api/homeService';
 import {
   Sheet,
@@ -12,13 +11,14 @@ import {
 } from '@/components/ui/sheet';
 import Loading from '@/components/page/loading';
 import dynamic from 'next/dynamic';
-import { IoClose } from 'react-icons/io5';
+import { IoArrowBack, IoBackspace, IoClose } from 'react-icons/io5';
 import CanvasVideos from '../components/3dEffects/CanvasVideos';
 import FallingSakura from '../components/fallingSakura/FallingSakura';
 
 const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,
   loading: () => <Loading />,
+  suspense: true,
 });
 
 interface VideosProps {
@@ -35,11 +35,12 @@ const Videos = (props: VideosProps) => {
   const { data: dataVideo, isLoading } = useGetVideoQuery(videoId || 0, {
     skip: !videoId,
   });
-  
+
   const onHandleVideo = useCallback(
     (videoId: number) => {
       setVideoId(videoId);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [dataVideo],
   );
 
@@ -52,7 +53,7 @@ const Videos = (props: VideosProps) => {
     if (dataVideo) {
       setVideoUrl(dataVideo.data?.link);
       setIsOpen(true);
-    }
+    } 
   }, [dataVideo]);
 
   return (
@@ -60,10 +61,17 @@ const Videos = (props: VideosProps) => {
       id="home"
       pageTitle="Categories | Japan Dahwa Foundation"
       pageDescription="Home page description"
-      className='overflow-x-hidden'
+      className="overflow-x-hidden"
     >
       <div style={{ position: 'relative', zIndex: 1 }}>
-        <FallingSakura />
+        <button
+          type="button"
+          onClick={() => history.back()}
+          className="absolute top-24 left-4 rounded-full bg-primary/20 hover:bg-primary flex z-50 px-4 py-2 cursor-pointer font-semibold text-lg"
+        >
+          {' '}
+          &lt; &nbsp; 戻る
+        </button>
         <section
           id="hero"
           className="flex items-center justify-center min-h-screen w-full relative"

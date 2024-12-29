@@ -1,7 +1,9 @@
+'use client';
+
 import { CategoryVideoProps } from '../Home.type';
 import Layout from '@/layouts/Layout';
 // import CanvasScene from './3dEffect/CanvasScene';
-import React from 'react';
+import React, { memo } from 'react';
 import dynamic from 'next/dynamic';
 import FallingSakura from '../components/fallingSakura/FallingSakura';
 import Loading from '@/components/page/loading';
@@ -10,6 +12,7 @@ const Scene3D = dynamic(
   () => import('../components/3dEffects/CanvasCategories'),
   {
     ssr: false,
+    loading: () => <Loading />,
   },
 );
 
@@ -23,31 +26,27 @@ const Category = (props: CategoryProps) => {
   const { data, isLoading, onHandleCategory } = props;
 
   return (
-    <>
-      {isLoading && <Loading />}
-      <Layout
-        id="home"
-        pageTitle="Categories | Japan Dahwa Foundation"
-        pageDescription="Home page description"
-        className='overflow-x-hidden'
-      >
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <FallingSakura />
-          <section
-            id="hero"
-            className="flex items-center justify-center min-h-screen w-full relative"
-          >
-            {/* <CanvasScene data={data} /> */}
-            <Scene3D
-              data={data}
-              isLoading={isLoading}
-              onHandleCategory={onHandleCategory}
-            />
-          </section>
-        </div>
-      </Layout>
-    </>
+    <Layout
+      id="home"
+      pageTitle="Categories | Japan Dahwa Foundation"
+      pageDescription="Home page description"
+      className="overflow-x-hidden"
+    >
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <section
+          id="hero"
+          className="flex items-center justify-center min-h-screen w-full relative bg-transparent"
+        >
+          {/* <CanvasScene data={data} /> */}
+          <Scene3D
+            data={data}
+            isLoading={isLoading}
+            onHandleCategory={onHandleCategory}
+          />
+        </section>
+      </div>
+    </Layout>
   );
 };
 
-export default Category;
+export default memo(Category);

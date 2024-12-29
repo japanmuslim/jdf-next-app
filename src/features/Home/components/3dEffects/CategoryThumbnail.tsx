@@ -1,34 +1,38 @@
+'use client';
+
 import { Html } from '@react-three/drei';
 import { motion as motion3D } from 'framer-motion-3d';
 import { CategoryVideoProps } from '../../Home.type';
 import { motion } from 'framer-motion';
 import { Vector3 } from '@react-three/fiber';
+import { useAppDispatch, useAppSelector } from '@/init/store/store';
 import { setCategoryId } from '@/services/slice/categoryIdSlicer';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/init/store/store';
+import Image from 'next/image';
 
 interface Props {
   data: CategoryVideoProps;
   onHandleCategory?: (category: string) => void;
+  position: number[];
 }
 
 export default function CategoryThumbnail(props: Props) {
-  const { data, onHandleCategory } = props;
-  const dispatch = useDispatch();
-  const activeCategoryId = useSelector((state: any) => state?.categoryId?.id);
+  const { data, onHandleCategory, position } = props;
+  const dispatch = useAppDispatch();
+  const activeId = useAppSelector((state) => state.categorySlice.id);
+  
   const onMouseEnter = (e: React.MouseEvent) => {
     dispatch(setCategoryId(data.id));
   };
   const onMouseLeave = (e: React.MouseEvent) => {
-    dispatch(setCategoryId(null));
+    dispatch(setCategoryId(0));
   };
-
+  
   return (
     <motion3D.mesh
       name={data.category_name}
       onPointerOver={(e) => e.stopPropagation()}
       onPointerOut={(e) => e.stopPropagation()}
-      position={data?.position as Vector3}
+      position={position as Vector3}
     >
       <motion3D.planeGeometry args={[1, 1, 1]} />
       <motion3D.meshBasicMaterial
@@ -51,6 +55,7 @@ export default function CategoryThumbnail(props: Props) {
             src={data.thumbnail}
             alt="Look at mouse"
             style={{ maxHeight: '50px', maxWidth: '100px' }}
+            loading="lazy"
           />
           <motion.div
             style={{
@@ -59,13 +64,10 @@ export default function CategoryThumbnail(props: Props) {
               left: 0,
               width: '100%',
               height: '100%',
-              backgroundColor:
-                data.id === activeCategoryId
-                  ? 'rgba(255, 0, 0, 0.5)'
-                  : 'rgba(255, 255, 255, 0)', // Transparan secara default
+              backgroundColor: data.id === activeId ? 'rgba(255, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0)', // Transparan secara default
             }}
             whileHover={{
-              // backgroundColor: 'rgba(255, 0, 0, 0.5)',
+              backgroundColor: 'rgba(255, 0, 0, 0.5)',
               cursor: 'pointer',
             }}
             transition={{ duration: 0.3 }}
