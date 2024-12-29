@@ -73,8 +73,9 @@ function ScatteredThumbnail(props: ThumbnailProps) {
               loading="lazy"
               width={100}
               height={50}
-              blurDataURL={IMG_BLUR}
-              placeholder="blur"
+              onLoad={(e) => {
+                e.currentTarget.style.display = 'block';
+              }}
             />
             <motion.div
               style={{
@@ -103,7 +104,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
 
 export default function CategoryScatteredThumbnail(props: Props) {
   const { data, onHandleCategory } = props;
-  const maxImage = 3;
+  const maxImage = 2;
 
   return (
     <>

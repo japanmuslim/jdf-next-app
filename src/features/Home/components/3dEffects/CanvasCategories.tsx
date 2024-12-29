@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { CategoryVideoProps } from '../../Home.type';
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import CameraController from './CameraController';
 import CategoryThumbnail from './CategoryThumbnail';
 import CategoryScatteredThumbnail from './CategoryScatteredThumbnail';
@@ -26,7 +26,7 @@ const defaultPos: number[][] = [
   [1.3, -1.8, 1],
 ];
 
-export default function CanvasCategories(props: Props) {
+function CanvasCategories(props: Props) {
   const ref = useRef(null);
   const { data, isLoading } = props;
 
@@ -73,3 +73,5 @@ export default function CanvasCategories(props: Props) {
     </div>
   );
 }
+
+export default memo(CanvasCategories);
