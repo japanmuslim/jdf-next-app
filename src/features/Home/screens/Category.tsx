@@ -3,7 +3,7 @@
 import { CategoryVideoProps } from '../Home.type';
 import Layout from '@/layouts/Layout';
 // import CanvasScene from './3dEffect/CanvasScene';
-import React from 'react';
+import React, { memo } from 'react';
 import dynamic from 'next/dynamic';
 import FallingSakura from '../components/fallingSakura/FallingSakura';
 import Loading from '@/components/page/loading';
@@ -49,4 +49,4 @@ const Category = (props: CategoryProps) => {
   );
 };
 
-export default Category;
+export default memo(Category);

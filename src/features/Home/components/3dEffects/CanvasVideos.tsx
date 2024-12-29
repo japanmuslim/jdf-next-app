@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import VideoThumbnail from './VideoThumbnail';
 import useHome from '../../hooks/useHome';
 import FallingSakura from '../fallingSakura/FallingSakura';
+import { memo } from 'react';
 
 interface Props {
   data: VideoState[];
@@ -20,7 +21,7 @@ const defaultPosition = [
   [0, -320],
 ];
 
-export default function CanvasVideos(props: Props) {
+function CanvasVideos(props: Props) {
   const { data, onHandleVideo } = props;
   const { currentCategoryData } = useHome();
 
@@ -46,3 +47,5 @@ export default function CanvasVideos(props: Props) {
     </motion.div>
   );
 }
+
+export default memo(CanvasVideos);
