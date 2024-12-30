@@ -3,16 +3,18 @@
 import { CategoryVideoProps } from '../Home.type';
 import Layout from '@/layouts/Layout';
 // import CanvasScene from './3dEffect/CanvasScene';
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import FallingSakura from '../components/fallingSakura/FallingSakura';
 import Loading from '@/components/page/loading';
+import { motion } from 'framer-motion';
+import LoadingHome from './LoadingHome';
 
 const Scene3D = dynamic(
   () => import('../components/3dEffects/CanvasCategories'),
   {
     ssr: false,
-    loading: () => <Loading />,
+    loading: () => <LoadingHome />,
   },
 );
 
@@ -26,26 +28,27 @@ const Category = (props: CategoryProps) => {
   const { data, isLoading, onHandleCategory } = props;
 
   return (
-    <Layout
-      id="home"
-      pageTitle="Categories | Japan Dahwa Foundation"
-      pageDescription="Home page description"
-      className="overflow-x-hidden"
-    >
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <section
-          id="hero"
-          className="flex items-center justify-center min-h-screen w-full relative bg-transparent"
+    <>
+      {' '}
+      {isLoading && <LoadingHome />}
+      {!isLoading && (
+        <Layout
+          id="home"
+          pageTitle="Categories | Japan Dahwa Foundation"
+          pageDescription="Home page description"
+          className="overflow-x-hidden"
         >
-          {/* <CanvasScene data={data} /> */}
-          <Scene3D
-            data={data}
-            isLoading={isLoading}
-            onHandleCategory={onHandleCategory}
-          />
-        </section>
-      </div>
-    </Layout>
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <section
+              id="hero"
+              className="flex items-center justify-center min-h-screen w-full relative bg-transparent"
+            >
+              <Scene3D data={data} onHandleCategory={onHandleCategory} />
+            </section>
+          </div>
+        </Layout>
+      )}
+    </>
   );
 };
 
