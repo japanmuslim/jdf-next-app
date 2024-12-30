@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Loading from '@/components/page/loading';
 import Link from 'next/link';
 import useHome from './hooks/useHome';
+import Image from 'next/image';
 
 const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,
@@ -17,29 +18,46 @@ const HomeView = () => {
   // Mobile and tab view
   if (breakpoint === 'sm' || breakpoint === 'md') {
     return (
-      <section className="grid grid-cols-1 min-h-screen w-full">
-        <div
-          className="h-full w-full flex items-center justify-center text-white font-extrabold text-3xl relative"
-          style={{
-            backgroundImage: 'url(/assets/images/faq/bg-hero.webp)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-black bg-opacity-60 w-full h-full flex justify-center items-center">
-            <Link href="/muslim" >ムスリム</Link>
+      <section
+        className="grid grid-cols-1 min-h-screen w-full"
+        style={{
+          backgroundImage: 'url(/assets/images/home/bg-mobile.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="h-full w-full flex items-center justify-center text-white font-extrabold text-3xl group relative">
+          <div className="relative h-64 w-64">
+            <Image
+              src="/assets/images/home/button-bg.png"
+              alt="Japan Dahwa Foundation"
+              layout="fill"
+              objectFit="contain"
+            />
+            <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+              <Link
+                href="/non-muslim"
+                className="whitespace-nowrap text-[#4A3A17]"
+              >
+                非ムスリム
+              </Link>
+            </div>
           </div>
         </div>
-        <div
-          className="h-full w-full flex items-center justify-center text-white font-extrabold text-3xl relative"
-          style={{
-            backgroundImage: 'url(/assets/images/tafseer/surah.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-black bg-opacity-60 w-full h-full flex justify-center items-center">
-            <Link href="/non-muslim">非ムスリム</Link>
+        <div className="h-full w-full flex items-center justify-center text-white font-extrabold text-3xl group relative">
+          <div className="relative h-64 w-64">
+            <Image
+              src="/assets/images/home/button-bg.png"
+              alt="Japan Dahwa Foundation"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+          <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+            <Link href="/muslim" className="whitespace-nowrap text-[#4A3A17]">
+              ムスリム
+            </Link>
           </div>
         </div>
       </section>

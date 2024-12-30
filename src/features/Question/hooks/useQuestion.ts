@@ -22,6 +22,7 @@ const useQuestion = () => {
   const [clearSearch, setClearSearch] = useState(false);
   const [dataQuestion, setDataQuestion] = useState<QuestionState[]>([]);
   const [lastPage, setLastPage] = useState(1);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -187,6 +188,7 @@ const useQuestion = () => {
 
   return {
     dataQuestion,
+    isDisabled,
     lastPage,
     isLoading,
     isLoadingHotQuestion,
@@ -212,6 +214,7 @@ const useQuestion = () => {
     handleOpenModalAnswer,
     handleCloseModalAnswer,
     handleHotQuestion,
+    setIsDisabled,
     onSubmit,
   };
 };
