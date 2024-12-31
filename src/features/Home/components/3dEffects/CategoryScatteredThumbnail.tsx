@@ -45,11 +45,6 @@ function ScatteredThumbnail(props: ThumbnailProps) {
     dispatch(setCategoryId(0));
   };
 
-  useFrame(({ camera }) => {
-    // eslint-disable-next-line no-console
-    console.clear();
-  });
-
   return (
     <mesh castShadow position={position as Vector3}>
       <planeGeometry args={[1, 1, 1]} />
