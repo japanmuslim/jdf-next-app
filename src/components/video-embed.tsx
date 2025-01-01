@@ -28,35 +28,6 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
 }) => {
   const videoRef = useRef<ReactPlayer>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMuted, setIsMuted] = useState<boolean>(muted);
-  const [videoSrc, setVideoSrc] = useState<string>(src);
-
-  // const [isPiPActive, setIsPiPActive] = useState(false);
-
-  // useEffect(() => {
-  //   const handleScrollY = () => {
-  //     try {
-  //       const scrolledToBottom = window.innerHeight + window.scrollY >= 400;
-  //       const scrolledToTop = window.scrollY <= 0;
-
-  //       if (scrolledToBottom) {
-  //         setIsPiPActive(true);
-  //       }
-
-  //       if (scrolledToTop) {
-  //         setIsPiPActive(false);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error during scroll event:', error);
-  //     }
-  //   };
-
-  //   window.addEventListener('scroll', handleScrollY);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScrollY);
-  //   };
-  // }, []);
 
   if (!src) return <Loading />;
 
@@ -71,7 +42,7 @@ const VideoEmbed: FC<VideoEmbedProps> = ({
     >
       <ReactPlayer
         ref={videoRef}
-        url={videoSrc}
+        url={src}
         style={{ position: 'absolute', top: 0, left: 0 }}
         width="100%"
         height="100%"
