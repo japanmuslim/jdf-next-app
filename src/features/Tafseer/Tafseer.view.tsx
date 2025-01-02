@@ -140,7 +140,7 @@ const TafseerView = ({
                             {item.name_tafseer}
                           </h3>
                           <p className="md:text-xs text-[10px]">
-                             {item.start_surah} - {item.end_surah}
+                           アーヤ {item.start_surah} - {item.end_surah}
                           </p>
                         </div>
                       </div>
@@ -212,7 +212,7 @@ const TafseerView = ({
                             {item.name_tafseer}
                           </h3>
                           <p className="md:text-xs text-[10px]">
-                             {item.start_surah} - {item.end_surah}
+                          アーヤ {item.start_surah} - {item.end_surah}
                           </p>
                         </div>
                       </div>
