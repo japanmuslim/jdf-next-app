@@ -63,32 +63,21 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
         className="min-h-screen relative lg:flex hidden flex-col items-center justify-center xl:pb-10 lg:pb-20"
       >
         <div className="w-full px-40 grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:gap-y-16 2xl:gap-y-28 xl:mt-32 2xl:mt-52 lg:gap-x-12 lg:gap-y-14 lg:mt-32 2xl:gap-x-20 xl:gap-x-24 relative z-10">
-          {data[currentCategory]?.islamic_books
-            .map((val, i) => (
-              <div
-                key={i}
-                className="overflow-hidden xl:h-60 lg:h-56 w-full max-w-[200px] cursor-pointer hover:-translate-y-2  transition-all duration-300 hover:shadow-lg mx-auto"
-              >
-                <Image
-                  src={val?.cover}
-                  alt={val?.book_title}
-                  height={200}
-                  width={200}
-                  onClick={() => handleCurrentBook(i)}
-                  className="object-cover h-full w-full"
-                />
-              </div>
-            ))
-            .concat(
-              Array.from({
-                length: 8 - data[currentCategory]?.islamic_books.length,
-              }).map((_, i) => (
-                <div
-                  key={i}
-                  className="xl:h-60 lg:h-56 w-full bg-slate-50 max-w-[200px] mx-auto"
-                ></div>
-              )),
-            )}
+          {data[currentCategory]?.islamic_books.map((val, i) => (
+            <div
+              key={i}
+              className="overflow-hidden xl:h-60 lg:h-56 w-full max-w-[200px] cursor-pointer hover:-translate-y-2  transition-all duration-300 hover:shadow-lg mx-auto"
+            >
+              <Image
+                src={val?.cover}
+                alt={val?.book_title}
+                height={200}
+                width={200}
+                onClick={() => handleCurrentBook(i)}
+                className="object-contain h-full w-full"
+              />
+            </div>
+          ))}
         </div>
 
         <div className="flex mx-auto 2xl:-mb-6 xl:-mb-12 xl:mt-10 lg:mt-10 lg:-mb-20 relative z-10">

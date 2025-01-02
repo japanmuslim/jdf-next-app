@@ -1,16 +1,19 @@
+'use client';
+
 import Loading from '@/components/page/loading';
 import useHome from '@/features/Home/hooks/useHome';
+import LoadingHome from '@/features/Home/screens/LoadingHome';
 import MobileView from '@/features/Home/screens/Mobile.view';
 import dynamic from 'next/dynamic';
 
 const Category = dynamic(() => import('@/features/Home/screens/Category'), {
   ssr: false,
-  loading: () => <Loading />,
+  loading: () => <LoadingHome />,
 });
 
 const Videos = dynamic(() => import('@/features/Home/screens/Videos'), {
   ssr: false,
-  loading: () => <Loading />,
+  loading: () => <LoadingHome />,
 });
 
 const Slug = () => {

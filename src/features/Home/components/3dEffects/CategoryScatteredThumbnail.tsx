@@ -1,11 +1,11 @@
-import { Vector3 } from '@react-three/fiber';
+import { useFrame, Vector3 } from '@react-three/fiber';
 import { CategoryVideoProps, VideoState } from '../../Home.type';
-import { motion as motion3D } from 'framer-motion-3d';
 import { Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@/init/store/store';
 import { setCategoryId } from '@/services/slice/categoryIdSlicer';
-import { RootState } from '@/init/store/store';
+import Image from 'next/image';
+import { IMG_BLUR } from '@/contants';
 
 interface Props {
   data: CategoryVideoProps;
@@ -35,27 +35,20 @@ function ScatteredThumbnail(props: ThumbnailProps) {
 
   const rotateX = position[0] >= 1 ? -15 : position[0] <= -1 ? 15 : 0;
   const rotateY = position[1] >= 2 ? 15 : position[1] <= -2 ? -15 : 0;
-  const activeCategoryId = useSelector((state: any) => state.categoryId?.id);
+  const dispatch = useAppDispatch();
+  const activeId = useAppSelector((state) => state.categorySlice.id);
 
-  const dispatch = useDispatch();
-
-  
   const onMouseEnter = (e: React.MouseEvent) => {
     dispatch(setCategoryId(data.video_category_id));
-    console.log(activeCategoryId);
   };
   const onMouseLeave = (e: React.MouseEvent) => {
-    dispatch(setCategoryId(null));
+    dispatch(setCategoryId(0));
   };
 
   return (
-    <motion3D.mesh castShadow position={position as Vector3}>
-      <motion3D.planeGeometry args={[1, 1, 1]} />
-      <motion3D.meshBasicMaterial
-        color={'#fff'}
-        transparent={true}
-        opacity={0}
-      />
+    <mesh castShadow position={position as Vector3}>
+      <planeGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial color={'#fff'} transparent={true} opacity={0} />
       <Html transform distanceFactor={10}>
         {data.thumbnail_url && (
           <motion.div
@@ -68,10 +61,16 @@ function ScatteredThumbnail(props: ThumbnailProps) {
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-            <motion.img
+            <Image
               src={data.thumbnail_url || ''}
-              alt="Look at mouse"
+              alt={data.name_video || 'Video'}
               style={{ maxHeight: '50px', maxWidth: '100px' }}
+              loading="lazy"
+              width={100}
+              height={50}
+              onLoad={(e) => {
+                e.currentTarget.style.display = 'block';
+              }}
             />
             <motion.div
               style={{
@@ -81,7 +80,7 @@ function ScatteredThumbnail(props: ThumbnailProps) {
                 width: '100%',
                 height: '100%',
                 backgroundColor:
-                  data.video_category_id === activeCategoryId
+                  data.video_category_id === activeId
                     ? `rgba(253, 53, 53, 0.63)`
                     : `rgba(20, 13, 13, ${position[2] / -10 < 0.2 ? 0.3 : position[2] / -10 + 0.2})`,
               }}
@@ -94,17 +93,18 @@ function ScatteredThumbnail(props: ThumbnailProps) {
           </motion.div>
         )}
       </Html>
-    </motion3D.mesh>
+    </mesh>
   );
 }
 
 export default function CategoryScatteredThumbnail(props: Props) {
   const { data, onHandleCategory } = props;
+  const maxImage = 2;
 
   return (
     <>
       {data?.videos?.map((d, i) => {
-        if (i > 6) return null;
+        if (i > maxImage) return null;
         return (
           <ScatteredThumbnail
             key={i}

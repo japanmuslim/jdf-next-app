@@ -18,6 +18,8 @@ import Paginate from '@/components/paginate';
 import Breadcrumb from '@/components/breadcrumb';
 import { Switch } from '@/components/ui/switch';
 import useQuestion from '@/features/Question/hooks/useQuestion';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { KEY_RECAPTCHA } from '@/contants';
 
 const FaqList = dynamic(
   () => import('@/features/Question/components/FaqAccordion'),
@@ -42,6 +44,7 @@ const DetailQuestion = dynamic(
 
 export default function Question() {
   const {
+    isDisabled,
     dataQuestion,
     lastPage,
     isLoading,
@@ -67,6 +70,7 @@ export default function Question() {
     handleOpenModalAnswer,
     handleCloseModalAnswer,
     handleHotQuestion,
+    setIsDisabled,
     onSubmit,
   } = useQuestion();
 
@@ -147,7 +151,17 @@ export default function Question() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="!mt-6 flex items-center">
+            <div className="w-full flex justify-center">
+              <ReCAPTCHA
+                sitekey={KEY_RECAPTCHA}
+                onChange={() => setIsDisabled(false)}
+              />
+            </div>
+            <Button
+              type="submit"
+              className="!mt-6 flex items-center"
+              disabled={isDisabled}
+            >
               {isLoadingStore ? (
                 <>
                   <FaSpinner className="animate-spin mr-2" />

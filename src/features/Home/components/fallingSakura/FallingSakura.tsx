@@ -9,7 +9,7 @@ export default function FallingSakura() {
 
   return (
     <div
-      className="sakuraContainer absolute pointer-events-none z-50 w-screen h-screen"
+      className="sakuraContainer absolute pointer-events-none w-screen h-screen"
       style={{ top: '-100px' }}
     >
       {sakuraArray.map((index) => {

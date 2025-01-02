@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { CategoryVideoProps, VideoState } from '../../Home.type';
 import { IoPlay } from 'react-icons/io5';
+import Image from 'next/image';
+import { IMG_BLUR } from '@/contants';
 
 interface Props {
   videoData?: VideoState;
   categoryData?: CategoryVideoProps;
   position?: number[];
-  index ?: number;
+  index?: number;
   onHandleVideo?: (videoId: number) => void;
 }
 
@@ -14,7 +16,7 @@ export default function VideoThumbnail(props: Props) {
   const { videoData, categoryData, position, index, onHandleVideo } = props;
   if (categoryData) {
     return (
-      <motion.div>
+      <motion.div className="absolute">
         <motion.img
           src={categoryData?.thumbnail}
           alt="Look at mouse"
@@ -32,6 +34,7 @@ export default function VideoThumbnail(props: Props) {
             border: '2px solid #fff',
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
           }}
+          loading="lazy"
         />
       </motion.div>
     );
@@ -54,15 +57,21 @@ export default function VideoThumbnail(props: Props) {
           ease: 'easeInOut',
         }}
       >
-        <motion.img
+        <Image
           src={videoData?.thumbnail_url || ''}
           alt={videoData?.name_video || ''}
+          blurDataURL={IMG_BLUR}
+          placeholder="blur"
+          loading="lazy"
           style={{
             objectFit: 'cover',
             perspective: '1000px',
             zIndex: 99,
+            maxWidth: '250px',
+            maxHeight: '150px',
           }}
-          transition={{ duration: 0.3 }}
+          width={250}
+          height={150}  
         />
         <motion.div
           className="grid-card-item-overlay"

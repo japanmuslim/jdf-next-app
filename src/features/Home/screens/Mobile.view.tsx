@@ -83,7 +83,7 @@ const MobileView = (props: MobileViewProps) => {
         {data?.map((val, index) => (
           <div key={val.id}>
             <div
-              className="h-40 md:h-72 relative w-full cursor-pointer"
+              className="h-40 md:h-72 relative w-full cursor-pointer border-b-4 border-[#333333]"
               onClick={() => handleExpandCategory(val.id)}
             >
               <div className="absolute inset-0 bg-black bg-opacity-30 z-10" />
