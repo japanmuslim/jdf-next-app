@@ -277,7 +277,7 @@ const TafseerView = ({
               >
                 <h3 className="md:text-xl text-base">{item.name_tafseer}</h3>
                 <p className="md:text-sm text-xs">
-                   {item.start_surah} - {item.end_surah}
+                 アーヤ {item.start_surah} - {item.end_surah}
                 </p>
               </div>
             </div>
