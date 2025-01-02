@@ -98,7 +98,7 @@ const TafseerView = ({
                     >
                       <div className="flex flex-col justify-center gap-1">
                         <h3 className="font-medium md:text-[15px] text-xs">
-                          Surah {item.surah_name}
+                          {item.surah_name}
                         </h3>
                       </div>
                     </div>
