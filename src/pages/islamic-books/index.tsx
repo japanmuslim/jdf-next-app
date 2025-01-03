@@ -63,14 +63,14 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
         className="min-h-screen relative lg:flex hidden flex-col items-center justify-center xl:pb-10 lg:pb-20"
       >
         <div className="w-full px-40 grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:gap-y-16 2xl:gap-y-28 xl:mt-32 2xl:mt-52 lg:gap-x-12 lg:gap-y-14 lg:mt-32 2xl:gap-x-20 xl:gap-x-24 relative z-10">
-          {data[currentCategory]?.islamic_books.map((val, i) => (
+          {data[currentCategory]?.islamic_books?.map((val, i) => (
             <div
               key={i}
               className="overflow-hidden xl:h-60 lg:h-56 w-full max-w-[200px] cursor-pointer hover:-translate-y-2  transition-all duration-300 hover:shadow-lg mx-auto"
             >
               <Image
-                src={val?.cover}
-                alt={val?.book_title}
+                src={val?.cover || '/assets/images/islamic-books/noimage.png'}
+                alt={val?.book_title || 'Book Title'}
                 height={200}
                 width={200}
                 onClick={() => handleCurrentBook(i)}
@@ -81,7 +81,7 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
         </div>
 
         <div className="flex mx-auto 2xl:-mb-6 xl:-mb-12 xl:mt-10 lg:mt-10 lg:-mb-20 relative z-10">
-          {data.map((val, i) => (
+          {data?.map((val, i) => (
             <button
               key={i}
               onClick={() => handleCurrentCategory(i)}
@@ -90,7 +90,7 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
                 currentCategory === i ? 'bg-[#191919]' : 'bg-[#191919]/60',
               )}
             >
-              {val?.name}
+              {val?.name || 'Category'}
             </button>
           ))}
         </div>
@@ -145,8 +145,11 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
                         className="overflow-hidden md:h-80 h-60 w-full md:w-60 cursor-pointer hover:-translate-y-2  transition-all duration-300 hover:shadow-lg mx-auto"
                       >
                         <Image
-                          src={item?.cover}
-                          alt={item?.book_title}
+                          src={
+                            item?.cover ||
+                            '/assets/images/islamic-books/noimage.png'
+                          }
+                          alt={item?.book_title || 'Book Title'}
                           height={200}
                           width={200}
                           onClick={() => handleCurrentBook(dataIndex)}
@@ -161,7 +164,7 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
           </NewSwiper>
 
           <div className="flex flex-col items-center justify-center md:mt-10 mt-6 z-10">
-            {data.map((val, i) => (
+            {data?.map((val, i) => (
               <button
                 key={i}
                 onClick={() => handleCurrentCategory(i)}
@@ -170,7 +173,7 @@ export default function IslamicBooks({ data }: IslamicBooksProps) {
                   currentCategory === i ? 'bg-[#191919]' : 'bg-[#191919]/60',
                 )}
               >
-                {val?.name}
+                {val?.name || 'Category'}
               </button>
             ))}
           </div>
