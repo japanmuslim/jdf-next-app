@@ -26,7 +26,6 @@
     "@react-three/fiber": "8.2.2",
     "@reduxjs/toolkit": "^2.2.7",
     "@types/aos": "^3.0.7",
-    "@types/hammerjs": "^2.0.46",
     "@types/react-slick": "^0.23.13",
     "@types/three": "^0.170.0",
     "aos": "^2.3.4",
@@ -35,8 +34,6 @@
     "clsx": "^2.1.1",
     "cookies-next": "^4.2.1",
     "framer-motion": "^11.14.1",
-    "framer-motion-3d": "^11.14.1",
-    "hammerjs": "^2.0.8",
     "lucide-react": "^0.402.0",
     "next": "14.2.4",
     "next-nprogress-bar": "^2.3.12",
@@ -56,7 +53,6 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "0.159.0",
-    "three-stdlib": "^2.35.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
