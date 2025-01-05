@@ -14,10 +14,11 @@ import dynamic from 'next/dynamic';
 import { IoArrowBack, IoBackspace, IoClose } from 'react-icons/io5';
 import CanvasVideos from '../components/3dEffects/CanvasVideos';
 import FallingSakura from '../components/fallingSakura/FallingSakura';
+import LoadingHome from './LoadingHome';
 
 const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
   ssr: false,
-  loading: () => <Loading />,
+  loading: () => <LoadingHome />,
   suspense: true,
 });
 

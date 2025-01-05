@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import '@/styles/sakura.css';
+@import '@/styles/loader.css';
 
 @layer base {
   :root {

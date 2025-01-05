@@ -722,6 +722,11 @@
   resolved "https://registry.npmjs.org/@types/draco3d/-/draco3d-1.4.10.tgz"
   integrity sha512-AX22jp8Y7wwaBgAixaSvkoG4M/+PlAcm3Qs4OW8yT9DM4xUpWKeFhLueTAyZF39pviAdcDdeJoACapiAceqNcw==
 
+"@types/hammerjs@^2.0.46":
+  version "2.0.46"
+  resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.46.tgz#381daaca1360ff8a7c8dff63f32e69745b9fb1e1"
+  integrity sha512-ynRvcq6wvqexJ9brDMS4BnBLzmr0e14d6ZJTEShTBWKymQiHwlAyGu0ZPEFI2Fh1U53F7tN9ufClWM5KvqkKOw==
+
 "@types/json5@^0.0.29":
   version "0.0.29"
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
@@ -2109,6 +2114,11 @@ graphemer@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/graphemer/-/graphemer-1.4.0.tgz"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha512-tSQXBXS/MWQOn/RKckawJ61vvsDpCom87JgxiYdGwHdOa0ht0vzUWDlfioofFCRU0L+6NGDt6XzbgoJvZkMeRQ==
 
 has-bigints@^1.0.2:
   version "1.1.0"
