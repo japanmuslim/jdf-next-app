@@ -30,16 +30,17 @@ function CanvasCategories(props: Props) {
   const ref = useRef(null);
   const { data } = props;
   const [isLoad, setIsLoad] = useState(true);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const observer = new PerformanceObserver((list) => {
-      if (document.readyState === "complete") {
-        setIsLoad(false); 
+      if (document.readyState === 'complete') {
+        setIsLoad(false);
         observer.disconnect();
       }
     });
 
-    observer.observe({ type: "resource", buffered: true });
+    observer.observe({ type: 'resource', buffered: true });
 
     return () => observer.disconnect();
   }, []);
@@ -57,6 +58,7 @@ function CanvasCategories(props: Props) {
               gl.shadowMap.enabled = true;
               gl.shadowMap.type = THREE.PCFSoftShadowMap;
             }}
+            ref={canvasRef}
           >
             {/* <motion3D.ambientLight intensity={0.5} /> */}
             <CameraController centerRef={ref} />

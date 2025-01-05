@@ -1,6 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import React, { useEffect, useRef } from 'react';
 import { Vector2, Group, Object3DEventMap } from 'three';
+import Hammer from 'hammerjs';
 
 interface CameraControllerProps {
   centerRef: React.RefObject<Group<Object3DEventMap>>;
@@ -8,6 +9,7 @@ interface CameraControllerProps {
 
 export default function CameraController({ centerRef }: CameraControllerProps) {
   const mouse = useRef(new Vector2(0, 0));
+  const touchDelta = useRef({ x: 0 }); 
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -15,7 +17,19 @@ export default function CameraController({ centerRef }: CameraControllerProps) {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+
+    // Setup Hammer.js for gesture control
+    const hammer = new Hammer(window as any);
+
+    hammer.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+    hammer.on('pan', (event) => {
+      touchDelta.current.x = event.deltaX / window.innerWidth; // Normalize to [-1, 1]
+    });
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      hammer.destroy(); // Cleanup Hammer.js
+    };
   }, []);
 
   useFrame(({ camera }) => {
