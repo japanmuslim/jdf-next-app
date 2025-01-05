@@ -1,13 +1,11 @@
 'use client';
 
 import { Html } from '@react-three/drei';
-import { motion as motion3D } from 'framer-motion-3d';
 import { CategoryVideoProps } from '../../Home.type';
 import { motion } from 'framer-motion';
 import { Vector3 } from '@react-three/fiber';
 import { useAppDispatch, useAppSelector } from '@/init/store/store';
 import { setCategoryId } from '@/services/slice/categoryIdSlicer';
-import Image from 'next/image';
 
 interface Props {
   data: CategoryVideoProps;
@@ -28,14 +26,14 @@ export default function CategoryThumbnail(props: Props) {
   };
   
   return (
-    <motion3D.mesh
+    <mesh
       name={data.category_name}
       onPointerOver={(e) => e.stopPropagation()}
       onPointerOut={(e) => e.stopPropagation()}
       position={position as Vector3}
     >
-      <motion3D.planeGeometry args={[1, 1, 1]} />
-      <motion3D.meshBasicMaterial
+      <planeGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial
         color={'#fff'}
         transparent={true}
         opacity={0}
@@ -74,6 +72,6 @@ export default function CategoryThumbnail(props: Props) {
           />
         </motion.div>
       </Html>
-    </motion3D.mesh>
+    </mesh>
   );
 }
