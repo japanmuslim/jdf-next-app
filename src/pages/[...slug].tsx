@@ -30,7 +30,9 @@ const Slug = () => {
   // if (breakpoint === 'sm' || breakpoint === 'md')
   //   return <MobileView data={dataCategory?.data} />;
 
-  // if (isCategory && !isVideo && breakpoint === 'lg') {
+  if (isCategory && !isVideo
+    //  && breakpoint === 'lg'
+    ) {
     return (
       <Category
         data={dataCategory?.data}
@@ -38,9 +40,9 @@ const Slug = () => {
         onHandleCategory={handleCategory}
       />
     );
-  // }
+  }
 
-  // return <Videos data={currentCategoryData?.videos} />;
+  return <Videos data={currentCategoryData?.videos} />;
 };
 
 export default Slug;
