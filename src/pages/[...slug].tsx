@@ -27,11 +27,11 @@ const Slug = () => {
     handleCategory,
   } = useHome();
 
-  // if (breakpoint === 'sm' || breakpoint === 'md')
-  //   return <MobileView data={dataCategory?.data} />;
+  if (breakpoint === 'sm' || breakpoint === 'md')
+    return <MobileView data={dataCategory?.data} />;
 
   if (isCategory && !isVideo
-    //  && breakpoint === 'lg'
+     && breakpoint === 'lg'
     ) {
     return (
       <Category
