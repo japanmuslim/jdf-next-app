@@ -13,7 +13,7 @@ const VideoEmbed = dynamic(() => import('@/components/video-embed'), {
 });
 
 const HomeView = () => {
-  const { breakpoint } = useHome();
+  const { router, breakpoint } = useHome();
 
   // Mobile and tab view
   if (breakpoint === 'sm' || breakpoint === 'md') {
@@ -27,37 +27,54 @@ const HomeView = () => {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className="h-full w-full flex items-center justify-center text-white font-extrabold text-3xl group relative">
-          <div className="relative h-64 w-64">
+        <div className="h-full w-full flex items-center justify-center group relative">
+          <div
+            className="relative h-72 w-72"
+            onClick={() => router.push('/non-muslim')}
+          >
             <Image
               src="/assets/images/home/button-bg.png"
               alt="Japan Dahwa Foundation"
-              layout="fill"
-              objectFit="contain"
+              fill
+              className="object-contain"
+              priority
             />
-            <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-              <Link
-                href="/non-muslim"
-                className="whitespace-nowrap text-[#4A3A17]"
-              >
-                非ムスリム
-              </Link>
+            <div className="absolute top-1/2 w-[73%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <Image
+                src="/assets/images/home/text-nonmuslim.png"
+                alt="Non Muslim"
+                width={700}
+                height={300}
+                quality={100}
+                className="object-contain"
+                priority
+              />
             </div>
           </div>
         </div>
-        <div className="h-full w-full flex items-center justify-center text-white font-extrabold text-3xl group relative">
-          <div className="relative h-64 w-64">
+        <div className="h-full w-full flex items-center justify-center group relative">
+          <div
+            className="relative h-72 w-72"
+            onClick={() => router.push('/muslim')}
+          >
             <Image
               src="/assets/images/home/button-bg.png"
               alt="Japan Dahwa Foundation"
-              layout="fill"
-              objectFit="contain"
+              fill
+              className="object-contain"
+              priority
             />
-          </div>
-          <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-            <Link href="/muslim" className="whitespace-nowrap text-[#4A3A17]">
-              ムスリム
-            </Link>
+            <div className="absolute top-1/2 w-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <Image
+                src="/assets/images/home/text-muslim.png"
+                alt="Muslim"
+                width={600}
+                height={300}
+                quality={100}
+                className="object-contain"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>

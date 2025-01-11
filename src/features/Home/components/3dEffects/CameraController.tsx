@@ -8,6 +8,7 @@ interface CameraControllerProps {
 
 export default function CameraController({ centerRef }: CameraControllerProps) {
   const mouse = useRef(new Vector2(0, 0));
+  const touchDelta = useRef({ x: 0 }); 
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -15,7 +16,6 @@ export default function CameraController({ centerRef }: CameraControllerProps) {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   useFrame(({ camera }) => {

@@ -34,7 +34,6 @@
     "clsx": "^2.1.1",
     "cookies-next": "^4.2.1",
     "framer-motion": "^11.14.1",
-    "framer-motion-3d": "^11.14.1",
     "lucide-react": "^0.402.0",
     "next": "14.2.4",
     "next-nprogress-bar": "^2.3.12",
@@ -54,7 +53,6 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "0.159.0",
-    "three-stdlib": "^2.35.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
