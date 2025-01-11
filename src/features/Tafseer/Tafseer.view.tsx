@@ -98,7 +98,7 @@ const TafseerView = ({
                     >
                       <div className="flex flex-col justify-center gap-1">
                         <h3 className="font-medium md:text-[15px] text-xs">
-                          Surah {item.surah_name}
+                          {item.surah_name}
                         </h3>
                       </div>
                     </div>
@@ -140,7 +140,7 @@ const TafseerView = ({
                             {item.name_tafseer}
                           </h3>
                           <p className="md:text-xs text-[10px]">
-                            Verse {item.start_surah} - {item.end_surah}
+                           アーヤ {item.start_surah} - {item.end_surah}
                           </p>
                         </div>
                       </div>
@@ -212,7 +212,7 @@ const TafseerView = ({
                             {item.name_tafseer}
                           </h3>
                           <p className="md:text-xs text-[10px]">
-                            Verse {item.start_surah} - {item.end_surah}
+                          アーヤ {item.start_surah} - {item.end_surah}
                           </p>
                         </div>
                       </div>
@@ -277,7 +277,7 @@ const TafseerView = ({
               >
                 <h3 className="md:text-xl text-base">{item.name_tafseer}</h3>
                 <p className="md:text-sm text-xs">
-                  Verse {item.start_surah} - {item.end_surah}
+                 アーヤ {item.start_surah} - {item.end_surah}
                 </p>
               </div>
             </div>
