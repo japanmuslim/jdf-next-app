@@ -49,6 +49,7 @@ const useHome = () => {
   }, []);
 
   return {
+    router,
     isCategory,
     isVideo,
     breakpoint,
