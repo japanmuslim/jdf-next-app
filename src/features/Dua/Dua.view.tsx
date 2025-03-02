@@ -94,7 +94,7 @@ const DuaView = ({
       id="latest-dua"
       className="bg-[#191919] py-12 space-y-8 lg:px-8 px-6 overflow-hidden"
     >
-      <h2 className="font-bold text-2xl">最新のドゥア</h2>
+      <h2 className="font-bold text-2xl">ドゥアー（祈り）とズィクル（唱念）</h2>
       <Swiper>
         {data?.map((item, index) => (
           <div

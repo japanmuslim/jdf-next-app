@@ -206,7 +206,7 @@ export default function Question() {
               <input
                 type="text"
                 className="w-full h-full bg-transparent pl-10 text-primary outline-primary"
-                placeholder="質問を検索する"
+                placeholder="質問の検索"
                 onChange={handleSearch}
               />
             </div>
@@ -238,14 +238,14 @@ export default function Question() {
                 onClick={handleToggleModal}
               >
                 <IoSendSharp className="md:text-lg text-xs -rotate-45 -mt-1" />
-                質問を投稿する
+                質問する
               </Button>
             </div>
             <div className="relative flex lg:hidden h-12 w-full mb-6">
               <input
                 type="text"
                 className="w-full h-full bg-primary/50 pl-10 text-primary outline-primary rounded text-white"
-                placeholder="質問を検索する"
+                placeholder="質問の検索"
                 onChange={handleSearch}
                 value={search}
               />
@@ -280,7 +280,7 @@ export default function Question() {
               <input
                 type="text"
                 className="w-full h-full bg-primary/50 px-10 text-primary outline-primary rounded text-white"
-                placeholder="質問を検索する"
+                placeholder="質問の検索"
                 onChange={handleSearch}
                 value={search}
               />

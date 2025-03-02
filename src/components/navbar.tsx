@@ -17,10 +17,10 @@ import { useRouter } from 'next/router';
 import { IoClose } from 'react-icons/io5';
 
 const navItems: NavItemsProps[] = [
-  { links: 'ホームページ', href: '/' },
+  { links: 'ホーム', href: '/' },
   { links: 'タフスィール', href: '/tafseer' },
-  { links: 'ドゥア', href: '/dua' },
-  { links: 'イスラム書籍', href: '/islamic-books' },
+  { links: 'ドゥアー（祈り）とズィクル（唱念）', href: '/dua' },
+  { links: 'イスラーム関連書籍', href: '/islamic-books' },
   { links: '記事', href: '/article' },
   { links: 'よくある質問', href: '/q&a' },
   // { links: 'FAQ', href: '/faq' },
@@ -107,7 +107,7 @@ const Navbar = ({ isOpen }: { isOpen: boolean }) => {
               className={`bg-transparent text-white rounded-full ${pathname === '/quiz' ? 'bg-white text-primary' : ''}`}
               asChild
             >
-              <Link href="/quiz">クイズを受ける</Link>
+              <Link href="/quiz">クイズに挑戦</Link>
             </Button>
           </li>
         </ul>
@@ -152,7 +152,7 @@ const Navbar = ({ isOpen }: { isOpen: boolean }) => {
                         className="bg-transparent rounded-full w-full mt-4"
                         asChild
                       >
-                        <Link href="/quiz">クイズを受ける</Link>
+                        <Link href="/quiz">クイズに挑戦</Link>
                       </Button>
                     </li>
                   </ul>

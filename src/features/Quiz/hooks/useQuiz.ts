@@ -107,7 +107,7 @@ const useQuiz = () => {
 
   const handleFinishedQuiz = () => {
     Swal.fire({
-      title: 'クイズ終了しました！',
+      title: 'クイズ終了！',
       text: 'もう一度クイズを始めたいですか？',
       icon: 'question',
       showCancelButton: true,

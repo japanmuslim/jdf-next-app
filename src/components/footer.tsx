@@ -38,16 +38,16 @@ const Footer = () => {
             <div className="grid grid-cols-2">
               <ul className="text-white text-sm space-y-3">
                 <li>
-                  <Link href="/">ホームページ</Link>
+                  <Link href="/">ホーム</Link>
                 </li>
                 <li>
                   <Link href="/tafseer">タフスィール</Link>
                 </li>
                 <li>
-                  <Link href="/dua">ドゥア</Link>
+                  <Link href="/dua">ドゥアー（祈り）とズィクル（唱念）</Link>
                 </li>
                 <li>
-                  <Link href="/islamic-books">イスラム書籍</Link>
+                  <Link href="/islamic-books">イスラーム関連書籍</Link>
                 </li>
               </ul>
               <ul className="text-white text-sm space-y-3">
@@ -58,7 +58,7 @@ const Footer = () => {
                   <Link href="/q&a">Q&よくある質問</Link>
                 </li>
                 <li>
-                  <Link href="/quiz">クイズを受ける</Link>
+                  <Link href="/quiz">クイズに挑戦</Link>
                 </li>
               </ul>
             </div>
