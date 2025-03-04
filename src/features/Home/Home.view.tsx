@@ -33,7 +33,7 @@ const HomeView = () => {
             onClick={() => router.push('/non-muslim')}
           >
             <Image
-              src="/assets/images/home/button-non.jpeg"
+              src="/assets/images/home/non-muslim.png"
               alt="Japan Dahwa Foundation"
               fill
               className="object-contain"
@@ -58,7 +58,7 @@ const HomeView = () => {
             onClick={() => router.push('/muslim')}
           >
             <Image
-              src="/assets/images/home/btn-muslim.jpeg"
+              src="/assets/images/home/muslim.png"
               alt="Japan Dahwa Foundation"
               fill
               className="object-contain"
