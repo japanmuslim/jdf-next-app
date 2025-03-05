@@ -21,7 +21,7 @@ const HomeView = () => {
       <section
         className="grid grid-cols-1 min-h-screen w-full"
         style={{
-          backgroundImage: 'url(/assets/images/home/bg-mobile.jpeg)',
+          backgroundImage: 'url(/assets/images/home/bg-mobile.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
