@@ -1,7 +1,16 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { JuzState, Surah } from '../Tafseer.type';
+import { JuzState, OpeningTafseer, Surah } from '../Tafseer.type';
 
-const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
+const useTafseer = ({
+  data,
+  juz,
+  opening,
+}: {
+  data: Surah[];
+  juz: JuzState[];
+  opening: OpeningTafseer;
+}) => {
+  const [isOpening, setIsOpening] = useState<boolean>(true);
   const [isCurrentSurah, setIsCurrentSurah] = useState<number>(0);
   const [isCurrentTafseer, setIsCurrentTafseer] = useState<number>(0);
   const [isCurrentJuz, setIsCurrentJuz] = useState<number>(0);
@@ -36,11 +45,13 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
   }, []);
 
   const handleCurrentSurah = useCallback((current: number) => {
+    setIsOpening(false);
     setIsCurrentSurah(current);
     tafseerRef?.current?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   const handleCurrentTafseer = useCallback((current: number) => {
+    setIsOpening(false);
     setIsCurrentTafseer(current);
     tafseerRef?.current?.scrollIntoView({ behavior: 'smooth' });
 
@@ -52,12 +63,15 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
   }, []);
 
   const handleCurrentJuz = useCallback((current: number) => {
+    setIsOpening(false);
     setIsCurrentJuz(current);
     tafseerRef?.current?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   const handleCurrentLatest = useCallback(
     (idSurah: number, idTafseer: number) => {
+      setIsOpening(false);
+
       const surahIndex = data.findIndex((item) => item.id === idSurah);
       if (surahIndex !== -1) {
         setIsCurrentSurah(surahIndex);
@@ -105,6 +119,7 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
   const handleTab = useCallback(
     (tab: string) => {
       setIsTab(tab);
+      setIsOpening(false);
 
       if (tab === 'surah') {
         setFilteredData(data);
@@ -115,7 +130,35 @@ const useTafseer = ({ data, juz }: { data: Surah[]; juz: JuzState[] }) => {
     [data, juz],
   );
 
+  const handleTafseerVideo = useCallback(() => {
+    if (isOpening) {
+      return opening?.value || '';
+    }
+
+    if (isTab === 'surah') {
+      const tafsirs = filteredData?.[isCurrentSurah || 0]?.tafsirs || [];
+      return tafsirs[isCurrentTafseer || 0]?.link_youtube || '';
+    }
+
+    if (isTab === 'juz') {
+      const tafsirs = isJuz?.[isCurrentJuz || 0]?.tafsirs || [];
+      return tafsirs[isCurrentTafseer || 0]?.link_youtube || '';
+    }
+
+    return opening?.value || '';
+  }, [
+    filteredData,
+    isCurrentSurah,
+    isCurrentTafseer,
+    isJuz,
+    isCurrentJuz,
+    isTab,
+    isOpening,
+    opening,
+  ]);
+
   return {
+    linkVideo: handleTafseerVideo(),
     filteredData,
     isJuz,
     isCurrentJuz,

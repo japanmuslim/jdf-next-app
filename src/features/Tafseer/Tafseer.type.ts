@@ -4,9 +4,11 @@ export interface TafseerProps {
   latest: TafseerState[];
   message?: string;
   success?: boolean;
+  opening?: OpeningTafseer;
 }
 
 export interface TafseerViewProps {
+  linkVideo: string;
   data: Surah[];
   filteredData?: Surah[];
   isCurrentSurah?: number;
@@ -63,4 +65,14 @@ export interface JuzState {
   created_at?: Date;
   updated_at?: Date;
   tafsirs?: TafseerState[];
+}
+
+export interface OpeningTafseer {
+  id: number;
+  key: string;
+  value: string;
+  is_active: number;
+  deleted_at: null;
+  created_at: Date;
+  updated_at: Date;
 }
