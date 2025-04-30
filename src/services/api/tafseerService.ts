@@ -15,7 +15,11 @@ export const TafseerApi = createApi({
     getTafseerLatest: builder.query({
       query: () => `tafseer-video/latest`,
     }),
+    getOpeningTafseer: builder.query({
+      query: () => `opening`,
+    }),
   }),
 });
 
-export const { useGetTafseerLatestQuery } = TafseerApi;
+export const { useGetTafseerLatestQuery, useGetOpeningTafseerQuery } =
+  TafseerApi;

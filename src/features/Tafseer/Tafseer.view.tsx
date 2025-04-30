@@ -29,6 +29,7 @@ const Swiper = dynamic(() => import('@/components/ui/swiper'), {
 });
 
 const TafseerView = ({
+  linkVideo,
   latest,
   filteredData,
   isCurrentTafseer,
@@ -140,7 +141,7 @@ const TafseerView = ({
                             {item.name_tafseer}
                           </h3>
                           <p className="md:text-xs text-[10px]">
-                           アーヤ {item.start_surah} - {item.end_surah}
+                            アーヤ {item.start_surah} - {item.end_surah}
                           </p>
                         </div>
                       </div>
@@ -212,7 +213,7 @@ const TafseerView = ({
                             {item.name_tafseer}
                           </h3>
                           <p className="md:text-xs text-[10px]">
-                          アーヤ {item.start_surah} - {item.end_surah}
+                            アーヤ {item.start_surah} - {item.end_surah}
                           </p>
                         </div>
                       </div>
@@ -225,14 +226,15 @@ const TafseerView = ({
         )}
       </SearchDrawer>
       <VideoEmbed
-        src={
-          isTab === 'surah'
-            ? (filteredData?.[isCurrentSurah || 0]?.tafsirs?.[
-                isCurrentTafseer || 0
-              ]?.link_youtube ?? '')
-            : (isJuz?.[isCurrentJuz || 0]?.tafsirs?.[isCurrentTafseer || 0]
-                ?.link_youtube ?? '')
-        }
+        src={linkVideo}
+        // src={
+        //   isTab === 'surah'
+        //     ? (filteredData?.[isCurrentSurah || 0]?.tafsirs?.[
+        //         isCurrentTafseer || 0
+        //       ]?.link_youtube ?? '')
+        //     : (isJuz?.[isCurrentJuz || 0]?.tafsirs?.[isCurrentTafseer || 0]
+        //         ?.link_youtube ?? '')
+        // }
         // light={
         //   isTab === 'surah'
         //     ? (filteredData?.[isCurrentSurah || 0]?.tafsirs?.[
@@ -277,7 +279,7 @@ const TafseerView = ({
               >
                 <h3 className="md:text-xl text-base">{item.name_tafseer}</h3>
                 <p className="md:text-sm text-xs">
-                 アーヤ {item.start_surah} - {item.end_surah}
+                  アーヤ {item.start_surah} - {item.end_surah}
                 </p>
               </div>
             </div>
