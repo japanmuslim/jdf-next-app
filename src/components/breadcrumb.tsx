@@ -50,8 +50,8 @@ const BreadcrumbComp = () => {
     <Breadcrumb>
       <BreadcrumbList className="text-md">
         <BreadcrumbItem>
-          <BreadcrumbLink className="text-white hover:text-[#777A7B]" href="/">
-            ホームページ
+          <BreadcrumbLink className="text-[#777A7B] hover:text-[#777A7B]" href="/">
+            ホーム
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
@@ -62,7 +62,7 @@ const BreadcrumbComp = () => {
           return (
             <BreadcrumbItem key={segment}>
               <BreadcrumbLink
-                className="text-white hover:text-[#777A7B]"
+                className="text-[#777A7B] hover:text-[#777A7B]"
                 // className={`${
                 //   isLastSegment ? 'text-white' : 'text-[#777A7B]'
                 // } hover:text-[#777A7B]`}

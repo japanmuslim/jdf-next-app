@@ -33,13 +33,13 @@ const HomeView = () => {
             onClick={() => router.push('/non-muslim')}
           >
             <Image
-              src="/assets/images/home/button-bg.png"
+              src="/assets/images/home/non-muslim.png"
               alt="Japan Dahwa Foundation"
               fill
               className="object-contain"
               priority
             />
-            <div className="absolute top-1/2 w-[73%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            {/* <div className="absolute top-1/2 w-[73%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <Image
                 src="/assets/images/home/text-nonmuslim.png"
                 alt="Non Muslim"
@@ -49,7 +49,7 @@ const HomeView = () => {
                 className="object-contain"
                 priority
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="h-full w-full flex items-center justify-center group relative">
@@ -58,15 +58,16 @@ const HomeView = () => {
             onClick={() => router.push('/muslim')}
           >
             <Image
-              src="/assets/images/home/button-bg.png"
+              src="/assets/images/home/muslim.png"
               alt="Japan Dahwa Foundation"
               fill
               className="object-contain"
               priority
             />
-            <div className="absolute top-1/2 w-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          </div>
+          {/* <div className="absolute top-1/2 w-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <Image
-                src="/assets/images/home/text-muslim.png"
+                src="/assets/images/home/bg-down.jpeg"
                 alt="Muslim"
                 width={600}
                 height={300}
@@ -74,8 +75,7 @@ const HomeView = () => {
                 className="object-contain"
                 priority
               />
-            </div>
-          </div>
+            </div> */}
         </div>
       </section>
     );

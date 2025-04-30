@@ -87,7 +87,7 @@ const DetailArticleView = ({
             {data?.title}
           </h1>
           <div className="flex items-center md:gap-4 gap-2">
-            <h2 className="capitalize md:text-lg text-sm">
+            <h2 className="capitalize md:text-lg text-[#777A7B] text-sm">
               {data?.category?.name || 'Category'}
             </h2>
             <span>•</span>
@@ -128,13 +128,13 @@ const DetailArticleView = ({
     </section>
     <section
       id="section-detail-article"
-      className="min-h-screen bg-[#191919] md:py-14 py-8"
+      className="min-h-screen bg-white  md:py-14 py-8"
     >
-      <div className="lg:max-w-[800px] md:max-w-[650px] max-w-xs mx-auto lg:space-y-8 space-y-4">
+      <div className="lg:max-w-[800px] text-[#777A7B] md:max-w-[650px] max-w-xs mx-auto lg:space-y-8 space-y-4">
         <Breadcrumb />
         <h1
           data-aos="fade-up"
-          className="font-bold md:text-[35px] text-lg leading-normal md:!my-10 my-4"
+          className="font-bold md:text-[35px] text-[#777A7B] text-lg leading-normal md:!my-10 my-4"
         >
           {data?.title}
         </h1>
