@@ -1,12 +1,10 @@
-import Loading from '@/components/page/loading';
 import TafseerView from '@/features/Tafseer';
 import { useTafseer } from '@/features/Tafseer/hooks/useTafseer';
-import { TafseerProps } from '@/features/Tafseer/Tafseer.type';
+import { OpeningTafseer, TafseerProps } from '@/features/Tafseer/Tafseer.type';
 import store from '@/init/store/store';
 import Layout from '@/layouts/Layout';
 import { TafseerApi } from '@/services/api/tafseerService';
 import { GetStaticProps } from 'next';
-import dynamic from 'next/dynamic';
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await store.dispatch(TafseerApi.endpoints.getSurah.initiate({}));
@@ -14,9 +12,13 @@ export const getStaticProps: GetStaticProps = async () => {
   const getLatest = await store.dispatch(
     TafseerApi.endpoints.getTafseerLatest.initiate({}),
   );
+  const openingTafseer = await store.dispatch(
+    TafseerApi.endpoints.getOpeningTafseer.initiate({}),
+  );
 
   return {
     props: {
+      opening: openingTafseer?.data?.data ?? null,
       data: data?.data?.data ?? [],
       juz: juz?.data?.data ?? [],
       latest: getLatest?.data?.data ?? [],
@@ -25,8 +27,9 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default function Tafseer({ data, juz, latest }: TafseerProps) {
+export default function Tafseer({ data, juz, latest, opening }: TafseerProps) {
   const {
+    linkVideo,
     filteredData,
     isCurrentSurah,
     isCurrentTafseer,
@@ -44,7 +47,7 @@ export default function Tafseer({ data, juz, latest }: TafseerProps) {
     handleCurrentLatest,
     handlePlayVideo,
     handlePauseVideo,
-  } = useTafseer({ data, juz });
+  } = useTafseer({ data, juz, opening: opening ?? ({} as OpeningTafseer) });
 
   return (
     <Layout
@@ -55,6 +58,7 @@ export default function Tafseer({ data, juz, latest }: TafseerProps) {
       navbar={!isNavVisible}
     >
       <TafseerView
+        linkVideo={linkVideo ?? ''}
         data={data}
         latest={latest}
         filteredData={filteredData}
